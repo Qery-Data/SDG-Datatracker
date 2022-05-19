@@ -1,4 +1,4 @@
-name: World Bank
+name: SDG 1
 on: 
   workflow_dispatch:
 jobs:
