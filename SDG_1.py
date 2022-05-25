@@ -4,6 +4,7 @@ import os
 import json
 from datetime import datetime
 import locale
+import io
 import pandas as pd
 os.makedirs('data', exist_ok=True)
 access_token = os.getenv('DW_TOKEN')
@@ -67,3 +68,69 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#1.3.1 Social protection - nine indicators from the ILO, one from the OECD (out of work)
+df_bnfts = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_TOTAL?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_bnfts= df_bnfts.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+bnfts_data_date = df_new_bnfts.index[0]
+df_new_bnfts.rename(index={df_new_bnfts.index[0]: "Share of population covered by at least one social protection benefit"}, inplace = True)
+df_new_bnfts.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_bnfts['Date'] = bnfts_data_date
+
+df_chld = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_CHILD?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_chld = df_chld.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+chld_data_date = df_new_chld.index[0]
+df_new_chld.rename(index={df_new_chld.index[0]: "Share of children/households receiving child/family cash benefit"}, inplace = True)
+df_new_chld.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_chld['Date'] = chld_data_date
+
+df_disab = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_DISAB?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_disab = df_disab.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+disab_data_date = df_new_disab.index[0]
+df_new_disab.rename(index={df_new_disab.index[0]: "Share of population with severe disabilities receiving disability cash benefit"}, inplace = True)
+df_new_disab.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_disab['Date'] = disab_data_date
+
+df_matnl = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_F.SOC_CONTIG_MAT?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_matnl = df_matnl.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+matnl_data_date = df_new_matnl.index[0]
+df_new_matnl.rename(index={df_new_matnl.index[0]: "Share of mothers with newborns receiving maternity cash benefit"}, inplace = True)
+df_new_matnl.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_matnl['Date'] = matnl_data_date
+
+df_pensn = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_PENSION?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_pensn = df_pensn.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+pensn_data_date = df_new_pensn.index[0]
+df_new_pensn.rename(index={df_new_pensn.index[0]: "Share of population above statutory pensionable age receiving a pension"}, inplace = True)
+df_new_pensn.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_pensn['Date'] = pensn_data_date
+
+df_poor = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_POOR?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_poor = df_poor.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+poor_data_date = df_new_poor.index[0]
+df_new_poor.rename(index={df_new_poor.index[0]: "Share of poor population receiving social assistance cash benefit"}, inplace = True)
+df_new_poor.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_poor['Date'] = poor_data_date
+
+df_uemp = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_UNE?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_uemp = df_uemp.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+uemp_data_date = df_new_uemp.index[0]
+df_new_uemp.rename(index={df_new_uemp.index[0]: "Share of unemployed persons receiving unemployment cash benefit"}, inplace = True)
+df_new_uemp.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_uemp['Date'] = uemp_data_date
+
+df_vuln = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_VULN?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_vuln = df_vuln.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+vuln_data_date = df_new_vuln.index[0]
+df_new_vuln.rename(index={df_new_vuln.index[0]: "Share of vulnerable population receiving social assistance cash benefit"}, inplace = True)
+df_new_vuln.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_vuln['Date'] = vuln_data_date
+
+df_wkinjry = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_INJ?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
+df_new_wkinjry = df_wkinjry.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+wkinjry_data_date = df_new_wkinjry.index[0]
+df_new_wkinjry.rename(index={df_new_wkinjry.index[0]: "Share of employed population covered in the event of work injury"}, inplace = True)
+df_new_wkinjry.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
+df_new_wkinjry['Date'] = wkinjry_data_date
+
+df_all = pd.concat([df_new_bnfts,df_new_chld,df_new_disab,df_new_matnl,df_new_pensn,df_new_uemp,df_new_poor,df_new_vuln,df_new_wkinjry], axis=0)
