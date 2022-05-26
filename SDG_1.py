@@ -24,12 +24,11 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#1.1.1 Extreme Poverty World SDG Regions
+#1.1.1 Extreme Poverty SDG Regions
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_POV_DAY1.9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/1_1_1_Extreme_Poverty_World_SDG_Regions.csv', index=True)
-title_date = 'Share of population covered by at least one social protection cash benefit, by SDG region.' ' Data for ' + data_date
 
 #Update DW
 chartid = '9hnSw'
@@ -187,5 +186,57 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
+#1.4.1 Basic Services World (gKqbe)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SP_ACS_BSRVSAN+SP_ACS_BSRVH2O.1..._T......../ALL/?detail=full&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='SERIES', values='OBS_VALUE')
+df_new.rename(columns={'SP_ACS_BSRVH2O': 'Basic drinking water services', 'SP_ACS_BSRVSAN': 'Basic sanitation services'},inplace=True)
+df_new.to_csv('data/1_4_1_Basic_Services_World.csv', index=True)
 
+#Update DW
+chartid = 'gKqbe'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#1.4.1 Basic Services SDG Regions V6VAh (Sanitation) F9QxD (Water)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SP_ACS_BSRVSAN+SP_ACS_BSRVH2O.9+62+513+747+753+202+419..._T......../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
+df_new.rename(index={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.rename(columns={'SP_ACS_BSRVH2O': 'Basic drinking water services', 'SP_ACS_BSRVSAN': 'Basic sanitation services'},inplace=True)
+df_new.to_csv('data/1_4_1_Basic_Services_World_SDG_Regions.csv', index=True)
+
+#Update DW
+chartid = 'V6VAh'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+chartid = 'F9QxD'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#1.4.1 Basic Services Nordics (0cxyL)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SP_ACS_BSRVSAN+SP_ACS_BSRVH2O.208+246+352+578+752..._T......../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(columns={'SP_ACS_BSRVH2O': 'Basic drinking water services', 'SP_ACS_BSRVSAN': 'Basic sanitation services'},inplace=True)
+df_new.to_csv('data/1_4_1_Basic_Services_Nordics.csv', index=True)
+
+#Update DW
+chartid = '0cxyL'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
 
