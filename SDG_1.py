@@ -240,3 +240,52 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
+#1.5.3 National Strategies Score Nordics (ChM6H)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_DSR_LGRGSR.208+246+352+578+752............/ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(columns={'SG_DSR_LGRGSR': 'Score of adoption'},inplace=True)
+df_new.drop(df_new[df_new['Score of adoption'] <= 0.00].index, inplace = True)
+df_new.to_csv('data/1_5_3_National_Strategies_Nordics.csv', index=True)
+
+#Update DW
+chartid = 'ChM6H'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#1.5.3 Local Strategies Share Nordics (q2C40)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_DSR_SILS.208+246+352+578+752............/ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(columns={'SG_DSR_SILS': 'Share of local governments'},inplace=True)
+df_new.drop(df_new[df_new['Share of local governments'] <= 0.00].index, inplace = True)
+df_new.to_csv('data/1_5_3_Local_Strategies_Nordics.csv', index=True)
+
+#Update DW
+chartid = 'q2C40'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#1.a.1 ODA Poverty Component (TQgd2)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..DC_ODA_POVDLG.208+246+352+578+752............/ALL/?detail=full&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
+df_new.to_csv('data/1_a_1_ODA_Poverty_Nordics.csv', index=True)
+
+#Update DW
+chartid = 'TQgd2'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
