@@ -133,4 +133,17 @@ df_new_wkinjry.rename(index={df_new_wkinjry.index[0]: "Share of employed populat
 df_new_wkinjry.rename(columns={'DNK': 'Denmark', 'FIN': 'Finland', 'ISL': 'Iceland', 'NOR':'Norway', 'SWE':'Sweden'}, inplace = True)
 df_new_wkinjry['Date'] = wkinjry_data_date
 
-df_all = pd.concat([df_new_bnfts,df_new_chld,df_new_disab,df_new_matnl,df_new_pensn,df_new_uemp,df_new_poor,df_new_vuln,df_new_wkinjry], axis=0)
+df_new_out_of_work = pd.DataFrame([{'Denmark': 44, 'Finland': 139, 'Iceland': 36, 'Norway': 23, 'Sweden': 22, 'Date': '2017/2018'}], index = ['Recipients of secondary out-of-work benefits as share of poor w.a.p'])
+df_all = pd.concat([df_new_bnfts,df_new_chld,df_new_disab,df_new_matnl,df_new_pensn,df_new_uemp,df_new_poor,df_new_vuln,df_new_wkinjry, df_new_out_of_work], axis=0)
+df_all.to_csv('data/1_3_1_SOC_Nordics.csv', index=True)
+#Update DW
+chartid = 'gg4Oo'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+
+
