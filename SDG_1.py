@@ -289,3 +289,29 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#1.a.2 Public Spending Education Nordics (Zsft2)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SD_XPD_ESED.208+246+352+578+752............/ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+data_date = str(df_new.columns[0])
+df_new.rename(columns={df_new.columns[0]:'Share of total government spending, education'}, inplace=True)
+df_new.to_csv('data/1_a_2_Public_Spending_Education_Nordics.csv', index=True)
+title_date = 'Share of total government spending on education.' ' Data for ' + data_date
+
+#Update DW
+chartid = 'Zsft2'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
+payload = {"metadata": {"describe": {"intro": title_date}}}
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*",
+    "Content-Type": "application/json"
+    }
+response = requests.request("PATCH", url, json=payload, headers=headers)
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
