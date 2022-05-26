@@ -69,7 +69,33 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#1.3.1 Social protection - nine indicators from the ILO, one from the OECD (out of work)
+#1.3.1 Social protection coverage world regions 
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_COV_BENFTS.1+53+543+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1: 'World', 53 : 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+data_date = str(df_new.columns[0])
+df_new.rename(columns={2020:'Share covered'}, inplace=True)
+df_new.to_csv('data/1_3_1_SOC_World.csv', index=True)
+title_date = 'Share of population covered by at least one social protection cash benefit, by SDG region.' ' Data for ' + data_date
+
+#Update DW
+chartid = 'cb7Xz'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
+payload = {"metadata": {"describe": {"intro": title_date}}}
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*",
+    "Content-Type": "application/json"
+    }
+response = requests.request("PATCH", url, json=payload, headers=headers)
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#1.3.1 Social protection - nine indicators from the ILO, one from the OECD (out of work) Nordics
 df_bnfts = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_TOTAL?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
 df_new_bnfts= df_bnfts.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 bnfts_data_date = df_new_bnfts.index[0]
