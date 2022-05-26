@@ -9,7 +9,7 @@ import pandas as pd
 os.makedirs('data', exist_ok=True)
 access_token = os.getenv('DW_TOKEN')
 
-#1.1 Extreme Poverty World total (vBtQ6)
+#1.1.1 Extreme Poverty World total (vBtQ6)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_POV_DAY1.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
@@ -24,7 +24,23 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#1.1 Extreme Poverty Nordics 
+#1.1.1 Extreme Poverty World SDG Regions
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_POV_DAY1.9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/1_1_1_Extreme_Poverty_World_SDG_Regions.csv', index=True)
+title_date = 'Share of population covered by at least one social protection cash benefit, by SDG region.' ' Data for ' + data_date
+
+#Update DW
+chartid = '9hnSw'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#1.1.1 Extreme Poverty Nordics (QvvA3)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_POV_DAY1.208+246+352+578+752._T._T._T......../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
@@ -39,7 +55,7 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#1.2.1 Relative poverty Nordics
+#1.2.1 Relative Poverty Nordics
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/IDD/DNK+FIN+ISL+NOR+SWE.PVT5A.TOT.CURRENT.METH2012/all?startTime=2004'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
@@ -55,7 +71,7 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#1.2.2 Multidimensional poverty Nordics
+#1.2.2 Multidimensional Poverty Nordics (Ko0UR)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SD_MDP_MUHC.208+246+352+578+752._T._T._T......../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
@@ -69,13 +85,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#1.3.1 Social protection coverage world regions 
+#1.3.1 Social Protection Coverage World Regions (cb7Xz)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_COV_BENFTS.1+53+543+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
-df_new.rename(index={1: 'World', 53 : 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.rename(index={1: 'World', 9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 data_date = str(df_new.columns[0])
-df_new.rename(columns={2020:'Share covered'}, inplace=True)
-df_new.to_csv('data/1_3_1_SOC_World.csv', index=True)
+df_new.rename(columns={df_new.columns[0]:'Share covered'}, inplace=True)
+df_new.to_csv('data/1_3_1_SOC_World_SDG_Regions.csv', index=True)
 title_date = 'Share of population covered by at least one social protection cash benefit, by SDG region.' ' Data for ' + data_date
 
 #Update DW
