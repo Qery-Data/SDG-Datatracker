@@ -13,6 +13,9 @@ access_token = os.getenv('DW_TOKEN')
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_POV_DAY1.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
+df_new["2019"] = ""
+df_new["2020"] = ""
+df_new["2021"] = ""
 df_new["2030"] = ""
 df_new.to_csv('data/1_1_1_Extreme_Poverty_World_Total.csv', index=True)
 #Update DW
@@ -92,7 +95,6 @@ data_date = str(df_new.columns[0])
 df_new.rename(columns={df_new.columns[0]:'Share covered'}, inplace=True)
 df_new.to_csv('data/1_3_1_SOC_World_SDG_Regions.csv', index=True)
 title_date = 'Share of population covered by at least one social protection cash benefit, by SDG region.' ' Data for ' + data_date
-
 #Update DW
 chartid = 'cb7Xz'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
@@ -191,7 +193,6 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='SERIES', values='OBS_VALUE')
 df_new.rename(columns={'SP_ACS_BSRVH2O': 'Basic drinking water services', 'SP_ACS_BSRVSAN': 'Basic sanitation services'},inplace=True)
 df_new.to_csv('data/1_4_1_Basic_Services_World.csv', index=True)
-
 #Update DW
 chartid = 'gKqbe'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -206,8 +207,7 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/
 df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
 df_new.rename(index={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.rename(columns={'SP_ACS_BSRVH2O': 'Basic drinking water services', 'SP_ACS_BSRVSAN': 'Basic sanitation services'},inplace=True)
-df_new.to_csv('data/1_4_1_Basic_Services_World_SDG_Regions.csv', index=True)
-
+df_new.to_csv('data/1_4_1_Basic_Services_SDG_Regions.csv', index=True)
 #Update DW
 chartid = 'V6VAh'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -230,7 +230,6 @@ df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(columns={'SP_ACS_BSRVH2O': 'Basic drinking water services', 'SP_ACS_BSRVSAN': 'Basic sanitation services'},inplace=True)
 df_new.to_csv('data/1_4_1_Basic_Services_Nordics.csv', index=True)
-
 #Update DW
 chartid = '0cxyL'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -247,7 +246,6 @@ df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway
 df_new.rename(columns={'SG_DSR_LGRGSR': 'Score of adoption'},inplace=True)
 df_new.drop(df_new[df_new['Score of adoption'] <= 0.00].index, inplace = True)
 df_new.to_csv('data/1_5_3_National_Strategies_Nordics.csv', index=True)
-
 #Update DW
 chartid = 'ChM6H'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -264,7 +262,6 @@ df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway
 df_new.rename(columns={'SG_DSR_SILS': 'Share of local governments'},inplace=True)
 df_new.drop(df_new[df_new['Share of local governments'] <= 0.00].index, inplace = True)
 df_new.to_csv('data/1_5_3_Local_Strategies_Nordics.csv', index=True)
-
 #Update DW
 chartid = 'q2C40'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -279,8 +276,7 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
-df_new.to_csv('data/1_a_1_ODA_Poverty_Nordics.csv', index=True)
-
+df_new.to_csv('data/1_A_1_ODA_Poverty_Nordics.csv', index=True)
 #Update DW
 chartid = 'TQgd2'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -296,9 +292,8 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 data_date = str(df_new.columns[0])
 df_new.rename(columns={df_new.columns[0]:'Share of total government spending, education'}, inplace=True)
-df_new.to_csv('data/1_a_2_Public_Spending_Education_Nordics.csv', index=True)
+df_new.to_csv('data/1_A_2_Public_Spending_Education_Nordics.csv', index=True)
 title_date = 'Share of total government spending on education.' ' Data for ' + data_date
-
 #Update DW
 chartid = 'Zsft2'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
