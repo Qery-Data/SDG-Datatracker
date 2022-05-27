@@ -88,7 +88,7 @@ headers = {
 response = requests.request("POST", url, headers=headers)
 
 #1.3.1 Social Protection Coverage World Regions (cb7Xz)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_COV_BENFTS.1+53+543+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_COV_BENFTS.1+9+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1: 'World', 9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 data_date = str(df_new.columns[0])
