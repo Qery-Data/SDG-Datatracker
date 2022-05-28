@@ -154,37 +154,3 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
-
-#2.1.2 Prevalence of moderate or severe food insecurity number Nordics (dIcSS)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_FIESMSN.208+246+352+578+752._T.........../ALL/?detail=full&lastNObservations=1&format=csv')
-df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
-df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-data_date = str(df_new.index[0])
-df_new.rename(index={df_new.index[0]: "Moderate or severe"}, inplace = True)
-
-df_csv2 = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_FIESSN.208+246+352+578+752._T.........../ALL/?detail=full&lastNObservations=1&format=csv')
-df_new2 = df_csv2.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
-df_new2.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new2.rename(index={df_new2.index[0]: "Severe"}, inplace = True)
-
-df_all = pd.concat([df_new,df_new2], axis=0)
-df_all.loc['Moderate'] = df_all.diff(-1).dropna().values.tolist()[0]
-df_all.drop(['Moderate or severe'], inplace=True)
-df_all.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_Nordics.csv', index=True)
-title_date = 'Number of people (thousands) who are moderately or severely food insecure*.' ' Data for ' + data_date +'.'
-#Update DW
-chartid = 'dIcSS'
-url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
-payload = {"metadata": {"describe": {"intro": title_date}}}
-headers = {
-    "Authorization": ("Bearer " + access_token),
-    "Accept": "*/*",
-    "Content-Type": "application/json"
-    }
-response = requests.request("PATCH", url, json=payload, headers=headers)
-url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
-headers = {
-    "Authorization": ("Bearer " + access_token),
-    "Accept": "*/*"
-    }
-response = requests.request("POST", url, headers=headers)
