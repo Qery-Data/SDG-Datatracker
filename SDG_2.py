@@ -258,3 +258,25 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#2.2.2 Obesity Rate Nordics (OECD)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/BODYOBMS.TOTPOPTX.FIN/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Country', columns='Year', values='Value')
+
+oecd_url2='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/BODYOBSR.TOTPOPTX.DNK+ISL+NOR+SWE/all?startTime=2000'
+result2 = requests.get(oecd_url2, headers={'Accept': 'text/csv'})
+df2=pd.read_csv(io.StringIO(result2.text))
+df_new2 = df2.pivot(index='Country', columns='Year', values='Value')
+
+df_all = pd.concat([df_new2,df_new], axis=0)
+df_all.to_csv('data/2_2_2_Prevalence_Obesity_Nordics_%.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
