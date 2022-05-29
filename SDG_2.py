@@ -297,3 +297,16 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
+#2.5.1 Plant genetic resources stored World (16qui)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..ER_GRF_PLNTSTOR.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/2_5_1_Plant_Genetic_Resources_Stored_World_Total.csv', index=True)
+#Update DW
+chartid = '16qui'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
