@@ -280,3 +280,20 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#2.4.1 Nutrient balance (OECD) 38t3r
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/AEI_NUTRIENTS/DNK+FIN+ISL+NOR+SWE.BPERHA.NITROGEN/all?startTime=1990&endTime=2020'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Country', columns='Time', values='Value')
+df_new.to_csv('data/2_4_1_Nutrient_Balance_Nordics.csv', index=True)
+
+#Update DW
+chartid = '38t3r'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
