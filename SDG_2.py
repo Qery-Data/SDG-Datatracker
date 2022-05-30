@@ -69,7 +69,7 @@ response = requests.request("POST", url, headers=headers)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_FIESMS.1._T.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_World_%.csv', index=True)
+df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_World_Total_%.csv', index=True)
 #Update DW
 chartid = 'xVpsa'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -83,7 +83,7 @@ response = requests.request("POST", url, headers=headers)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_FIESMSN.1._T.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_World.csv', index=True)
+df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_World_Total.csv', index=True)
 #Update DW
 chartid = '778M0'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -93,13 +93,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#2.1.2 Prevalence of moderate or severe food insecurity % SDG Regions (xxxxx)
+#2.1.2 Prevalence of moderate or severe food insecurity % SDG Regions (mklCo)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_FIESMS.9+62+513+747+753+202+419._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_SDG_Regions_%.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'mklCo'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -123,7 +123,7 @@ df_all = pd.concat([df_new,df_new2], axis=0)
 df_all.loc['Moderate'] = df_all.diff(-1).dropna().values.tolist()[0]
 df_all.drop(['Moderate or severe'], inplace=True)
 df_all.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_SDG_Regions.csv', index=True)
-title_date = 'Number of people (million) who are moderately or severely food insecure*.' ' Data for ' + data_date
+title_date = 'Number of people (million) who are moderately or severely food insecure*.' ' Data for ' + data_date + '.'
 #Update DW
 chartid = 'PfO0n'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
@@ -259,7 +259,7 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#2.2.2 Obesity Rate Nordics (OECD)
+#2.2.2 Obesity Rate Nordics (OECD) (kLSPC)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/BODYOBMS.TOTPOPTX.FIN/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
@@ -273,7 +273,7 @@ df_new2 = df2.pivot(index='Country', columns='Year', values='Value')
 df_all = pd.concat([df_new2,df_new], axis=0)
 df_all.to_csv('data/2_2_2_Prevalence_Obesity_Nordics_%.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'kLSPC'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -401,7 +401,7 @@ response = requests.request("POST", url, headers=headers)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..DC_TOF_AGRL.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={515:'World'}, inplace=True)
-df_new.to_csv('data/2_a_2_Total_Official_Flows_Agriculture_World.csv', index=True)
+df_new.to_csv('data/2_a_2_Total_Official_Flows_Agriculture_World_Total.csv', index=True)
 #Update DW
 chartid = 'o4sR1'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -415,7 +415,7 @@ response = requests.request("POST", url, headers=headers)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_XSUBDY.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new.to_csv('data/2_b_1_Agricultural_Export_Subsidies_World.csv', index=True)
+df_new.to_csv('data/2_b_1_Agricultural_Export_Subsidies_World_Total.csv', index=True)
 #Update DW
 chartid = '9U1BR'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -431,7 +431,7 @@ df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='TIME_PERIOD', values
 df_new.rename(index={'_T':'Total'}, inplace=True)
 df_new.rename(index={'SPL_M':'Moderate: Moderately high food prices'}, inplace=True)
 df_new.rename(index={'SPL_A':'Abnormal: High food prices'}, inplace=True)
-df_new.to_csv('data/2_c_1_Food_Price_Anomalies_World.csv', index=True)
+df_new.to_csv('data/2_c_1_Food_Price_Anomalies_World_Total.csv', index=True)
 #Update DW
 chartid = 'B2S4g'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
