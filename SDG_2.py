@@ -354,3 +354,45 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#2.a.1 Agriculture orientation index World (Oge2d)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_ORTIND.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/2_a_1_Agriculture_Orientation_Index_World.csv', index=True)
+#Update DW
+chartid = 'Oge2d'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#2.a.1 Agriculture orientation index SDG Regions (V6dpl)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_ORTIND.9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/2_a_1_Agriculture_Orientation_Index_SDG_Regions.csv', index=True)
+#Update DW
+chartid = 'V6dpl'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#2.a.1 Agriculture orientation index Nordics (nJnJ5)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_ORTIND.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/2_a_1_Agriculture_Orientation_Index_Nordics.csv', index=True)
+#Update DW
+chartid = 'nJnJ5'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
