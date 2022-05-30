@@ -354,12 +354,12 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#2.5.1 Animal genetic resources stored Nordics Share (WyB5j)
+#2.5.1 Local Breeds at Risk Nordics Share (WyB5j)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..ER_RSK_LBREDS.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.dropna(inplace=True)
-df_new.to_csv('data/2_5_1_Animal_Genetic_Resources_Stored_Nordics_Share.csv', index=True)
+df_new.to_csv('data/2_5_1_Local_Breeds_Risk_Nordics_Share.csv', index=True)
 #Update DW
 chartid = 'WyB5j'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
