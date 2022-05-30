@@ -454,3 +454,17 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#2.c.1 Food price anomalies Nordics (qYZX7)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_FPA_CFPI.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/2_c_1_Food_Price_Anomalies_Nordics.csv', index=True)
+#Update DW
+chartid = 'qYZX7'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
