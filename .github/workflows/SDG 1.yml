@@ -1,4 +1,4 @@
-name: SDG 1
+name: SDG
 on: 
   workflow_dispatch:
   schedule:
@@ -22,6 +22,11 @@ jobs:
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
         run: python SDG_1.py
+      - name: 🍳 Update SDG 2
+        if: always()
+        env: 
+          DW_TOKEN: ${{ secrets.DW_TOKEN }}
+        run: python SDG_2.py
       - name: 🚀 Commit and push if it changed
         run: |
           git config user.name "${GITHUB_ACTOR}"
