@@ -293,7 +293,7 @@ df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway
 data_date = str(df_new.columns[0])
 df_new.rename(columns={df_new.columns[0]:'Share of total government spending, education'}, inplace=True)
 df_new.to_csv('data/1_A_2_Public_Spending_Education_Nordics.csv', index=True)
-title_date = 'Share of total government spending on education.' ' Data for ' + data_date
+title_date = 'Share of total government spending on education.' ' Data for ' + data_date + '.'
 #Update DW
 chartid = 'Zsft2'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
