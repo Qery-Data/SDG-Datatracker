@@ -38,7 +38,7 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.1.1 Maternal mortality ratio Nordics (OECD) (w7m0C) 
+#3.1.1 Maternal mortality ratio Nordics (OECD) (VnalL) 
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/MATIMATM.TXCMMMTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
@@ -46,7 +46,7 @@ df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
 df_new.to_csv('data/3_1_1_Maternal_Mortality_Ratio_Nordics.csv', index=True)
 #Update DW
-chartid = 'w7m0C'
+chartid = 'VnalL'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -139,13 +139,14 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.2.1 Child mortality (under 5 years) Nordics (VDUy3)
+#3.2.1 Child mortality (under 5 years) Nordics (w7m0C)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_DYN_MORT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
 df_new.to_csv('data/3_2_1_Child_Mortality_Under5_Nordics.csv', index=True)
 #Update DW
-chartid = 'VDUy3'
+chartid = 'w7m0C'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -181,13 +182,14 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.2.1 Infant mortality rate Nordics (UzZH7)
+#3.2.1 Infant mortality rate Nordics (ExhV2)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_DYN_IMRT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
 df_new.to_csv('data/3_2_1_Infant_Mortality_Nordics.csv', index=True)
 #Update DW
-chartid = 'UzZH7'
+chartid = 'ExhV2'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
