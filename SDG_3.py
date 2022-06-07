@@ -141,7 +141,6 @@ response = requests.request("POST", url, headers=headers)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_DYN_MORT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
 df_new.to_csv('data/3_2_1_Child_Mortality_Under5_Nordics.csv', index=True)
 #Update DW
 chartid = 'w7m0C'
@@ -217,6 +216,20 @@ df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-
 df_new.to_csv('data/3_2_2_Neonatal_Mortality_SDG_Regions.csv', index=True)
 #Update DW
 chartid = 'iWaE0'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.2.2 Neonatal mortality Nordics (FhHAO)
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_DYN_NMRT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/3_2_2_Neonatal_Mortality_Nordics.csv', index=True)
+#Update DW
+chartid = 'FhHAO'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
