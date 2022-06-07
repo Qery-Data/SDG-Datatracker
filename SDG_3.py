@@ -38,23 +38,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.1.1 Maternal mortality ratio Nordics (VnalL) 
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_MORT.208+246+352+578+752.........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&&lastNObservations=1&format=csv")
+#3.1.1 Maternal mortality ratio Nordics (f97NM) 
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_MORT.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-data_date = str(df_new.columns[0])
 df_new.to_csv('data/3_1_1_Maternal_Mortality_Ratio_Nordics.csv', index=True)
-title_date = 'Maternal deaths per 100,000 live births. ' ' Data for ' + data_date + '.'
 #Update DW
-chartid = 'VnalL'
-url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
-payload = {"metadata": {"describe": {"intro": title_date}}}
-headers = {
-    "Authorization": ("Bearer " + access_token),
-    "Accept": "*/*",
-    "Content-Type": "application/json"
-    }
-response = requests.request("PATCH", url, json=payload, headers=headers)
+chartid = 'f97NM'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -104,13 +94,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.1.1 Delivery coverage Nordics (ax3MB)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_BRTC.208+246+352+578+752............../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+#3.1.1 Delivery coverage Nordics (bUwlZ)
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_BRTC.208+246+352+578+752............../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_DETAIL', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_1_1_Delivery_Coverage_Nordics.csv', index=True)
 #Update DW
-chartid = 'ax3MB'
+chartid = 'bUwlZ'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
