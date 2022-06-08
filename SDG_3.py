@@ -265,6 +265,35 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
+#3.3.1 HIV Nordics (6U375)
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_HIV_INCD.208+246+352+578+752._T._T........./ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/3_3_1_HIV_Nordics.csv', index=True)
+#Update DW
+chartid = '6U375'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.3.1 AIDS (OECD) Nordics (aq4jB)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/COMDAIDS.NEWCASTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000&endTime=2020'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Country', columns='Year', values='Value')
+df_new.to_csv('data/3_3_1_AIDS_Nordics.csv', index=True)
+#Update DW
+chartid = 'aq4jB'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
 #3.3.2 Tuberculosis World (6YipF)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_TBS_INCD.1._T._T........./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -286,6 +315,35 @@ df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-
 df_new.to_csv('data/3_3_2_Tuberculosis_SDG_Regions.csv', index=True)
 #Update DW
 chartid = 'FIwuf'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.3.2 Tuberculosis Nordics (ZjTWN)
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_TBS_INCD.208+246+352+578+752._T._T........./ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/3_3_2_Tuberculosis_Nordics.csv', index=True)
+#Update DW
+chartid = 'ZjTWN'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.3.2 Tuberculosis Deaths (OECD) Nordics (0yqie)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/CICDTBLS.TXCMILTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000&endTime=2020'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Country', columns='Year', values='Value')
+df_new.to_csv('data/3_3_2_Tuberculosis_Deaths_Nordics.csv', index=True)
+#Update DW
+chartid = '0yqie'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -349,6 +407,21 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
+#3.3.4 Hepatitis B (OECD) Nordics (8ENns)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/COMDIHPB.PERCMTTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000&endTime=2020'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Country', columns='Year', values='Value')
+df_new.to_csv('data/3_3_4_Hepatitis_B_Nordics.csv', index=True)
+#Update DW
+chartid = '8ENns'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
 #3.3.5 Tropical diseases World (e2fLz)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_TRP_INTVN.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -370,6 +443,20 @@ df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-
 df_new.to_csv('data/3_3_5_Tropical_Diseases_SDG_Regions.csv', index=True)
 #Update DW
 chartid = 'M85pk'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.3.5 Tropical diseases Nordics (KDmB7)
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_TRP_INTVN.208+246+352+578+752.........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/3_3_5_Tropical_diseases_Nordics.csv', index=True)
+#Update DW
+chartid = 'KDmB7'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
