@@ -315,7 +315,6 @@ result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Country', columns='Time', values='Value')
 df_new.to_csv('data/2_4_1_Nutrient_Balance_Nordics.csv', index=True)
-
 #Update DW
 chartid = '38t3r'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
