@@ -635,13 +635,14 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.6.1 Road traffic deaths Nordics (qJq5z)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_TRAF.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
-df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
-df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.to_csv('data/3_6_1_Road_traffic_deaths_Nordics.csv', index=True)
+#3.6.1 Road traffic deaths Nordics OECD (bOwUi)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/IRTAD_CASUAL_BY_AGE/DNK+FIN+ISL+NOR+SWE.KIL.TOT.TOT.RATE-POP-100T.CORRECTED/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Country', columns='Year', values='Value')
+df_new.to_csv('data/3_6_1_Road_Traffic_Deaths_Nordics.csv', index=True)
 #Update DW
-chartid = 'qJq5z'
+chartid = 'bOwUi'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
