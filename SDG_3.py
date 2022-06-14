@@ -564,3 +564,45 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
+#3.5.2 Alcohol consumption World (33cLP)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ALC_CONSPT.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/3_5_2_Alcohol_Consumption_World_Total.csv', index=True)
+#Update DW
+chartid = '33cLP'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.4.1 Alcohol consumption SDG regions (hQSq1)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ALC_CONSPT.9+62+513+747+753+202+419._T............/ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/3_5_2_Alcohol_Consumption_SDG_Regions.csv', index=True)
+#Update DW
+chartid = 'hQSq1'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.5.2 Alcohol consumption (OECD) Nordics (JlAkV)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/ACOLALCT.LIPPERNB.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Country', columns='Year', values='Value')
+df_new.to_csv('data/3_5_2_Alcohol_Consumption_Nordics.csv', index=True)
+#Update DW
+chartid = 'JlAkV'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
