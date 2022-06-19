@@ -777,11 +777,11 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.9.1 Household and air pollution SDG regions (tvmPS)
+#3.9.1 Mortality Household and air pollution SDG regions (tvmPS)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_AIRP.1+9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
-df_new.to_csv('data/3_9_1_Household_Air_Pollution_SDG_Regions.csv', index=True)
+df_new.to_csv('data/3_9_1_Mortality_Household_Air_Pollution_SDG_Regions.csv', index=True)
 #Update DW
 chartid = 'tvmPS'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -795,9 +795,66 @@ response = requests.request("POST", url, headers=headers)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_AIRP.208+246+352+578+752............../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.to_csv('data/3_9_1_Household_Air_PollutionNordics.csv', index=True)
+df_new.to_csv('data/3_9_1_Mortality_Household_Air_PollutionNordics.csv', index=True)
 #Update DW
 chartid = 'TrVi1'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.9.2 WASH SDG regions (Ub8Mb)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_WASH.1+9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/3_9_2_Mortality_WASH_SDG_Regions.csv', index=True)
+#Update DW
+chartid = 'Ub8Mb'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.9.3 Mortality unintentional posioning World (9k8OW)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_POISN.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/3_9_3_Mortality_Unintentional_Posioning_World_Total.csv', index=True)
+#Update DW
+chartid = '9k8OW'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.9.3 Mortality unintentional posioning SDG regions (VKShu)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_POISN.9+62+513+747+753+202+419._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/3_9_3_Mortality_Unintentional_Posioning_SDG_Regions.csv', index=True)
+#Update DW
+chartid = 'VKShu'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.9.3 Mortality Accidental poisoning Nordics OECD (Au6rM)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/CICDPOSN.TXCMILTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Country', columns='Year', values='Value')
+df_new.to_csv('data/3_9_3_Mortality_Accidental_Poisoning_Nordics.csv', index=True)
+#Update DW
+chartid = 'Au6rM'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
