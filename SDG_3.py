@@ -1064,3 +1064,78 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#3.c.1 Health Worker Density (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.1+9+150+15+21+30+34+35+143+145+202.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='OCCUPATION', values='OBS_VALUE')
+df_new.rename(index={1:'World',9:'Oceania',150:'Europe',15:'Northern Africa',21:'Northern America',30:'Eastern Asia',34:'Southern Asia',35:'South-Eastern Asia',143:'Central Asia',145:'Western Asia',202:'Sub-Saharan Africa' }, inplace=True)
+df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
+df_new.to_csv('data/3_c_1_Health_Worker_Density.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.c.1 Health Worker Density Medical Doctors Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.208+246+352+578+752......ISCO08_221...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
+df_new.to_csv('data/3_c_1_Health_Worker_Density_Medical_Doctors_Nordics.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.c.1 Health Worker Density Nursing and midwifery personnel Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.208+246+352+578+752......ISCO08_222_322...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
+df_new.to_csv('data/3_c_1_Health_Worker_Density_Nursing_Midwifery_Nordics.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.c.1 Health Worker Density Dentists Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.208+246+352+578+752......ISCO08_2261...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
+df_new.to_csv('data/3_c_1_Health_Worker_Density_Dentists_Nordics.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.c.1 Health Worker Density Pharmacists Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.208+246+352+578+752......ISCO08_2262...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
+df_new.to_csv('data/3_c_1_Health_Worker_Density_Pharmacists_Nordics.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
