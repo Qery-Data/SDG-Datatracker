@@ -1050,3 +1050,17 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#3.b.1 Net ODA Health Total (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..DC_TOF_HLTHNT.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={515:'Total'}, inplace=True)
+df_new.to_csv('data/3_b_1_Net_ODA_Health_Total.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
