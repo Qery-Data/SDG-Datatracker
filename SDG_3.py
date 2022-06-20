@@ -1153,3 +1153,31 @@ headers = {
     "Accept": "*/*"
     }
 response = requests.request("POST", url, headers=headers)
+
+#3.d.1 IHR Capacity SDG regions (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_IHR_CAPS.9+62+513+747+753+202+419........_T.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/3_d_1_IHR_SDG_Regions.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
+
+#3.d.1 IHR Capacity Nordics (xxxxx)
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_IHR_CAPS.208+246+352+578+752........SPAR_01+SPAR_02+SPAR_03+SPAR_04+SPAR_05+SPAR_06+SPAR_07+SPAR_08+SPAR_09+SPAR_10+SPAR_11+SPAR_12+SPAR_13.../ALL/?detail=full&lastNObservations=1&format=csv")
+df_new = df_csv.pivot(index='REF_AREA', columns='COMPOSITE_BREAKDOWN', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/3_d_1_IHR_Nordics.csv', index=True)
+#Update DW
+chartid = 'xxxxx'
+url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.request("POST", url, headers=headers)
