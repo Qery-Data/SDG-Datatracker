@@ -905,13 +905,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 DTP3 World (xxxxx)
+#3.b.1 DTP3 World (UMgHK)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_DTP3.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/3_b_1_DTP3_World_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'UMgHK'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -919,13 +919,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 MCV2 World (xxxxx)
+#3.b.1 MCV2 World (1vKaz)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_MCV2.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/3_b_1_MCV2_World_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = '1vKaz'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -933,13 +933,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 PCV3 World (xxxxx)
+#3.b.1 PCV3 World (8j9KU)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_PCV3.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/3_b_1_PCV3_World_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = '8j9KU'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -947,13 +947,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 HPV World (xxxxx)
+#3.b.1 HPV World (zhPGz)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_HPV.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/3_b_1_HPV_World_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'zhPGz'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -961,13 +961,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 DTP3 SDG regions (xxxxx)
+#3.b.1 DTP3 SDG regions (sBPJS)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_DTP3.9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_b_1_DTP3_SDG_Regions.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'sBPJS'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -975,13 +975,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 MCV2 SDG regions (xxxxx)
+#3.b.1 MCV2 SDG regions (4PrPX)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_MCV2.9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_b_1_MCV2_SDG_Regions.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = '4PrPX'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -989,13 +989,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 PCV3 SDG regions (xxxxx)
+#3.b.1 PCV3 SDG regions (M1UgK)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_PCV3.9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_b_1_PCV3_SDG_Regions.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'M1UgK'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1003,7 +1003,7 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 HPV SDG regions (xxxxx)
+#3.b.1 HPV SDG regions (yPNKH)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_HPV.9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
@@ -1017,7 +1017,7 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 DTP3/MCV2/PCV3 Nordics
+#3.b.1 DTP3/MCV2/PCV3 Nordics (hLWW4)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_DTP3.208+246+352+578+752............./ALL/?detail=full&lastNObservations=1&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
@@ -1030,7 +1030,7 @@ df3_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norwa
 df_all = pd.concat([df_new,df2_new,df3_new],axis=1)
 df_all.to_csv('data/3_b_1_DTP3_MCV2_PCV3_Nordics.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'hLWW4'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1038,13 +1038,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 HPV Nordics (xxxxx)
+#3.b.1 HPV Nordics (ePvBh)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_ACS_HPV.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_b_1_HPV_Nordics.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'ePvBh'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1052,13 +1052,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.b.1 Net ODA Health Total (xxxxx)
+#3.b.1 Net ODA Health Total (0WKD3)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..DC_TOF_HLTHNT.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={515:'Total'}, inplace=True)
 df_new.to_csv('data/3_b_1_Net_ODA_Health_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = '0WKD3'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1066,14 +1066,14 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.c.1 Health Worker Density (xxxxx)
+#3.c.1 Health Worker Density Total (Z4XdO)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.1+9+150+15+21+30+34+35+143+145+202.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='OCCUPATION', values='OBS_VALUE')
 df_new.rename(index={1:'World',9:'Oceania',150:'Europe',15:'Northern Africa',21:'Northern America',30:'Eastern Asia',34:'Southern Asia',35:'South-Eastern Asia',143:'Central Asia',145:'Western Asia',202:'Sub-Saharan Africa' }, inplace=True)
 df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
-df_new.to_csv('data/3_c_1_Health_Worker_Density.csv', index=True)
+df_new.to_csv('data/3_c_1_Health_Worker_Density_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'Z4XdO'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1081,14 +1081,14 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.c.1 Health Worker Density Medical Doctors Nordics (xxxxx)
+#3.c.1 Health Worker Density Medical Doctors Nordics (dhEhe)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.208+246+352+578+752......ISCO08_221...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
 df_new.to_csv('data/3_c_1_Health_Worker_Density_Medical_Doctors_Nordics.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'dhEhe'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1096,14 +1096,14 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.c.1 Health Worker Density Nursing and midwifery personnel Nordics (xxxxx)
+#3.c.1 Health Worker Density Nursing and midwifery personnel Nordics (INMP2)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.208+246+352+578+752......ISCO08_222_322...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
 df_new.to_csv('data/3_c_1_Health_Worker_Density_Nursing_Midwifery_Nordics.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'INMP2'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1111,14 +1111,14 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.c.1 Health Worker Density Dentists Nordics (xxxxx)
+#3.c.1 Health Worker Density Dentists Nordics (ILcaX)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.208+246+352+578+752......ISCO08_2261...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
 df_new.to_csv('data/3_c_1_Health_Worker_Density_Dentists_Nordics.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'ILcaX'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1126,14 +1126,14 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.c.1 Health Worker Density Pharmacists Nordics (xxxxx)
+#3.c.1 Health Worker Density Pharmacists Nordics (dLEdy)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.208+246+352+578+752......ISCO08_2262...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
 df_new.to_csv('data/3_c_1_Health_Worker_Density_Pharmacists_Nordics.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'dLEdy'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1141,13 +1141,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.d.1 IHR Capacity World (xxxxx)
+#3.d.1 IHR Capacity World (UkAdG)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_IHR_CAPS.1........_T.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/3_d_1_IHR_World_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'UkAdG'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1155,13 +1155,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.d.1 IHR Capacity SDG regions (xxxxx)
+#3.d.1 IHR Capacity SDG regions (FoXOI)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_IHR_CAPS.9+62+513+747+753+202+419........_T.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_d_1_IHR_SDG_Regions.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'FoXOI'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1169,13 +1169,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.d.1 IHR Capacity Nordics (xxxxx)
+#3.d.1 IHR Capacity Nordics (O4iVQ)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_IHR_CAPS.208+246+352+578+752........SPAR_01+SPAR_02+SPAR_03+SPAR_04+SPAR_05+SPAR_06+SPAR_07+SPAR_08+SPAR_09+SPAR_10+SPAR_11+SPAR_12+SPAR_13.../ALL/?detail=full&lastNObservations=1&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='COMPOSITE_BREAKDOWN', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_d_1_IHR_Nordics.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'O4iVQ'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1183,13 +1183,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.d.2 MRSA World (xxxxx)
+#3.d.2 MRSA Total (f03pp)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_BLD_MRSA.1+9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World',9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
-df_new.to_csv('data/3_d_2_MRSA_World_Total.csv', index=True)
+df_new.to_csv('data/3_d_2_MRSA_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'f03pp'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1197,13 +1197,13 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.d.2 ECOLI World (xxxxx)
+#3.d.2 ECOLI World (HUWGr)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_BLD_ECOLI.1+9+62+513+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World',9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
-df_new.to_csv('data/3_d_2_ECOLI_World_Total.csv', index=True)
+df_new.to_csv('data/3_d_2_ECOLI_Total.csv', index=True)
 #Update DW
-chartid = 'xxxxx'
+chartid = 'HUWGr'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
 headers = {
     "Authorization": ("Bearer " + access_token),
@@ -1211,16 +1211,3 @@ headers = {
     }
 response = requests.request("POST", url, headers=headers)
 
-#3.d.2 IHR Capacity Nordics (xxxxx)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_IHR_CAPS.208+246+352+578+752........SPAR_01+SPAR_02+SPAR_03+SPAR_04+SPAR_05+SPAR_06+SPAR_07+SPAR_08+SPAR_09+SPAR_10+SPAR_11+SPAR_12+SPAR_13.../ALL/?detail=full&lastNObservations=1&format=csv")
-df_new = df_csv.pivot(index='REF_AREA', columns='COMPOSITE_BREAKDOWN', values='OBS_VALUE')
-df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.to_csv('data/3_d_2_IHR_Nordics.csv', index=True)
-#Update DW
-chartid = 'xxxxx'
-url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
-headers = {
-    "Authorization": ("Bearer " + access_token),
-    "Accept": "*/*"
-    }
-response = requests.request("POST", url, headers=headers)
