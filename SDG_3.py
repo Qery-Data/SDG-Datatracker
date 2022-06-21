@@ -611,6 +611,7 @@ response = requests.request("POST", url, headers=headers)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_TRAF.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
+df_new["2030"] = ""
 df_new.to_csv('data/3_6_1_Road_traffic_deaths_World_Total.csv', index=True)
 #Update DW
 chartid = 'EWs55'
