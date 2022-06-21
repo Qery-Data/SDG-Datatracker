@@ -276,7 +276,7 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
-df_new.to_csv('data/1_A_1_ODA_Poverty_Nordics.csv', index=True)
+df_new.to_csv('data/1_a_1_ODA_Poverty_Nordics.csv', index=True)
 #Update DW
 chartid = 'TQgd2'
 url = "https://api.datawrapper.de/v3/charts/" + chartid + '/publish/'
@@ -292,7 +292,7 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 data_date = str(df_new.columns[0])
 df_new.rename(columns={df_new.columns[0]:'Share of total government spending, education'}, inplace=True)
-df_new.to_csv('data/1_A_2_Public_Spending_Education_Nordics.csv', index=True)
+df_new.to_csv('data/1_a_2_Public_Spending_Education_Nordics.csv', index=True)
 title_date = 'Share of total government spending on education.' ' Data for ' + data_date + '.'
 #Update DW
 chartid = 'Zsft2'
