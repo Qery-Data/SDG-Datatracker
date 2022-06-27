@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-    - master
+    - main
     paths:
-    - data/**
+    - 'data/**'
 
 jobs:
   build-and-deploy:
