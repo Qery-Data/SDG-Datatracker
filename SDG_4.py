@@ -110,3 +110,9 @@ df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norw
 OECD = [74,73,12,54,70,60,63]
 df_new['OECD'] = OECD
 df_new.to_csv('data/4_4_1_ICT_Skills_Nordics.csv', index=True)
+
+#4.7.1 Education Sustainable Development Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_GCEDESD_NEP+SE_GCEDESD_CUR+SE_GCEDESD_TED+SE_GCEDESD_SAS.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/4_7_1_Education_Sustainable_Development_Nordics.csv', index=True)
