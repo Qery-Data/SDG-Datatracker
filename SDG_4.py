@@ -96,9 +96,17 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_DETAIL', values='OBS_VALUE
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/4_2_2_Participation_Rate_Learning_Children_Nordics.csv', index=True)
 
-#4.2.2 Participation rate organised learning adults Nordics (3NoiA)
+#4.3.1 Participation rate organised learning adults Nordics (3NoiA)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_ADT_EDUCTRN.208+246+352+578+752._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_DETAIL', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.drop([2011, 2012], axis=0,inplace=True)
 df_new.to_csv('data/4_3_1_Participation_Rate_Organised_Learning_Adults_Nordics.csv', index=True)
+
+#4.4.1 ICT Skills Nordics (393Kw)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_ADT_ACTS.208+246+352+578+752._T.......SKILL_ICTCPT+SKILL_ICTSSHT+SKILL_ICTPRGM+SKILL_ICTPST+SKILL_ICTSFWR+SKILL_ICTTRFF+SKILL_ICTCMFL.../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+OECD = [74,73,12,54,70,60,63]
+df_new['OECD'] = OECD
+df_new.to_csv('data/4_4_1_ICT_Skills_Nordics.csv', index=True)
