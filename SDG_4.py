@@ -116,3 +116,15 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/
 df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/4_7_1_Education_Sustainable_Development_Nordics.csv', index=True)
+
+#4.a.1 Schools basic infrastructure World (uvdwQ)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_ACS_ELECT+SE_ACS_CMPTR+SE_ACS_H2O+SE_ACC_HNDWSH+SE_ACS_INTNT+SE_ACS_SANIT+SE_INF_DSBL.1.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='EDUCATION_LEV', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/4_a_1_Schools_Basic_Infrastructure_World_Total.csv', index=True)
+
+#4.c.1 Teachers qualifications World (uvdwQ)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_TRA_GRDL.1+199._T....ISCED11_1+ISCED11_2+ISCED11_3....../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='EDUCATION_LEV', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1:'World', 199: 'Least Developed Countries'}, inplace=True)
+df_new.to_csv('data/4_c_1_Teachers_qualifications_World_Total.csv', index=True)
