@@ -490,11 +490,11 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_b_1_HPV_Nordics.csv', index=True)
 
-#3.b.1 Net ODA Health Total (0WKD3)
+#3.b.2 Net ODA Health Total (0WKD3)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..DC_TOF_HLTHNT.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={515:'Total'}, inplace=True)
-df_new.to_csv('data/3_b_1_Net_ODA_Health_Total.csv', index=True)
+df_new.to_csv('data/3_b_2_Net_ODA_Health_Total.csv', index=True)
 
 #3.c.1 Health Worker Density Total (Z4XdO)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_MED_DEN.1+9+150+15+21+30+34+35+143+145+202.........../ALL/?detail=full&lastNObservations=1&format=csv')
