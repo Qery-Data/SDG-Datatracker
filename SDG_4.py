@@ -57,7 +57,7 @@ df_new.to_csv('data/4_1_2_Completion_Rate_Upper_Secondary_Nordics.csv', index=Tr
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_DEV_ONTRK.1+35+145+202+722._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 35: 'South-Eastern Asia', 145: 'Western Asia', 202: 'Sub-Saharan Africa', 722: 'Small island developing States'},inplace=True)
-df_new.to_csv('data/4_2_1_Children_Developmentally_World__Region_Total.csv', index=True)
+df_new.to_csv('data/4_2_1_Children_Developmentally_World_Region_Total.csv', index=True)
 
 #4.2.2 Participation rate organised learning children World (vWocC)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_PRE_PARTN.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
