@@ -16,24 +16,47 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new_area_1 = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Australia and New Zealand','Latin America and the Caribbean'])
 df_new_area_1.rename(index={2020: 'Area 1: Overarching legal frameworks and public life'},inplace=True)
-
 #Area 2 violence against women
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQVAW.1+53+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new_area_2 = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Australia and New Zealand','Latin America and the Caribbean'])
 df_new_area_2.rename(index={2020: 'Area 2:  Violence against women'},inplace=True)
-
 #Area 3 employment and economic benefits
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQEMP.1+53+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new_area_3 = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Australia and New Zealand','Latin America and the Caribbean'])
 df_new_area_3.rename(index={2020: 'Area 3: Employment and economic benefits'},inplace=True)
-
 #Area 4 marriage and family
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQMAR.1+53+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new_area_4 = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Australia and New Zealand','Latin America and the Caribbean'])
 df_new_area_4.rename(index={2020: 'Area 4: Marriage and family'}, inplace=True)
+df_all = pd.concat([df_new_area_1,df_new_area_2,df_new_area_3,df_new_area_4], axis=0)
+df_all.to_csv('data/5_1_1_Legal_Frameworks_SDG_Regions.csv', index=True)
+
+#5.1.1 Legal frameworks Nordics (IvDU9)
+#Area 1 overarching legal frameworks and public life
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQLFP.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new_area_1 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new_area_1.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new_area_1.rename(index={2020: 'Area 1: Overarching legal frameworks and public life'},inplace=True)
+#Area 2 violence against women
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQVAW.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new_area_2 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new_area_2.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new_area_2.rename(index={2020: 'Area 2:  Violence against women'},inplace=True)
+#Area 3 employment and economic benefits
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQEMP.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new_area_3 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new_area_3.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new_area_3.rename(index={2020: 'Area 3: Employment and economic benefits'},inplace=True)
+#Area 4 marriage and family
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQMAR.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new_area_4 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new_area_4.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new_area_4.rename(index={2020: 'Area 4: Marriage and family'}, inplace=True)
+df_all = pd.concat([df_new_area_1,df_new_area_2,df_new_area_3,df_new_area_4], axis=0)
+df_all.to_csv('data/5_1_1_Legal_Frameworks_Nordics.csv', index=True)
