@@ -93,3 +93,16 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania','Latin America and the Caribbean'])
 df_new.to_csv('data/5_3_1_Women_Married_Union_15_SDG_Regions.csv', index=True)
+
+#5.3.2 Female genital mutilation/cutting Regions (GQN6n)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_FGMS.15+202.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={15: 'Northern Africa', 202: 'Sub-Saharan Africa'},inplace=True)
+df_new.to_csv('data/5_3_2_Female_Genital_Mutilation_Cutting_Regions.csv', index=True)
+
+#5.3.2 FGM legal protection Nordics (84qt0)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/GIDDB2019/ALL.DNK+FIN+ISL+NOR+SWE.AIC.RPI_FGM_LAW/all?startTime=2019&endTime=2019'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Year', columns='Country', values='Value')
+df_new.to_csv('data/5_3_2_FGM_Legal_Protection_Nordics.csv', index=True)
