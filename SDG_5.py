@@ -106,3 +106,12 @@ result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Year', columns='Country', values='Value')
 df_new.to_csv('data/5_3_2_FGM_Legal_Protection_Nordics.csv', index=True)
+
+#5.4.1 Gender gap unpaid work Nordics (BOfnW)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/TIME_USE/DNK+FIN+NOR+SWE.UPW.WOMEN+MEN.15_64.LY/all?'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Sex', columns='Country', values='Value')
+df_new.loc['Gender gap'] = df_new.loc['Women'] - df_new.loc['Men'] 
+df_new.insert(4, "OECD", [0,0,127])
+df_new.to_csv('data/5_4_1_Gender_Gap_Unpaid_Work_Nordics.csv', index=True)
