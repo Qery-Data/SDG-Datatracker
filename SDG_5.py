@@ -208,3 +208,8 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={1: 'World', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543:'Oceania (exc. Australia and New Zealand)', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania (exc. Australia and New Zealand)','Latin America and the Caribbean'])
 df_new.to_csv('data/5_c_1_Track_Make_Allications_World_SDG_Regions.csv', index=True)
+
+###5.b.1 Women vs Men internet use almost daily Nordics (xxxxx)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B.F_Y16_74+M_Y16_74/all?startTime=2021&endTime=2021'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
