@@ -185,3 +185,20 @@ df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(index={'SH_LGR_ACSRHE': 'Total','SH_LGR_ACSRHES1':'Maternity Care','SH_LGR_ACSRHES2':'Contraceptive Services','SH_LGR_ACSRHES3':'Sexuality Education','SH_LGR_ACSRHES4':'HIV and HPV'},inplace=True)
 df_new.to_csv('data/5_6_1_Full_Equal_Access_Nordics.csv', index=True)
+
+#5.b.1 Women internet use last 3m Nordics (vK8gz)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B.F_Y16_74/all?startTime=2005&endTime=2021'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Time', columns='Country', values='Value')
+df_new1 = df_new.loc[[2005, 2021]]
+df_new1.to_csv('data/5_b_1_Women_Internet_Use_3M_Nordics.csv', index=True)
+
+#5.b.1 Women internet use almost daily Nordics (Wml4d)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B1.F_Y16_74/all?startTime=2005&endTime=2021'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Time', columns='Country', values='Value')
+df_new1 = df_new.loc[[2005, 2021]]
+df_new1.to_csv('data/5_b_1_Women_Internet_Use_Daily_Nordics.csv', index=True)
+
