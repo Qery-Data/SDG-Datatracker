@@ -131,3 +131,22 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/6_4_2_Level_Water_Stress_Nordics.csv', index=True)
+
+#6.5.1 Degree of IWRM World and SDG regions (wcxwM)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_H2O_IWRMD.1+9+62+513+747+753+202+419.........../ALL/?detail=full&startPeriod=2015-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/6_5_1_Degree_IWRM_World_SDG_Regions.csv', index=True)
+
+#6.5.1 Degree of IWRM Nordics (L5LLR)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_H2O_IWRMD.208+246+352+578+752.........._T./ALL/?detail=full&startPeriod=2017-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/6_5_1_Degree_IWRM_Nordics.csv', index=True)
+
+#6.5.2 Transboundary basins with an operational arrangement for water cooperation (ZNJ3q)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_TBA_H2CO+EG_TBA_H2COAQ+EG_TBA_H2CORL.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(columns={1:'World'}, inplace=True)
+df_new.rename(index={'EG_TBA_H2CO':'River and lake basins, and aquifers','EG_TBA_H2CORL':'River and lake basins component','EG_TBA_H2COAQ':'Aquifers component'}, inplace=True)
+df_new.to_csv('data/6_5_2_Transboundary_Basins_World_Total.csv', index=True)
