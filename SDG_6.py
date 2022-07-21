@@ -150,6 +150,15 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={1: 'World', 9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/6_5_1_Degree_IWRM_World_SDG_Regions.csv', index=True)
 
+#6.5.1 IWRM levels share of countries World and SDG regions (7kTjx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_H2O_IWRMP.1+9+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 9: 'Oceania', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania','Latin America and the Caribbean'])
+df_new = df_new.rename(index={'DEG_HIG': 'High level','DEG_LOW':'Low level','DEG_MHIG':'Medium-high level','DEG_MLOW':'Medium-low level','DEG_VHIG':'Very high level','DEG_VLOW':'Very low level'})
+df_new = df_new.reindex(index=['Very high level','High level','Medium-high level','Medium-low level','Low level','Very low level'])
+df_new.to_csv('data/6_5_1_Degree_IWRM_Share_Level_World_SDG_Regions.csv', index=True)
+
 #6.5.1 Degree of IWRM Nordics (L5LLR)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_H2O_IWRMD.208+246+352+578+752.........._T./ALL/?detail=full&startPeriod=2017-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
