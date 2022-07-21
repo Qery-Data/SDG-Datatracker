@@ -80,6 +80,12 @@ df_new.rename(columns={1: 'World', 9: 'Oceania', 62: 'Central and Southern Asia'
 df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania','Latin America and the Caribbean'])
 df_new.to_csv('data/6_3_1_Domsetic_Wastewater_World_SDG_Regions.csv', index=True)
 
+#6.3.1 Domestic wastewater safely treated Nordics (kF8ZA)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..EN_WWT_WWDS.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/6_3_1_Domsetic_Wastewater_Nordics.csv', index=True)
+
 #6.3.2 Bodies of water with good ambient water quality World and SDG regions (hxnzG)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EN_H2O_OPAMBQ+EN_H2O_RVAMBQ+EN_H2O_GRAMBQ+EN_H2O_WBAMBQ.1+9+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
@@ -151,6 +157,13 @@ df_new.rename(columns={1:'World'}, inplace=True)
 df_new.rename(index={'EG_TBA_H2CO':'River and lake basins, and aquifers','EG_TBA_H2CORL':'River and lake basins component','EG_TBA_H2COAQ':'Aquifers component'}, inplace=True)
 df_new.to_csv('data/6_5_2_Transboundary_Basins_World_Total.csv', index=True)
 
+#6.5.2 Transboundary basins with an operational arrangement for water cooperation Nordics (XBnXL)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_TBA_H2CO+EG_TBA_H2COAQ+EG_TBA_H2CORL.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(index={'EG_TBA_H2CO':'River and lake basins, and aquifers','EG_TBA_H2CORL':'River and lake basins component','EG_TBA_H2COAQ':'Aquifers component'}, inplace=True)
+df_new.to_csv('data/6_5_2_Transboundary_Basins_Nordics_Total.csv', index=True)
+
 #6.a.1 ODA for water supply and sanitation (rOSqC)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..DC_TOF_WASHL.515.........../ALL/?detail=full&startPeriod=2005-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -161,10 +174,12 @@ df_new.to_csv('data/6_a_1_ODA_Water_Sanitation_World_Total.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_WAT_PROCED+ER_H2O_PROCED.1..._T+R......../ALL/?detail=full&lastNObservations=1&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='SERIES', values='OBS_VALUE')
 df_new.rename(columns={'ER_H2O_PROCED':'Rural drinking- water supply','ER_WAT_PROCED': 'Water resources planning and management'},inplace=True)
-df_new.to_csv('data/6_b_1_Local_Engagement_Procedures_World_SDG_Regions.csv', index=True)
+df_new.to_csv('data/6_b_1_Local_Engagement_Procedures_World.csv', index=True)
 
-#6.b.1a Local engagement participation World (EYJin)
+#6.b.1 Local engagement participation World (EYJin)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_H2O_PARTIC+ER_WAT_PARTIC.1..._T+R......../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new= df_csv.pivot(index='TIME_PERIOD', columns='SERIES', values='OBS_VALUE')
 df_new.rename(columns={'ER_H2O_PARTIC':'Rural drinking- water supply','ER_WAT_PARTIC':'Water resources planning and management'},inplace=True)
-df_new.to_csv('data/6_b_1_Local_Engagement_Participation_World_SDG_Regions.csv', index=True)
+df_new.to_csv('data/6_b_1_Local_Engagement_Participation_World.csv', index=True)
+
+
