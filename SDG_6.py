@@ -106,6 +106,12 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/6_4_1_Water_Use_Efficiency_World_Total.csv', index=True)
 
+#6.4.1 Water-use efficiency sector World (Ciucs)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_H2O_WUEYST.1..........ISIC4_BTFXE+ISIC4_A01_A0210_A0322+ISIC4_GTT./ALL/?detail=full&startPeriod=2015-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='ACTIVITY', values='OBS_VALUE')
+df_new.rename(columns={'ISIC4_A01_A0210_A0322':'Agriculture','ISIC4_BTFXE':'Industries','ISIC4_GTT':'Services'}, inplace=True)
+df_new.to_csv('data/6_4_1_Water_Use_Efficiency_Sector_World_Total.csv', index=True)
+
 #6.4.1 Water-use efficiency SDG regions (ssMuD)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_H2O_WUEYST.9+62+513+747+753+202+419.........._T./ALL/?detail=full&startPeriod=2015-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
