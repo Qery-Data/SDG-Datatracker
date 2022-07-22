@@ -84,7 +84,7 @@ df_new.to_csv('data/6_3_1_Domsetic_Wastewater_World_SDG_Regions.csv', index=True
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..EN_WWT_WWDS.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.to_csv('data/6_3_1_Domsetic_Wastewater_Nordics.csv', index=True)
+df_new.to_csv('data/6_3_1_Domestic_Wastewater_Nordics.csv', index=True)
 
 #6.3.2 Bodies of water with good ambient water quality World and SDG regions (hxnzG)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EN_H2O_OPAMBQ+EN_H2O_RVAMBQ+EN_H2O_GRAMBQ+EN_H2O_WBAMBQ.1+9+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
@@ -196,5 +196,3 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new= df_csv.pivot(index='TIME_PERIOD', columns='SERIES', values='OBS_VALUE')
 df_new.rename(columns={'ER_H2O_PARTIC':'Rural drinking- water supply','ER_WAT_PARTIC':'Water resources planning and management'},inplace=True)
 df_new.to_csv('data/6_b_1_Local_Engagement_Participation_World.csv', index=True)
-
-
