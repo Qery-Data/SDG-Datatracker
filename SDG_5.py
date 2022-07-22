@@ -9,7 +9,7 @@ import pandas as pd
 os.makedirs('data', exist_ok=True)
 access_token = os.getenv('DW_TOKEN')
 
-#5.1.1 Legal frameworks SDG Regions (zv9jZ)
+#5.1.1 Legal frameworks World and SDG Regions (zv9jZ)
 #Area 1 overarching legal frameworks and public life
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQLFP.1+53+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
@@ -35,7 +35,7 @@ df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central
 df_new_area_4 = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Australia and New Zealand','Latin America and the Caribbean'])
 df_new_area_4.rename(index={2020: 'Area 4: Marriage and family'}, inplace=True)
 df_all = pd.concat([df_new_area_1,df_new_area_2,df_new_area_3,df_new_area_4], axis=0)
-df_all.to_csv('data/5_1_1_Legal_Frameworks_SDG_Regions.csv', index=True)
+df_all.to_csv('data/5_1_1_Legal_Frameworks_World_SDG_Regions.csv', index=True)
 
 #5.1.1 Legal frameworks Nordics (IvDU9)
 #Area 1 overarching legal frameworks and public life
@@ -74,7 +74,7 @@ df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norw
 df_new.to_csv('data/5_2_1_Violence_Women_Nordics.csv', index=True)
 
 #5.3.1 Women married union before age 15 18 World (NFYU3)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SP_DYN_MRBF18.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SP_DYN_MRBF15.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new_15 = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new_15.rename(index={1:'Before 15'}, inplace=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SP_DYN_MRBF18.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
@@ -202,6 +202,13 @@ df_new = df.pivot(index='Time', columns='Country', values='Value')
 df_new1 = df_new.loc[[2005, 2021]]
 df_new1.to_csv('data/5_b_1_Women_Internet_Use_Daily_Nordics.csv', index=True)
 
+#5.b.1 Women vs Men internet use almost daily Nordics (RQZPd)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B.F_Y16_74+M_Y16_74/all?startTime=2021&endTime=2021'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Breakdowns', columns='Country', values='Value')
+df_new.to_csv('data/5_b_1_Women_Men_Internet_Use_Daily_Nordics.csv', index=True)
+
 #5.c.1 Share of countries track and make allocations gender equality and women empowerment World and SDG Regions (Gf28o)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_GEN_EQPWN.1+53+543+62+513+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
@@ -209,7 +216,3 @@ df_new.rename(columns={1: 'World', 62: 'Central and Southern Asia', 202: 'Sub-Sa
 df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania (exc. Australia and New Zealand)','Latin America and the Caribbean'])
 df_new.to_csv('data/5_c_1_Track_Make_Allications_World_SDG_Regions.csv', index=True)
 
-###5.b.1 Women vs Men internet use almost daily Nordics (xxxxx)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B.F_Y16_74+M_Y16_74/all?startTime=2021&endTime=2021'
-result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=pd.read_csv(io.StringIO(result.text))
