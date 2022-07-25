@@ -114,3 +114,10 @@ df_new.rename(columns={1:'World',53: 'Australia and New Zealand', 62: 'Central a
 df_new = df_new.reindex(columns=['World','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Latin America and the Caribbean'])
 df_new1 = df_new.loc[[2000,2010,2020]]
 df_new1.to_csv('data/7_b_1_Installed_Renewable_Capacity_World_Total.csv', index=True)
+
+#7.b.1 Installed renewable electricity-generating capacity by type World (lqAhi)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_RNEW.1........+TRT_BIOENERGY+TRT_GEOTHERMAL+TRT_MARINE+TRT_MULTIPLE+TRT_HYDROPOWER+TRT_SOLAR+TRT_WIND.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'TRT_BIOENERGY': 'Bioenergy', 'TRT_GEOTHERMAL':'Geothermal energy', 'TRT_HYDROPOWER': 'Hydropower', 'TRT_MARINE':'Marine energy', 'TRT_MULTIPLE':'Multiple renewables', 'TRT_SOLAR':'Solar energy','TRT_WIND':'Wind energy'}, inplace=True)
+df_new = df_new.reindex(index=['Hydropower','Solar energy','Wind energy','Bioenergy','Geothermal energy','Marine energy'])
+df_new.to_csv('data/7_b_1_Installed_Renewable_Capacity_Type_World_Total.csv', index=True)
