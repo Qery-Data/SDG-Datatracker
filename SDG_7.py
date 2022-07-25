@@ -78,22 +78,28 @@ df_new.to_csv('data/7_2_1_Renewable_Electricity_Share_Nordics.csv', index=True)
 
 #7.3.1 Energy intensity level of primary energy World (4A6F5)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_PRIM.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
-df_new.rename(index={1:'World'}, inplace=True)
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1:'World'}, inplace=True)
+df_new['Change'] = df_new.pct_change()*100
 df_new.to_csv('data/7_3_1_Energy_Intensity_World_Total.csv', index=True)
 
-#7.3.1 Energy intensity level of primary energy SDG Regions (kry7k)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_PRIM.53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+#7.3.1 Energy intensity level of primary energy CAGR 2010-2019 World SDG Regions (gtS35)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_PRIM.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
-df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
-df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Australia and New Zealand','Latin America and the Caribbean'])
-df_new.to_csv('data/7_3_1_Energy_Intensity_SDG_Regions.csv', index=True)
+df_new.rename(columns={1:'World',53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Australia and New Zealand','Latin America and the Caribbean'])
+df_new.loc['CAGR 2010-2019'] = ((df_new.loc[2019]/df_new.loc[2010])**(1/9)-1)*100
+df_new.loc['CAGR 1990-2010'] = {'World': -1.2, 'Australia and New Zealand': -1.2, 'Central and Southern Asia': -1.5, 'Sub-Saharan Africa': -0.9, 'Latin America and the Caribbean': -0.5, 'Europe and Northern America': -1.8, 'Oceania*': -1, 'Northern Africa and Western Asia': -0.1, 'Eastern and South-Eastern Asia': -1.1}
+df_new = df_new.loc[['CAGR 1990-2010','CAGR 2010-2019']]
+df_new.to_csv('data/7_3_1_Energy_Intensity_CAGR_World_SDG_Regions.csv', index=True)
 
-#7.3.1  Energy intensity level of primary energy Nordics (45Br2)
+#7.3.1  Energy intensity level of primary energy CAGR 2010-2019 Nordics (NGRpD)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_PRIM.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.to_csv('data/7_3_1_Energy_Intensity_Nordics.csv', index=True)
+df_new.loc['CAGR 2010-2019'] = ((df_new.loc[2019]/df_new.loc[2010])**(1/9)-1)*100
+df_new = df_new.loc[['CAGR 2010-2019']]
+df_new.to_csv('data/7_3_1_Energy_Intensity_CAGR_Nordics.csv', index=True)
 
 #7.a.1 International financial flows World (JZs1U)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_IFF_RANDN.1........_T+TRT_BIOENERGY+TRT_GEOTHERMAL+TRT_MARINE+TRT_MULTIPLE+TRT_HYDROPOWER+TRT_SOLAR+TRT_WIND.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
