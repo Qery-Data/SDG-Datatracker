@@ -94,3 +94,17 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/7_3_1_Energy_Intensity_Nordics.csv', index=True)
+
+#7.a.1 International financial flows World (JZs1U)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_IFF_RANDN.1........_T+TRT_BIOENERGY+TRT_GEOTHERMAL+TRT_MARINE+TRT_MULTIPLE+TRT_HYDROPOWER+TRT_SOLAR+TRT_WIND.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'_T':'Total', 'TRT_BIOENERGY': 'Bioenergy', 'TRT_GEOTHERMAL':'Geothermal energy', 'TRT_HYDROPOWER': 'Hydropower', 'TRT_MARINE':'Marine energy', 'TRT_MULTIPLE':'Multiple renewables', 'TRT_SOLAR':'Solar energy','TRT_WIND':'Wind energy'}, inplace=True)
+df_new.to_csv('data/7_a_1_International_Financial_Flows_World_Total.csv', index=True)
+
+#7.b.1 Installed renewable electricity-generating capacity World and SDG regions (8iy7U)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_RNEW.1+62+543+747+753+202+419........_T.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1:'World',53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new = df_new.reindex(columns=['World','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Latin America and the Caribbean'])
+df_new1 = df_new.loc[[2000,2010,2020]]
+df_new1.to_csv('data/7_b_1_Installed_Renewable_Capacity_World_Total.csv', index=True)
