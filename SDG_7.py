@@ -34,7 +34,6 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='URBANISATION', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(index={'U':'Urban','R':'Rural'},inplace=True)
-df_new.to_csv('7_1_1_Access_Electricity_Urban_Rural_Nordics.csv', index=True)
 df_new.to_csv('data/7_1_1_Access_Electricity_Urban_Rural_Nordics.csv', index=True)
 
 #7.1.2 Proportion of population primary reliance on clean fuels and technology World (dE3Ri)
