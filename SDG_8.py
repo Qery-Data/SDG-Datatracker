@@ -82,3 +82,33 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Australia and New Zealand','Latin America and the Caribbean'])
 df_new.to_csv('data/8_4_2_Domestic_Material_Consumption_SDG_Regions.csv', index=True)
+
+#8.5.2 Unemployment rate World (IFpK5)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_TLF_UEM.1._T.Y_GE15........./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/8_5_2_Unemployment_Rate_World_Total.csv', index=True)
+
+#8.5.2 Unemployment rate sex and age World (lBsRn)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_TLF_UEM.1._T.Y15T24+Y_GE25........./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='AGE', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'Y15T24':'Youth (15-24)', 'Y_GE25':'Adult (25+)'}, inplace=True)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_TLF_UEM.1.F+M.Y_GE15........./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new1 = df_csv.pivot(index='SEX', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new1.rename(index={'F':'Female', 'M':'Male'}, inplace=True)
+df_all = pd.concat([df_new,df_new1], axis=0)
+df_all.to_csv('data/8_5_2_Unemployment_Rate_Sex_Age_World_Total.csv', index=True)
+
+#8.5.2 Unemployment rate SDG Regions (7f2NZ)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_TLF_UEM.53+62+513+543+747+753+202+419._T.Y_GE15........./?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Australia and New Zealand','Latin America and the Caribbean'])
+df_new.to_csv('data/8_5_2_Unemployment_Rate_SDG_Regions.csv', index=True)
+
+#8.5.2 Unemployment rate Nordics (lo3xm)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_TLF_UEM.208+246+352+578+752._T.Y_GE15........./ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/8_5_2_Unemployment_Rate_Nordics.csv', index=True)
+
