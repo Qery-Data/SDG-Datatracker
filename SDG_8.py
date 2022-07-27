@@ -138,3 +138,11 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/8_6_1_NEET_Nordics.csv', index=True)
+
+#8.7.1 Proportion of children engaged in economic activity and household chores World (JzZVA)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_TLF_CHLDEC.1+62+513+747+753+202+419._T+F+M........../?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SEX', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1:'World', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Latin America and the Caribbean'])
+df_new.rename(index={'_T':'Total','F':'Female','M':'Male'}, inplace=True)
+df_new.to_csv('data/8_7_1_Child_Labour_World_SDG_Regions.csv', index=True)
