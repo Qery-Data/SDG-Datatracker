@@ -234,3 +234,10 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/8_a_1_Aid_For_Trade_World_Total.csv', index=True)
+
+#8.b.1 Youth Employment Strategies World (juFOE)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_CPA_YEMP............/ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new = df_new[2021].value_counts()
+df_new.rename({3.0:'Operationalised',2.0:'Developed and adopted',1.0:'In the process',0:'No developed'}, inplace=True)
+df_new.to_csv('data/8_b_1_Youth_Employment_Strategies_World_Total.csv', index=True)
