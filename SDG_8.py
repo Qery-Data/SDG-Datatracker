@@ -146,3 +146,19 @@ df_new.rename(columns={1:'World', 62: 'Central and Southern Asia', 202: 'Sub-Sah
 df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Latin America and the Caribbean'])
 df_new.rename(index={'_T':'Total','F':'Female','M':'Male'}, inplace=True)
 df_new.to_csv('data/8_7_1_Child_Labour_World_SDG_Regions.csv', index=True)
+
+#8.8.1 Fatal occupational injuries Nordics (S5XAa)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_EMP_FTLINJUR.208+246+352+578+752._T......._T.../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new = df_new.drop('Iceland', axis=1)
+df_new = df_new.loc[[2000,2015]]
+df_new.to_csv('data/8_8_1_Fatal_Occupational_Injuries_Nordics.csv', index=True)
+
+#8.8.1 Non-fatal occupational injuries Nordics (kcD6p)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SL_EMP_INJUR.208+246+352+578+752._T......._T.../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new = df_new.drop('Iceland', axis=1)
+df_new = df_new.loc[[2000,2015]]
+df_new.to_csv('data/8_8_1_Non_Fatal_Occupational_Injuries_Nordics.csv', index=True)
