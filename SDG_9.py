@@ -132,3 +132,9 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.drop(['Iceland'], axis=1, inplace=True)
 df_new.to_csv('data/9_5_2_Researcher_Density_Nordics.csv', index=True)
+
+#9.a.1 Total official flows for infrastructure World (AMHv4)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..DC_TOF_INFRAL.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/9_a_1_Total_Official_Flows_World_Total.csv', index=True)
