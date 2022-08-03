@@ -174,11 +174,3 @@ df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(index={'IT_MOB_4GNTWK': '4G'}, inplace=True)
 df_new.to_csv('data/9_c_1_Coverage_Mobile_Network_Nordics.csv', index=True)
-
-#9.c.1 Fixed broadband subscriptions Nordics (rYmI9)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/BROADBAND_DB/DNK+FIN+ISL+NOR+SWE.BB-P100-TOT/all?startTime=2021'
-result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=pd.read_csv(io.StringIO(result.text))
-df_new = df.pivot(index='Time', columns='Country', values='Value')
-df_new.drop(['Q2-2021','Q4-2021'], axis=0, inplace=True)
-df_new.to_csv('data/9_c_1_Fixed_Broadband_Subscriptions_Nordics.csv', index=True)
