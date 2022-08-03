@@ -107,11 +107,11 @@ df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa 
 df_new.drop(['Oceania*'], axis=1, inplace=True)
 df_new.to_csv('data/9_5_1_R&D_Share_GDP_SDG_Regions.csv', index=True)
 
-#9.5.1 R&D expenditure as share of GDP Nordics (YslB5)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..GB_XPD_RSDV.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
-df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new = df_new.loc[[2015,2018]]
+#9.5.1 R&D expenditure as share of GDP Nordics (EjDRk)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/MSTI_PUB/G_XGDP.DNK+FIN+ISL+NOR+SWE/all?startTime=2000&endTime=2022'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Year', columns='Country', values='Value')
 df_new.to_csv('data/9_5_1_R&D_Share_GDP_Nordics.csv', index=True)
 
 #9.5.2 Researchers per million inhabitants World (gEWyM)
