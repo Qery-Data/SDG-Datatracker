@@ -160,7 +160,7 @@ df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={'IT_MOB_2GNTWK':'2G', 'IT_MOB_3GNTWK':'3G', 'IT_MOB_4GNTWK': '4G'}, inplace=True)
 df_new.to_csv('data/9_c_1_Coverage_Mobile_Network_World_Total.csv', index=True)
 
-#9.c.1 Share of population covered by mobile network SDG Regions (cfXcP)
+#9.c.1 Share of population covered by mobile network World and SDG Regions (cfXcP)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..IT_MOB_2GNTWK+IT_MOB_3GNTWK+IT_MOB_4GNTWK.53+62+513+543+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
