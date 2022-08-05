@@ -13,7 +13,6 @@ access_token = os.getenv('DW_TOKEN')
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_MORT.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new["2030"] = ""
 df_new.to_csv('data/3_1_1_Maternal_Mortality_Ratio_World_Total.csv', index=True)
 
 #3.1.1 Maternal mortlity ratio SDG regions (ldsu3)
@@ -57,7 +56,6 @@ df_new.to_csv('data/3_1_1_Delivery_Coverage_Nordics.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_DYN_MORT.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new["2030"] = ""
 df_new.to_csv('data/3_2_1_Child_Mortality_Under5_World_Total.csv', index=True)
 
 #3.2.1 Child mortality (under 5 years) SDG regions (cjeVd)
@@ -90,14 +88,12 @@ df_new.to_csv('data/3_2_1_Infant_Mortality_SDG_Regions.csv', index=True)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_DYN_IMRT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
 df_new.to_csv('data/3_2_1_Infant_Mortality_Nordics.csv', index=True)
 
 #3.2.2 Neonatal Mortality World (RDJVM)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_DYN_NMRT.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new["2030"] = ""
 df_new.to_csv('data/3_2_2_Neonatal_Mortality_World_Total.csv', index=True)
 
 #3.2.2 Neonatal Mortality SDG regions (iWaE0)
@@ -227,7 +223,6 @@ df_new.to_csv('data/3_4_1_Deaths_NCD_World_Total.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_DTH_NCOM.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new["2030"] = ""
 df_new.to_csv('data/3_4_1_Mortality_Rate_NCD_World_Total.csv', index=True)
 
 #3.4.1 Mortality rate NCDs SDG regions (v6Fkv)
@@ -247,7 +242,6 @@ df_new.to_csv('data/3_4_1_Mortality_Rate_NCD_Nordics.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_SCIDE.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new["2030"] = ""
 df_new.to_csv('data/3_4_1_Suicide_Mortality_Rate_World_Total.csv', index=True)
 
 #3.4.1 Suicide mortality rate SDG regions (ceJJ1)
@@ -287,7 +281,6 @@ df_new.to_csv('data/3_5_2_Alcohol_Consumption_Nordics.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_STA_TRAF.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new["2030"] = ""
 df_new.to_csv('data/3_6_1_Road_traffic_deaths_World_Total.csv', index=True)
 
 #3.6.1 Road traffic deaths SDG regions (ybzj2)

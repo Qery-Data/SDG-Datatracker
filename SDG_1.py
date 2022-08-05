@@ -13,6 +13,7 @@ access_token = os.getenv('DW_TOKEN')
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_POV_DAY1.1.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
+df_new.insert(index="Target", value=[])
 df_new.to_csv('data/1_1_1_Extreme_Poverty_World_Total.csv', index=True)
 
 #1.1.1 Extreme Poverty SDG Regions
@@ -26,7 +27,6 @@ df_new.to_csv('data/1_1_1_Extreme_Poverty_World_SDG_Regions.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_POV_DAY1.208+246+352+578+752._T._T._T......../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
 df_new.to_csv('data/1_1_1_Extreme_Poverty_Nordics.csv', index=True)
 
 #1.2.1 Relative Poverty Nordics
@@ -50,17 +50,6 @@ df_new.rename(index={1: 'World', 53: 'Australia and New Zealand', 62: 'Central a
 data_date = str(df_new.columns[0])
 df_new.rename(columns={df_new.columns[0]:'Share covered'}, inplace=True)
 df_new.to_csv('data/1_3_1_SOC_World_SDG_Regions.csv', index=True)
-title_date = 'Share of population covered by at least one social protection cash benefit, by SDG region.' ' Data for ' + data_date
-#Update DW
-chartid = 'cb7Xz'
-url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
-payload = {"metadata": {"describe": {"intro": title_date}}}
-headers = {
-    "Authorization": ("Bearer " + access_token),
-    "Accept": "*/*",
-    "Content-Type": "application/json"
-    }
-response = requests.request("PATCH", url, json=payload, headers=headers)
 
 #1.3.1 Social protection - nine indicators from the ILO, one from the OECD (out of work) Nordics
 df_bnfts = pd.read_csv('https://www.ilo.org/sdmx/rest/data/ILO,DF_SDG_0131_SEX_SOC_RT/NOR+SWE+DNK+ISL+FIN...SEX_T.SOC_CONTIG_TOTAL?format=csv&startPeriod=2012-01-01&endPeriod=2022-12-31&lastNObservations=1')
@@ -170,7 +159,6 @@ df_new.to_csv('data/1_5_3_Local_Strategies_Nordics.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..DC_ODA_POVDLG.208+246+352+578+752............/ALL/?detail=full&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.insert(loc=0, column="Flags", value=[':dk:',':fi:',':is:',':no:',':se:'])
 df_new.to_csv('data/1_a_1_ODA_Poverty_Nordics.csv', index=True)
 
 #1.a.2 Public Spending Education Nordics (Zsft2)
@@ -180,14 +168,3 @@ df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway
 data_date = str(df_new.columns[0])
 df_new.rename(columns={df_new.columns[0]:'Share of total government spending, education'}, inplace=True)
 df_new.to_csv('data/1_a_2_Public_Spending_Education_Nordics.csv', index=True)
-title_date = 'Share of total government spending on education.' ' Data for ' + data_date + '.'
-#Update DW
-chartid = 'Zsft2'
-url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
-payload = {"metadata": {"describe": {"intro": title_date}}}
-headers = {
-    "Authorization": ("Bearer " + access_token),
-    "Accept": "*/*",
-    "Content-Type": "application/json"
-    }
-response = requests.request("PATCH", url, json=payload, headers=headers)
