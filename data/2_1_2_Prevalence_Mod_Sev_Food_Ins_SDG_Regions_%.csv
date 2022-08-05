@@ -1,8 +1,8 @@
-TIME_PERIOD,Europe and Northern America,Northern Africa and Western Asia,Sub-Saharan Africa,Central and Southern Asia,Eastern and South-Eastern Asia,Oceania,Latin America and the Caribbean
-2014,9.3,28.5,51.4,30.8,8.6,11.4,24.9
-2015,9.3,27.0,53.0,30.1,8.5,10.0,27.5
-2016,8.7,28.0,55.8,29.4,9.3,11.9,31.3
-2017,8.4,30.5,57.0,28.9,12.2,14.4,33.2
-2018,7.6,29.2,57.6,33.9,11.8,13.1,31.7
-2019,7.7,28.3,59.9,36.7,10.1,13.6,31.9
-2020,8.8,29.2,66.2,42.8,10.9,12.0,40.9
+TIME_PERIOD,Europe and Northern America,Northern Africa and Western Asia,Sub-Saharan Africa,Central and Southern Asia,Eastern and South-Eastern Asia,Oceania*,Australia and New Zealand,Latin America and the Caribbean
+2014,9.3,28.5,51.4,30.8,8.6,,11.0,24.9
+2015,9.3,27.0,53.0,30.1,8.5,,9.4,27.5
+2016,8.7,28.0,55.8,29.4,9.3,,11.5,31.3
+2017,8.4,30.5,57.0,28.9,12.2,,14.1,33.2
+2018,7.6,29.2,57.6,33.9,11.8,,12.8,31.7
+2019,7.7,28.3,59.9,36.7,10.1,,13.3,31.9
+2020,8.8,29.2,66.2,42.8,10.9,,11.6,40.9
