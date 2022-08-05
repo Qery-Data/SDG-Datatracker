@@ -1,7 +1,7 @@
-TIME_PERIOD,Europe and Northern America,Northern Africa and Western Asia,Sub-Saharan Africa,Central and Southern Asia,Eastern and South-Eastern Asia,Oceania,Latin America and the Caribbean
-2000,69,49,22,30,47,67,59
-2005,71,54,28,34,56,69,66
-2010,76,60,37,46,64,72,70
-2015,79,64,41,53,72,74,73
-2017,80,65,43,55,75,74,73
-2019,81,67,45,59,77,74,74
+TIME_PERIOD,Europe and Northern America,Northern Africa and Western Asia,Sub-Saharan Africa,Central and Southern Asia,Eastern and South-Eastern Asia,Oceania*,Australia and New Zealand,Latin America and the Caribbean
+2000,69,49,22,30,47,31,80,59
+2005,71,54,28,34,56,33,81,66
+2010,76,60,37,46,64,40,83,70
+2015,79,64,41,53,72,41,86,73
+2017,80,65,43,55,75,40,86,73
+2019,81,67,45,59,77,38,87,74
