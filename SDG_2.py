@@ -68,20 +68,9 @@ df_new2.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southe
 df_new2.rename(index={df_new2.index[0]: "Severe"}, inplace = True)
 
 df_all = pd.concat([df_new,df_new2], axis=0)
-df_all.loc['Moderate'] = df_all.diff(-1).dropna().values.tolist()[0]
+df_all.loc['Moderate'] = df_all.loc[('Moderate or severe')]-df_all.loc[('Severe')]
 df_all.drop(['Moderate or severe'], inplace=True)
 df_all.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_SDG_Regions.csv', index=True)
-title_date = 'Number of people (million) who are moderately or severely food insecure*.' ' Data for ' + data_date + '.'
-#Update DW
-chartid = 'PfO0n'
-url = "https://api.datawrapper.de/v3/charts/" + chartid + '/'
-payload = {"metadata": {"describe": {"intro": title_date}}}
-headers = {
-    "Authorization": ("Bearer " + access_token),
-    "Accept": "*/*",
-    "Content-Type": "application/json"
-    }
-response = requests.request("PATCH", url, json=payload, headers=headers)
 
 #2.1.2 Prevalence of moderate or severe food insecurity % Nordics (RGtq1)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_FIESMS.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
