@@ -46,7 +46,6 @@ df_new.to_csv('data/7_1_2_Clean_Fuels_Technology_World_Total.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_CLEAN.53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
-df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Australia and New Zealand','Latin America and the Caribbean'])
 df_new.to_csv('data/7_1_2_Clean_Fuels_Technology_SDG_Regions.csv', index=True)
 
 #7.2.1 Renewable energy share in the total final energy consumption World (JYmiU)
@@ -59,7 +58,6 @@ df_new.to_csv('data/7_2_1_Renewable_Energy_Share_World_Total.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_FEC_RNEW.53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
-df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Australia and New Zealand','Latin America and the Caribbean'])
 df_new.to_csv('data/7_2_1_Renewable_Energy_Share_SDG_Regions.csv', index=True)
 
 #7.2.1 Renewable energy share in the total final energy consumption Nordics (iH0RT)
@@ -86,7 +84,6 @@ df_new.to_csv('data/7_3_1_Energy_Intensity_World_Total.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_PRIM.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1:'World',53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
-df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Australia and New Zealand','Latin America and the Caribbean'])
 df_new.loc['CAGR 2010-2019'] = ((df_new.loc[2019]/df_new.loc[2010])**(1/9)-1)*100
 df_new.loc['CAGR 1990-2010'] = {'World': -1.2, 'Australia and New Zealand': -1.2, 'Central and Southern Asia': -1.5, 'Sub-Saharan Africa': -0.9, 'Latin America and the Caribbean': -0.5, 'Europe and Northern America': -1.8, 'Oceania*': -1, 'Northern Africa and Western Asia': -0.1, 'Eastern and South-Eastern Asia': -1.1}
 df_new = df_new.loc[['CAGR 1990-2010','CAGR 2010-2019']]
@@ -110,7 +107,6 @@ df_new.to_csv('data/7_a_1_International_Financial_Flows_World_Total.csv', index=
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_RNEW.1+62+543+747+753+202+419........_T.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1:'World',53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
-df_new = df_new.reindex(columns=['World','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Latin America and the Caribbean'])
 df_new1 = df_new.loc[[2000,2010,2020]]
 df_new1.to_csv('data/7_b_1_Installed_Renewable_Capacity_World_Total.csv', index=True)
 
