@@ -13,7 +13,6 @@ access_token = os.getenv('DW_TOKEN')
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SI_POV_DAY1.1.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new.insert(index="Target", value=[])
 df_new.to_csv('data/1_1_1_Extreme_Poverty_World_Total.csv', index=True)
 
 #1.1.1 Extreme Poverty SDG Regions
