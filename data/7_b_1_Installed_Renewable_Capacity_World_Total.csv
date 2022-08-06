@@ -1,4 +1,4 @@
-TIME_PERIOD,World,Northern Africa and Western Asia,Sub-Saharan Africa,Central and Southern Asia,Eastern and South-Eastern Asia,Oceania*,Latin America and the Caribbean
-2000,64.501,66.562,26.823,29.93,54.601,52.024,245.944
-2010,101.972,76.692,24.173,47.278,133.608,59.024,284.719
-2020,245.667,152.265,37.634,90.588,459.701,73.834,424.57
+TIME_PERIOD,World,Central and Southern Asia,Sub-Saharan Africa,Latin America and the Caribbean,Oceania*,Northern Africa and Western Asia,Eastern and South-Eastern Asia
+2000,64.501,29.93,26.823,245.944,52.024,66.562,54.601
+2010,101.972,47.278,24.173,284.719,59.024,76.692,133.608
+2020,245.667,90.588,37.634,424.57,73.834,152.265,459.701
