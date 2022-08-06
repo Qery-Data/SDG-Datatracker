@@ -1,4 +1,4 @@
-TIME_PERIOD,Europe and Northern America,Northern Africa and Western Asia,Sub-Saharan Africa,Central and Southern Asia,Eastern and South-Eastern Asia,Oceania (exc. Australia and New Zealand),Australia and New Zealand,Latin America and the Caribbean
-2020,35.0,17.9,30.1,41.3,27.3,22.8,34.9,24.6
-2021,35.1,17.9,29.7,41.3,27.4,24.8,34.9,25.3
-2022,36.3,18.3,25.3,41.3,27.8,24.8,34.9,25.5
+TIME_PERIOD,Australia and New Zealand,Central and Southern Asia,Sub-Saharan Africa,Latin America and the Caribbean,Europe and Northern America,Oceania*,Northern Africa and Western Asia,Eastern and South-Eastern Asia
+2020,34.9,41.3,30.1,24.6,35.0,22.8,17.9,27.3
+2021,34.9,41.3,29.7,25.3,35.1,24.8,17.9,27.4
+2022,34.9,41.3,25.3,25.5,36.3,24.8,18.3,27.8
