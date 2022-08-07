@@ -1,4 +1,4 @@
-SERIES,Europe and Northern America,Northern Africa and Western Asia,Sub-Saharan Africa,Central and Southern Asia,Eastern and South-Eastern Asia,Oceania*,Australia and New Zealand,Latin America and the Caribbean
-2G,99.7024,97.85867,89.88225,97.61274,99.39272,90.12113,99.34097,93.5444
-3G,97.55671,94.83504,74.87532,93.73821,98.84106,67.74609,99.34097,91.11421
-4G,97.58319,80.49358,40.69656,91.28956,96.83375,53.24538,99.18193,84.45176
+SERIES,Australia and New Zealand,Central and Southern Asia,Sub-Saharan Africa,Latin America and the Caribbean,Europe and Northern America,Oceania*,Northern Africa and Western Asia,Eastern and South-Eastern Asia
+2G,99.34097,97.61274,89.88225,93.5444,99.7024,90.12113,97.85867,99.39272
+3G,99.34097,93.73821,74.87532,91.11421,97.55671,67.74609,94.83504,98.84106
+4G,99.18193,91.28956,40.69656,84.45176,97.58319,53.24538,80.49358,96.83375
