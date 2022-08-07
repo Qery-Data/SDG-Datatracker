@@ -226,7 +226,6 @@ df_new.to_csv('data/8_10_2_Share_Account_World_Total.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..FB_BNK_ACCSS.53+62+513+543+747+753+202+419._T........../?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
-df_new = df_new.drop('Oceania*', axis=1)
 df_new.to_csv('data/8_10_2_Share_Account_SDG_Regions.csv', index=True)
 
 #8.10.2 Share of adults account at a bank/other financial institution/mobile-money-service provider Nordics (3StXp)
