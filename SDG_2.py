@@ -25,6 +25,7 @@ df_new.to_csv('data/2_1_1_Prevalence_Undernourishment_World_Total.csv', index=Tr
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SN_ITK_DEFC.53+62+513+543+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.drop(['Australia and New Zealand','Europe and Northern America'], axis=1, inplace=True)
 df_new.to_csv('data/2_1_1_Prevalence_Undernourishment_SDG_Regions_%.csv', index=True)
 
 #2.1.1 Prevalence of undernourishment number SDG Regions (XMsfz)
@@ -49,6 +50,7 @@ df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_World_Total.csv', index=Tr
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..AG_PRD_FIESMS.53+62+513+543+747+753+202+419._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.drop(['Oceania*'], axis=1, inplace=True)
 df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_SDG_Regions_%.csv', index=True)
 
 #2.1.2 Prevalence of moderate or severe food insecurity number SDG Regions (PfO0n)
@@ -66,6 +68,7 @@ df_new2.rename(index={df_new2.index[0]: "Severe"}, inplace = True)
 df_all = pd.concat([df_new,df_new2], axis=0)
 df_all.loc['Moderate'] = df_all.loc[('Moderate or severe')]-df_all.loc[('Severe')]
 df_all.drop(['Moderate or severe'], inplace=True)
+df_new.drop(['Oceania*'], axis=1, inplace=True)
 df_all.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_SDG_Regions.csv', index=True)
 
 #2.1.2 Prevalence of moderate or severe food insecurity % Nordics (RGtq1)
