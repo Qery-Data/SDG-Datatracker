@@ -16,7 +16,7 @@ df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway
 df_new.to_csv('data/4_1_1_Proficiency_Level_Lower_Secondary_Maths_Nordics.csv', index=True)
 
 #4.1.1 Proficiency level Lower Secondary Reading Nordics (u5whA)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_TOT_PRFL.208+246+352+578+752._T....ISCED11_2...SKILL_MATH.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SE_TOT_PRFL.208+246+352+578+752._T....ISCED11_2...SKILL_READ.../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_DETAIL', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/4_1_1_Proficiency_Level_Lower_Secondary_Reading_Nordics.csv', index=True)
