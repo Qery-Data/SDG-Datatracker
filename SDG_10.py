@@ -42,3 +42,16 @@ df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='SERIES', values='OBS
 df_new.rename(index={'IO_ADB':'Asian Development Bank','IO_AFDB':'African Development Bank', 'IO_ECOSOC':'UN Economic and Social Council', 'IO_FSB': 'Financial Stability Board', 'IO_IADB':'Inter-American Development Bank', 'IO_IBRD':'International Bank for Reconstruction and Development', 'IO_IFC':'International Finance Corporation', 'IO_IMF': 'International Monetary Fund', 'IO_UNGA':'UN General Assembly', 'IO_UNSC':'UN Security Council','IO_WTO':'World Trade Organisation'}, inplace=True)
 df_new.rename(columns={'SG_INT_MBRDEV':'Share of members', 'SG_INT_VRTDEV':'Share of voting rights'},inplace=True)
 df_new.to_csv('data/10_6_1_Membership_Voting_Rights_Developing_Regions.csv', index=True)
+
+#10.7.2 Migration policies that meet criteria World and SDG Regions (HWUCM)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_CPA_MIGRP.1+53+62+513+543+747+753+202+419........_T.../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World',53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/10_7_2_Migration_Policies_Share_World_SDG_Regions.csv', index=True)
+
+#10.7.2 Migration policies that meet criteria Nordics (huLWV)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_CPA_MIGRS.208+246+352+578+752........_T+PD_1+PD_2+PD_3+PD_4+PD_5+PD_6.../ALL/?detail=full&startPeriod=2020-01-01&endPeriod=2021-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(index={'_T':'Overall', 'PD_1':'Migrant rights', 'PD_2': 'Whole-of-government/ Evidence-based policies', 'PD_3':'Cooperation and partnerships', 'PD_4': 'Socioeconomic well-being', 'PD_5': 'Mobility dimensions of crises', 'PD_6': 'Safe, orderly and regular migration'}, inplace=True)
+df_new.to_csv('data/10_7_2_Migration_Policies_Nordics.csv', index=True)

@@ -43,9 +43,9 @@ df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/7_1_2_Clean_Fuels_Technology_World_Total.csv', index=True)
 
 #7.1.2 Proportion of population primary reliance on clean fuels and technology SDG Regions (kFqpw)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_CLEAN.53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EG_EGY_CLEAN.62+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
-df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.rename(columns={62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/7_1_2_Clean_Fuels_Technology_SDG_Regions.csv', index=True)
 
 #7.2.1 Renewable energy share in the total final energy consumption World (JYmiU)
@@ -67,7 +67,7 @@ df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norw
 df_new.to_csv('data/7_2_1_Renewable_Energy_Share_Nordics.csv', index=True)
 
 #7.2.1 Renewable electricity share in the total electricity generation Nordics (MG14f)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/GREEN_GROWTH/DNK+FIN+ISL+NOR+SWE+OECD.RE_NRG/all?startTime=2000&endTime=2021'
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/GREEN_GROWTH/DNK+FIN+ISL+NOR+SWE.RE_NRG/all?startTime=2000&endTime=2021'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Year', columns='Country', values='Value')
