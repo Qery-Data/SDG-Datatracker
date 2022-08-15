@@ -55,3 +55,9 @@ df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='O
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(index={'_T':'Overall', 'PD_1':'Migrant rights', 'PD_2': 'Whole-of-government/ Evidence-based policies', 'PD_3':'Cooperation and partnerships', 'PD_4': 'Socioeconomic well-being', 'PD_5': 'Mobility dimensions of crises', 'PD_6': 'Safe, orderly and regular migration'}, inplace=True)
 df_new.to_csv('data/10_7_2_Migration_Policies_Nordics.csv', index=True)
+
+#10.7.3 Migrant deaths World (oEIDN)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SM_DTH_MIGR.1.........../ALL/?detail=full&startPeriod=2000-01-01&endPeriod=2021-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/10_7_3_Migrants_Deaths_World_Total.csv', index=True)
