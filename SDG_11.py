@@ -34,3 +34,17 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 9: 'Oceania', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.to_csv('data/11_2_1_Share_Public_Transport_Convenient_Access_World_SDG_Regions.csv', index=True)
+
+#11.6.1 Material recovery rate of municipal waste (recycling and composting) Nordics (qpGLe)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/MUNW/DNK+FIN+ISL+NOR+SWE.MAT_RECOV_SHARE/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Year', columns='Country', values='Value')
+df_new.to_csv('data/11_6_1_Material_Recovery_Rate_Nordics.csv', index=True)
+
+#11.6.2 Mean population exposure to PM2.5 in metropolitan areas Nordics (3hWqR)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/EXP_PM2_5/DNK+FIN+ISL+NOR+SWE.TOTAL.TOTAL.PWM_EX/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Year', columns='Country', values='Value')
+df_new.to_csv('data/11_6_2_Mean_Exposure_PM25_Metropolititan_Areas_Nordics.csv', index=True)
