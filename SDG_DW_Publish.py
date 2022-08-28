@@ -1320,7 +1320,7 @@ for i in json_object['list']:
         chart_list_12_c.append(i['publicId'])
 
 #Publish
-chart_list_12_all = (chart_list_12_1 + chart_list_12_2 + chart_list_12_3 + chart_list_12_4 + chart_list_12_6 + chart_list_12_8 + + chart_list_12_a + chart_list_12_c)
+chart_list_12_all = (chart_list_12_1 + chart_list_12_2 + chart_list_12_3 + chart_list_12_4 + chart_list_12_6 + chart_list_12_8 + chart_list_12_a + chart_list_12_c)
 for vars in chart_list_12_all:
     url = "https://api.datawrapper.de/v3/charts/" + vars + '/publish/'
     headers = {
