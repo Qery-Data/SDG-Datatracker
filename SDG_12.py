@@ -38,7 +38,7 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.rename(index={'SG_HAZ_CMRBASEL': 'Basel Convention', 'SG_HAZ_CMRMNTRL': 'Montreal Protocol', 'SG_HAZ_CMRROTDAM': 'Rotterdam Convention', 'SG_HAZ_CMRSTHOLM': 'Stockholm Convention'}, inplace=True)
-df_new.to_csv('data/12_4_1_International_Enrivonmental_Agreements_World_SDG_Regions.csv', index=True)
+df_new.to_csv('data/12_4_1_International_Environmental_Agreements_World_SDG_Regions.csv', index=True)
 
 #12.4.2 E-waste collection rate World and SDG regions (3P5Co)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EN_EWT_COLLR.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
@@ -53,7 +53,7 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(index={'SG_HAZ_CMRBASEL': 'Basel Convention', 'SG_HAZ_CMRMNTRL': 'Montreal Protocol', 'SG_HAZ_CMRROTDAM': 'Rotterdam Convention', 'SG_HAZ_CMRSTHOLM': 'Stockholm Convention','SG_HAZ_CMRMNMT':'Minamata Convention'}, inplace=True)
-df_new.to_csv('data/12_4_1_International_Enrivonmental_Agreements_Nordics.csv', index=True)
+df_new.to_csv('data/12_4_1_International_Environmental_Agreements_Nordics.csv', index=True)
 
 #12.6.1 Number of companies publishing sustainability reports World (QECBI)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EN_SCP_FRMN.1.........._T./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
