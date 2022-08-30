@@ -518,6 +518,7 @@ df_new.to_csv('data/3_d_1_IHR_SDG_Regions.csv', index=True)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SH_IHR_CAPS.208+246+352+578+752........SPAR_01+SPAR_02+SPAR_03+SPAR_04+SPAR_05+SPAR_06+SPAR_07+SPAR_08+SPAR_09+SPAR_10+SPAR_11+SPAR_12+SPAR_13.../ALL/?detail=full&lastNObservations=1&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='COMPOSITE_BREAKDOWN', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new['Average'] = df_new.mean(numeric_only=True, axis=1)
 df_new.to_csv('data/3_d_1_IHR_Nordics.csv', index=True)
 
 #3.d.2 MRSA Total (f03pp)
