@@ -69,3 +69,10 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/14_6_1_Degree_Implementation_Instruments_Nordics.csv', index=True)
+
+#14.7.1 Sustainable fisheries as a proportion of GDP SIDS, LDC and World (0zKul)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EN_SCP_FSHGDP.1+199+722.........../ALL/?detail=full&startPeriod=2011-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World', 199:'Least Developed Countries', 722:'Small Island Development States'}, inplace=True)
+df_new = df_new.drop([2012,2014,2016,2018], axis=1)
+df_new.to_csv('data/14_7_1_Share_GDP_Sustainable_Fisheries_SIDS_LDC_World_Total.csv', index=True)
