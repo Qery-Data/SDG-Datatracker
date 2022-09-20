@@ -76,3 +76,21 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={1:'World', 199:'Least Developed Countries', 722:'Small Island Development States'}, inplace=True)
 df_new = df_new.drop([2012,2014,2016,2018], axis=1)
 df_new.to_csv('data/14_7_1_Share_GDP_Sustainable_Fisheries_SIDS_LDC_World_Total.csv', index=True)
+
+#14.a.1 Share of total research budget allocated to research in the field of marine technology World (HyZWz)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_RDE_OSEX.1.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/14_a_1_Share_Research_Marine_Technology_World_Total.csv', index=True)
+
+#14.b.1 Degree of application of frameworks that protect and recognizes rights for small-scale fisheries World and SDG regions (uTsiP)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_REG_SSFRAR.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
+df_new.to_csv('data/14_b_1_Degree_Application_Frameworks_Small_Scale_Fisheries_World_SDG_Regions.csv', index=True)
+
+#14.b.1 Degree of application of frameworks that protect and recognizes rights for small-scale fisheries Nordics (Qwwh4)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_REG_SSFRAR.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/14_b_1_Degree_Application_Frameworks_Small_Scale_Fisheries_Nordics.csv', index=True)
