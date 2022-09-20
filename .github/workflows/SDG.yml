@@ -82,6 +82,11 @@ jobs:
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
         run: python SDG_13.py
+      - name: Update SDG 14
+        if: always()
+        env: 
+          DW_TOKEN: ${{ secrets.DW_TOKEN }}
+        run: python SDG_14.py
       - name: Commit and push if it changed
         run: |
           git config user.name "${GITHUB_ACTOR}"
