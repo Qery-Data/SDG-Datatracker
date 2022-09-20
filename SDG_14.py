@@ -27,6 +27,12 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/14_1_1_Beach_Litter_Nordics.csv', index=True)
 
+#14.2.1 Implementation of ecosystem-based approaches to managing marine areas Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..EN_SCP_ECSYBA.208+246+352+578+752........LI_IMP_ADMNG+LI_PLA_DSG.../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/14_2_1_Implementation_Ecosystems_Based_Approaches_Nordics.csv', index=True)
+
 #14.4.1 Share of fish stocks within biologically sustainable levels World (an81H)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_H2O_FWTL.1.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -39,6 +45,12 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/14_4_1_Share_Fish_Stocks_Sustainable_Levels_Nordics.csv', index=True)
+
+#14.5.1 Share KBA protected World (p5LZl)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_MRN_MPA.1.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/14_5_1_Share_KBA_Protected_World_Total.csv', index=True)
 
 #14.5.1 Share KBA protected SDG regions (cOrhi)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_MRN_MPA.53+62+513+543+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
