@@ -38,7 +38,7 @@ df_all = pd.concat([df_new_area_1,df_new_area_2,df_new_area_3,df_new_area_4], ax
 df_all.loc['Average across all areas'] = df_all.mean(axis=0)
 df_all.to_csv('data/5_1_1_Legal_Frameworks_World_SDG_Regions.csv', index=True)
 
-#5.1.1 Legal frameworks Nordics (IvDU9)
+#5.1.1 Legal frameworks Nordics (G8kF0)
 #Area 1 overarching legal frameworks and public life
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.8/..SG_LGL_GENEQLFP.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new_area_1 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
