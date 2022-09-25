@@ -109,3 +109,20 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.loc['Pct_change 2010-2020'] = (df_new.loc[2020] - df_new.loc[2010])/df_new.loc[2010]*100
 df_new.to_csv('data/15_2_1_Forest_Area_Under_Independently_Verified_Forest_Management_Certification_Scheme_Nordics.csv', index=True)
+
+#15.4.1 Share of mountain KBAs covered by protected areas World (yP08Z)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_PTD_MTN.1.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.to_csv('data/15_4_1_Share_Mountain_KBA_Covered_Protected_Areas_World_Total.csv', index=True)
+
+#15.4.1 Share of mountain KBAs covered by protected areas SDG regions (VjaRn)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_PTD_MTN.53+62+513+543+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
+df_new.to_csv('data/15_4_1_Share_Mountain_KBA_Covered_Protected_Areas_SDG_Regions.csv', index=True)
+
+#15.4.1 Share of mountain KBAs covered by protected areas Nordics (69hbU)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_PTD_MTN.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/15_4_1_Share_Mountain_KBA_Covered_Protected_Areas_Nordics.csv', index=True)
