@@ -68,3 +68,10 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.loc['Pct_change 2010-2020'] = (df_new.loc[2020] - df_new.loc[2010])/df_new.loc[2010]*100
 df_new.to_csv('data/15_2_1_Share_Forest_area_Under_Long-term_Management_Plan_World_SDG_Regions.csv', index=True)
+
+#15.2.1 Forest area under an independently verified forest management certification scheme (g01cP)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..AG_LND_FRSTCERT.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
+df_new.loc['Change 2020-2021'] = (df_new.loc[2021] - df_new.loc[2020])
+df_new.to_csv('data/15_2_1_Forest_Area_Under_Independently_Verified_Forest_Management_Certification_Scheme_World_SDG_Regions.csv', index=True)
