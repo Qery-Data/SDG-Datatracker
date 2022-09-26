@@ -173,3 +173,27 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/15_8_1_Measures_IAS_Nordics.csv', index=True)
+
+#15.9.1 Integrate ecosystem and biodiversity values nationally and locally (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_BDY_ABT2NP+ER_BDY_SEEA.1........_T.../ALL/?detail=full&startPeriod=2015-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.to_csv('data/15_9_1_Integrate_Ecosystem_Biodiversity_Nationally_Locally_World_Total.csv', index=True)
+
+#15.9.1 ABT2 Status World and SDG regions (T2ZL0)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_BDY_ABT2NP.1+53+62+513+543+747+753+202+419........ABT2_ACHIEVE+ABT2_EXCEED+ABT2_INSUFNT+ABT2_DIGRESS+ABT2_NOPROG+ABT2_NONTLT.../ALL/?detail=full&startPeriod=2000-01-01&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
+df_new.rename(index={'ABT2_ACHIEVE': 'National target reflecting ABT2 exists and progress is on track to achieve it', 'ABT2_DIGRESS': 'National target reflecting ABT2 exists, but moving away from it', 'ABT2_EXCEED': 'National target reflecting ABT2 exists and progress is on track to exceed it', 'ABT2_INSUFNT':'National target reflecting ABT2 exists and progress is there, but at as insufficient rate', 'ABT2_NONTLT': 'No national target reflecting ABT 2', 'ABT2_NOPROG': 'National target reflecting ABT2 exists, but no progress'},inplace=True)
+df_new.to_csv('data/15_9_1_ABT2_Status_World_SDG_Regions.csv', index=True)
+
+#15.9.1 Integrate ecosystem and biodiversity values nationally and locally Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_BDY_ABT2NP+ER_BDY_SEEA.208+246+352+578+752........_T.../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/15_9_1_Integrate_Ecosystem_Biodiversity_Nationally_Locally_Nordics.csv', index=True)
+
+#15.9.1 ABT2 Status Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_BDY_ABT2NP.208+246+352+578+752........ABT2_ACHIEVE+ABT2_EXCEED+ABT2_INSUFNT+ABT2_DIGRESS+ABT2_NOPROG+ABT2_NONTLT.../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/15_9_1_ABT2_Status_Nordics.csv', index=True)
