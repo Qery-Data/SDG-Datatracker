@@ -149,3 +149,16 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/15_5_1_Red_List_Index_Nordics.csv', index=True)
+
+#15.6.1 Adoption of legislative, administrative and policy frameworks (Sh1My)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_CBD_ABSCLRHS+ER_CBD_NAGOYA+ER_CBD_PTYPGRFA+ER_CBD_ORSPGRFA.1.........../ALL/?detail=full&startPeriod=2015-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'ER_CBD_ABSCLRHS': 'Access and Benefit-Sharing Clearing-House', 'ER_CBD_NAGOYA': 'The Nagoya Protocol', 'ER_CBD_PTYPGRFA': 'The International Treaty on Plant Genetic Resources for Food and Agriculture', 'ER_CBD_ORSPGRFA':'Online Reporting System on Compliance of the International Treaty on Plant Genetic Resources for Food and Agriculture'},inplace=True)
+df_new.to_csv('data/15_6_1_Adoption_Policy_Frameworks_World_Total.csv', index=True)
+
+#15.6.1 Adoption of legislative, administrative and policy frameworks Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_CBD_ABSCLRHS+ER_CBD_NAGOYA+ER_CBD_PTYPGRFA+ER_CBD_ORSPGRFA.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(index={'ER_CBD_ABSCLRHS': 'Access and Benefit-Sharing Clearing-House', 'ER_CBD_NAGOYA': 'The Nagoya Protocol', 'ER_CBD_PTYPGRFA': 'The International Treaty on Plant Genetic Resources for Food and Agriculture', 'ER_CBD_ORSPGRFA':'Online Reporting System on Compliance of the International Treaty on Plant Genetic Resources for Food and Agriculture'},inplace=True)
+df_new.to_csv('data/15_6_1_Adoption_Policy_Frameworks_Nordics.csv', index=True)
