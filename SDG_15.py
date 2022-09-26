@@ -197,3 +197,9 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/15_9_1_ABT2_Status_Nordics.csv', index=True)
+
+#15.a.1 Total ODA to commitments on conservation and sustainable use of biodiversity and ecosystems World (vWrEH)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..DC_ODA_BDVL.515.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={515:'Developing countries'}, inplace=True)
+df_new.to_csv('data/15_a_1_ODA_Biodiversity_World_Total.csv', index=True)
