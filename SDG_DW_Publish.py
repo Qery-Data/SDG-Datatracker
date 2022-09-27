@@ -1541,6 +1541,18 @@ chart_list_15_6 = []
 for i in json_object['list']:
         chart_list_15_6.append(i['publicId'])
 
+#15_9
+url = "https://api.datawrapper.de/v3/charts?folderId=119580&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_15_9 = []
+for i in json_object['list']:
+        chart_list_15_9.append(i['publicId'])
+
 #15_a
 url = "https://api.datawrapper.de/v3/charts?folderId=119179&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
 headers = {
@@ -1554,7 +1566,7 @@ for i in json_object['list']:
         chart_list_15_a.append(i['publicId'])
 
 #Publish
-chart_list_15_all = (chart_list_15_1 + chart_list_15_2 + chart_list_15_4 + chart_list_15_5 + chart_list_15_6 + chart_list_15_a)
+chart_list_15_all = (chart_list_15_1 + chart_list_15_2 + chart_list_15_4 + chart_list_15_5 + chart_list_15_6 + chart_list_15_9 + chart_list_15_a)
 for vars in chart_list_15_all:
     url = "https://api.datawrapper.de/v3/charts/" + vars + '/publish/'
     headers = {
