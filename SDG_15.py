@@ -42,34 +42,34 @@ df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norw
 df_new.rename(index={'ER_PTD_FRHWTR':'Freshwater KBAs', 'ER_PTD_TERR': 'Terrestial KBAs'}, inplace=True)
 df_new.to_csv('data/15_1_2_Share_KBA_Covered_Protected_Areas_Nordics.csv', index=True)
 
-#15.2.1 Forest area annual net change (X6rvB)
+#15.2.1 Forest area annual net change World and SDG regions (X6rvB)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..AG_LND_FRSTCHG.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.to_csv('data/15_2_1_Forest_Area_Annual_Net_Change_World_SDG_Regions.csv', index=True)
 
-#15.2.1 Above-ground biomass stock in forest (eADyF)
+#15.2.1 Above-ground biomass stock in forest World and SDG regions (eADyF)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..AG_LND_FRSTBIOPHA.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.loc['Pct_change 2010-2020'] = (df_new.loc[2020] - df_new.loc[2010])/df_new.loc[2010]*100
 df_new.to_csv('data/15_2_1_Above-ground_Biomass_Stock_Forest_World_SDG_Regions.csv', index=True)
 
-#15.2.1 Proportion of forest area within legally established protected areas (2B9ig)
+#15.2.1 Proportion of forest area within legally established protected areas World and SDG regions (2B9ig)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..AG_LND_FRSTPRCT.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.loc['Pct_change 2010-2020'] = (df_new.loc[2020] - df_new.loc[2010])/df_new.loc[2010]*100
 df_new.to_csv('data/15_2_1_Share_Forest_Area_Within_Legally_Protected_Areas_World_SDG_Regions.csv', index=True)
 
-#15.2.1 Proportion of forest area under a long-term management plan (3h6OW)
+#15.2.1 Proportion of forest area under a long-term management plan World and SDG regions (3h6OW)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..AG_LND_FRSTMGT.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.loc['Pct_change 2010-2020'] = (df_new.loc[2020] - df_new.loc[2010])/df_new.loc[2010]*100
 df_new.to_csv('data/15_2_1_Share_Forest_area_Under_Long-term_Management_Plan_World_SDG_Regions.csv', index=True)
 
-#15.2.1 Forest area under an independently verified forest management certification scheme (g01cP)
+#15.2.1 Forest area under an independently verified forest management certification scheme World and SDG regions (g01cP)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..AG_LND_FRSTCERT.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
@@ -150,7 +150,7 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/15_5_1_Red_List_Index_Nordics.csv', index=True)
 
-#15.6.1 Adoption of legislative, administrative and policy frameworks (Sh1My)
+#15.6.1 Adoption of legislative, administrative and policy frameworks World (Sh1My)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_CBD_ABSCLRHS+ER_CBD_NAGOYA+ER_CBD_PTYPGRFA+ER_CBD_ORSPGRFA.1.........../ALL/?detail=full&startPeriod=2015-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={'ER_CBD_ABSCLRHS': 'Access and Benefit-Sharing Clearing-House', 'ER_CBD_NAGOYA': 'The Nagoya Protocol', 'ER_CBD_PTYPGRFA': 'The International Treaty on Plant Genetic Resources for Food and Agriculture', 'ER_CBD_ORSPGRFA':'Online Reporting System on Compliance of the International Treaty on Plant Genetic Resources for Food and Agriculture'},inplace=True)
@@ -174,7 +174,7 @@ df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/15_8_1_Measures_IAS_Nordics.csv', index=True)
 
-#15.9.1 Integrate ecosystem and biodiversity values nationally and locally (xxxxx)
+#15.9.1 Integrate ecosystem and biodiversity values nationally and locally World (xxxxx)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..ER_BDY_ABT2NP+ER_BDY_SEEA.1........_T.../ALL/?detail=full&startPeriod=2015-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.to_csv('data/15_9_1_Integrate_Ecosystem_Biodiversity_Nationally_Locally_World_Total.csv', index=True)
