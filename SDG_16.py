@@ -173,3 +173,21 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/16_10_2_Number_Countries_Adopt_Implement_Guarantees_World_Total.csv', index=True)
+
+#16.a.1 Share of countries with independent National Human Rights Institutions in compliance with the Paris Principles World and SDG Regions (wmAX7)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_NHR_IMPL.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
+df_new.to_csv('data/16_a_1_Share_Countries_Compliance_Paris_Principles_World_SDG_Regions.csv', index=True)
+
+#16.a.1 Share of countries with independent National Human Rights Institutions in compliance with the Paris Principles World (TILId)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_NHR_IMPL.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/16_a_1_Share_Countries_Compliance_Paris_Principles_World_Total.csv', index=True)
+
+#16.10.1 Compliance with the Paris Principles Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_NHR_IMPLN+SG_NHR_INTEXSTN+SG_NHR_NOAPPLN+SG_NHR_NOSTUSN.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2021-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/16_10_1_Compliance_Paris_Principles_Nordics.csv', index=True)
