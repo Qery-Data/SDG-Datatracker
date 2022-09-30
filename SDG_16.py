@@ -161,3 +161,9 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/16_10_1_Number_Enforced_Disapperances_HumRigJournTradeUni_World_Total.csv', index=True)
+
+#16.10.2 Number of countries that adopt and implement constitutional, statutory and/or policy guarantees for public access to information World (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_INF_ACCSS.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/16_10_2_Number_Countries_Adopt_Implement_Guarantees_World_Total.csv', index=True)
