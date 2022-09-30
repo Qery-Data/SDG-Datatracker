@@ -156,6 +156,12 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/16_10_1_Number_Killings_HumRigJournTradeUni_World_Total.csv', index=True)
 
+#16.10.1 Number of cases of killings of human rights defenders, journalists and trade unionists SDG Regions (Vxipg)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..VC_VAW_MTUHRA.53+62+513+543+747+753+202+419._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
+df_new.to_csv('data/16_10_1_Number_Killings_HumRigJournTradeUni_SDG_Regions.csv', index=True)
+
 #16.10.1 Number of enforced disapperances of human rights defenders, journalists and trade unionists World (xxxxx)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..VC_VOC_ENFDIS.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
