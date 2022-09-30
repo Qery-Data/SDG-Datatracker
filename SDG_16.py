@@ -149,3 +149,15 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/16_9_1_Share_Children_Under5_Births_Registered_Nordics.csv', index=True)
+
+#16.10.1 Number of cases of killings of human rights defenders, journalists and trade unionists World (XPY6m)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..VC_VAW_MTUHRA.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/16_10_1_Number_Killings_HumRigJournTradeUni_World_Total.csv', index=True)
+
+#16.10.1 Number of enforced disapperances of human rights defenders, journalists and trade unionists World (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..VC_VOC_ENFDIS.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/16_10_1_Number_Enforced_Disapperances_HumRigJournTradeUni_World_Total.csv', index=True)
