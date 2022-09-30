@@ -1574,3 +1574,121 @@ for vars in chart_list_15_all:
         "Accept": "*/*"
         }
     response = requests.request("POST", url, headers=headers)
+
+#16_1
+url = "https://api.datawrapper.de/v3/charts?folderId=119791&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_1 = []
+for i in json_object['list']:
+        chart_list_16_1.append(i['publicId'])
+
+#16_3
+url = "https://api.datawrapper.de/v3/charts?folderId=120088&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_3 = []
+for i in json_object['list']:
+        chart_list_16_3.append(i['publicId'])
+
+#16_5
+url = "https://api.datawrapper.de/v3/charts?folderId=120138&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_5 = []
+for i in json_object['list']:
+        chart_list_16_5.append(i['publicId'])
+
+#16_6
+url = "https://api.datawrapper.de/v3/charts?folderId=120140&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_6 = []
+for i in json_object['list']:
+        chart_list_16_6.append(i['publicId'])
+
+#16_7
+url = "https://api.datawrapper.de/v3/charts?folderId=120140&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_7 = []
+for i in json_object['list']:
+        chart_list_16_7.append(i['publicId'])
+
+#16_8
+url = "https://api.datawrapper.de/v3/charts?folderId=120147&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_8 = []
+for i in json_object['list']:
+        chart_list_16_8.append(i['publicId'])
+
+#16_9
+url = "https://api.datawrapper.de/v3/charts?folderId=120148&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_9 = []
+for i in json_object['list']:
+        chart_list_16_9.append(i['publicId'])
+
+#16_10
+url = "https://api.datawrapper.de/v3/charts?folderId=120149&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_10 = []
+for i in json_object['list']:
+        chart_list_16_10.append(i['publicId'])
+
+#16_a
+url = "https://api.datawrapper.de/v3/charts?folderId=120156&order=DESC&orderBy=createdAt&limit=100&offset=0&expand=false"
+headers = {
+    "Authorization": ("Bearer " + access_token),
+    "Accept": "*/*"
+    }
+response = requests.get(url, headers=headers)
+json_object = json.loads(response.text)
+chart_list_16_a = []
+for i in json_object['list']:
+        chart_list_16_a.append(i['publicId'])
+
+#Publish
+chart_list_16_all = (chart_list_16_1 + chart_list_16_3 + chart_list_16_5 + chart_list_16_6 + chart_list_16_7 + chart_list_16_8 + chart_list_16_9 + chart_list_16_10 + chart_list_16_a)
+for vars in chart_list_16_all:
+    url = "https://api.datawrapper.de/v3/charts/" + vars + '/publish/'
+    headers = {
+        "Authorization": ("Bearer " + access_token),
+        "Accept": "*/*"
+        }
+    response = requests.request("POST", url, headers=headers)
