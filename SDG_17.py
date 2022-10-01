@@ -202,3 +202,15 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World average', 208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/17_15_1_Extent_Country_Owned_Results_Nordics.csv', index=True)
+
+#17.16.1 Number of countries reporting progress in multi-stakeholder development effectiveness monitoring frameworks that support the SDGs World (xxxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_PLN_MSTKSDG_P+SG_PLN_MSTKSDG_R.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'SG_PLN_MSTKSDG_P':'Provider', 'SG_PLN_MSTKSDG_R': 'Recipient'}, inplace=True)
+df_new.to_csv('data/17_16_1_Number_Countries_Multistakeholder_Development_Effectiveness_Monitoring_Frameworks_World_Total.csv', index=True)
+
+#17.16.1 multi-stakeholder development effectiveness monitoring frameworks that support the SDGs Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_PLN_MSTKSDG_P.208+246+352+578+752..........._T/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/17_16_1_Multistakeholder_Development_Effectiveness_Monitoring_Frameworks_Nordics.csv', index=True)
