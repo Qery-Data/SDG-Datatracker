@@ -219,13 +219,13 @@ df_new.to_csv('data/17_16_1_Multistakeholder_Development_Effectiveness_Monitorin
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_STT_FPOS.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
-df_new.to_csv('data/17_18_1_Number_Countries_National_Statistics_Legislation_Complies_FundPrinc_World_Total.csv', index=True)
+df_new.to_csv('data/17_18_2_Number_Countries_National_Statistics_Legislation_Complies_FundPrinc_World_Total.csv', index=True)
 
 #17.18.3 Number of countries that national statistics plans under implementation and fully funded World (xxxxxx)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_STT_NSDSFND+SG_STT_NSDSIMPL.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={'SG_STT_NSDSFND':'Fully funded', 'SG_STT_NSDSIMPL': 'Under implementation'}, inplace=True)
-df_new.to_csv('data/17_18_1_Number_Countries_Statistics_Plans_Implementation_Fully_Funded_World_Total.csv', index=True)
+df_new.to_csv('data/17_18_3_Number_Countries_Statistics_Plans_Implementation_Fully_Funded_World_Total.csv', index=True)
 
 #17.18.3 Countries that national statistics plans under implementation and fully funded Nordics (xxxxx)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_STT_NSDSFND+SG_STT_NSDSIMPL.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
