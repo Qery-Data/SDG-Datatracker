@@ -149,7 +149,7 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.to_csv('data/17_10_1_Worldwide_Weighted_Tariff_Average_All_Products_World_SDG_Regions.csv', index=True)
 
-#17.10.1 weighted tariff-average of all products Nordics (xxxxx)
+#17.10.1 Weighted tariff-average of all products Nordics (xxxxx)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TM_TAX_WMPS.208+246+352+578+752..........._T/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
@@ -166,3 +166,21 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={'TX_EXP_GBMRCH':'Global merchandise exports', 'TX_EXP_GBSVR':'Global service exports'}, inplace=True)
 df_new.to_csv('data/17_11_1_LDCs_Share_Exports.csv', index=True)
+
+#17.12.1 Average tariff applied by developed countries on key products (l2vIc)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TM_TAX_DPRF.199+515+722..........._T/ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={199:'Least developed countries', 515:'Developing countries', 722: 'Small-island developing States'}, inplace=True)
+df_new.to_csv('data/17_12_1_Average_Tariff_Developed_Countries.csv', index=True)
+
+#17.12.1 Average tariff applied preferential status Nordics (5Suqx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TM_TAX_DPRF.208+246+352+578+752..........._T/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/17_12_1_Average_Tariff_Applied_Preferential_Nordics.csv', index=True)
+
+#17.12.1 Average tariff applied MFN by Nordics (5LClA)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TM_TAX_DMFN.208+246+352+578+752..........._T/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/17_12_1_Average_Tariff_Applied_MFN_Nordics.csv', index=True)
