@@ -99,3 +99,9 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={'SG_CPA_INFORCE_BIT':'Inforce', 'SG_CPA_SIGN_BIT': 'Signed'}, inplace=True)
 df_new.to_csv('data/17_5_1_Signed_Inforce_BIT_LDCS_World_Total.csv', index=True)
+
+#17.7.1 Amount of tracked exported Environmentally Sound Technologies World (rdDbM)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..DC_ENVTECH_EXP.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/17_7_1_Amount_Tracked_Exported_Environmentally_Sound_Technologies_World_Total.csv', index=True)
