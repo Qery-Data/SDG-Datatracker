@@ -232,3 +232,16 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/17_18_3_Statistics_Plans_Implementation_Fully_Funded_Nordics.csv', index=True)
+
+#17.19.1 Dollar value of all resources made available to strengthen statistical capacity World (xxxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_STT_CAPTY.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/17_19_1_Dollar_Value_Resources_Strenghten_Statistical_Capacity_World_Total.csv', index=True)
+
+#17.19.2 Share of countries a)conducted at least one population and housing census in the last 10 years; and (b) have achieved 100 per cent birth registration and 80 per cent death registration World (xxxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_REG_BRTH90+SG_REG_CENSUS+SG_REG_DETH75.1+53+62+513+543+747+753+202+419..........._T/ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
+df_new.rename(index={'SG_REG_BRTH90':'Birth registration data at least 90 pct complete', 'SG_REG_DETH75': 'Death registration data at least 75 pct complete', 'SG_REG_CENSUS': 'Conducted at least one population and housing census in the last 10 years'}, inplace=True)
+df_new.to_csv('data/17_19_2_Share_Countries_Census_Birth_Death_World_SDG_Regions.csv', index=True)
