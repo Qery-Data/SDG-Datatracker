@@ -44,3 +44,16 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/17_1_2_Share_Domestic_Budget_Funded_Domestic_Taxes_Nordics.csv', index=True)
+
+#17.2.1 ODA as share of GNI DAC Total and Nordics (lLRPr/RaU35)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/TABLE1/20001+3+18+20+8+10.1.11002.1160.A+D+N/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Year', columns='Donor', values='Value')
+df_new.to_csv('data/17_2_1_DAC_ODA_GNI_Total_Nordics.csv', index=True)
+
+#17.2.1 ODA as share of GNI to LDCs DAC Total and Nordics (4Mm89)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..DC_ODA_LDCG.208+246+352+578+593+752.........../ALL/?detail=full&startPeriod=2018-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway', 593: 'DAC-total', 752:'Sweden'},inplace=True)
+df_new.to_csv('data/17_2_1_DAC_ODA_GNI_LDCs_Total_Nordics.csv', index=True)
