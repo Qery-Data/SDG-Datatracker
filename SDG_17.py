@@ -184,3 +184,21 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/17_12_1_Average_Tariff_Applied_MFN_Nordics.csv', index=True)
+
+#17.13.1 Macroeconomic Dashboard Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..FB_BNK_CAPA_ZS+FM_LBL_BMNY_ZG+FM_LBL_BMNY_IR_ZS+BN_CAB_XOKA_GD_ZS+NE_EXP_GNFS_KD_ZG+DT_DOD_DECT_GN_ZS+BX_KLT_DINV_WD_GD_ZS+NY_GDP_MKTP_KD_ZG+NE_CON_GOVT_KD_ZG+NE_GDI_TOTL_KD_ZG+NE_IMP_GNFS_KD_ZG+FP_CPI_TOTL_ZG+TG_VAL_TOTL_GD_ZS+BN_KLT_PTXL_CD+GC_TAX_TOTL_GD_ZS+FI_RES_TOTL_MO+DP_DOD_DLD2_CR_CG_Z1+GC_BAL_CASH_GD_ZS+PA_NUS_ATLS+NE_CON_PRVT_KD_ZG.208+246+352+578+752..........._T/ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/17_13_1_Macroeconomic_Dashboard_Nordics.csv', index=True)
+
+#17.15.1 Extent of use of country-owned results frameworks and planning tools by providers of development cooperation World (xxxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_PLN_PRPOLRES.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new.to_csv('data/17_15_1_Extent_Country_Owned_Results_World_Total.csv', index=True)
+
+#17.15.1 Extent of use of country-owned results frameworks and planning tools by providers of development cooperation Nordics (Qn3Lc)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..SG_PLN_PRPOLRES.1+208+246+352+578+752..........._T/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World average', 208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/17_15_1_Extent_Country_Owned_Results_Nordics.csv', index=True)
