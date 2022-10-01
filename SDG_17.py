@@ -130,3 +130,27 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={511:'Developing countries'}, inplace=True)
 df_new.to_csv('data/17_9_1_Total_ODA_Technical_Cooperation_World_Total.csv', index=True)
+
+#17.10.1 Worldwide weighted tariff-average of all products World (yn4HM)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TM_TAX_WMFN+TM_TAX_WMPS.1..........._T/ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'TM_TAX_WMFN':'Most-favoured-nation status', 'TM_TAX_WMPS':'Preferential status'}, inplace=True)
+df_new.to_csv('data/17_10_1_Worldwide_Weighted_Tariff_Average_All_Products_World_Total.csv', index=True)
+
+#17.10.1 Worldwide weighted tariff-average of by product World (wVjSm)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TM_TAX_WMPS.1...........AGG_ARMS+AGG_CLTH+AGG_IND+AGG_AGR+AGG_OIL+AGG_TXT/ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='PRODUCT', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'AGG_AGR':'Agricultural products', 'AGG_ARMS':'Arms', 'AGG_CLTH': 'Clothing', 'AGG_IND':'Industrial Products', 'AGG_OIL':'Oil', 'AGG_TXT':'Textiles'}, inplace=True)
+df_new.to_csv('data/17_10_1_Worldwide_Weighted_Tariff_Average_By_Product_World_Total.csv', index=True)
+
+#17.10.1 Worldwide weighted tariff-average of all products SDG regions (p7gpb)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TM_TAX_WMPS.1+53+62+513+543+747+753+202+419..........._T/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
+df_new.to_csv('data/17_10_1_Worldwide_Weighted_Tariff_Average_All_Products_World_SDG_Regions.csv', index=True)
+
+#17.10.1 weighted tariff-average of all products Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TM_TAX_WMPS.208+246+352+578+752..........._T/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/17_10_1_Weighted_Tariff_Average_All_Products_Nordics.csv', index=True)
