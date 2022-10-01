@@ -154,3 +154,15 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/17_10_1_Weighted_Tariff_Average_All_Products_Nordics.csv', index=True)
+
+#17.11.1 Developing countries share of global exports (ejH3U)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TX_EXP_GBMRCH+TX_EXP_GBSVR.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'TX_EXP_GBMRCH':'Global merchandise exports', 'TX_EXP_GBSVR':'Global service exports'}, inplace=True)
+df_new.to_csv('data/17_11_1_Developing_Countries_Share_Exports.csv', index=True)
+
+#17.11.1 LDCs share of global exports (bV0AG)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..TX_EXP_GBMRCH+TX_EXP_GBSVR.199.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'TX_EXP_GBMRCH':'Global merchandise exports', 'TX_EXP_GBSVR':'Global service exports'}, inplace=True)
+df_new.to_csv('data/17_11_1_LDCs_Share_Exports.csv', index=True)
