@@ -217,7 +217,7 @@ df_new.rename(index={'FB_CBK_BRCH':'Commercial bank branches', 'FB_ATM_TOTL':'AT
 df_new.to_csv('data/8_10_1_Bank_ATM_World_Total.csv', index=True)
 
 #8.10.2 Share of adults account at a bank/other financial institution/mobile-money-service provider World (89Y58)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..FB_BNK_ACCSS.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.9/..FB_BNK_ACCSS.1._T.Y_GE15._T._T._T....../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/8_10_2_Share_Account_World_Total.csv', index=True)
