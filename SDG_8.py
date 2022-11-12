@@ -113,7 +113,7 @@ df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa 
 df_new.to_csv('data/8_5_2_Unemployment_Rate_SDG_Regions.csv', index=True)
 
 #8.5.2 Unemployment rate Nordics (lo3xm)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/LFS_SEXAGE_I_R/DNK+FIN+ISL+NOR+SWE.MW.1564.UR.A/all?startTime=2000'
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/MEI/DNK+FIN+ISL+NOR+SWE.LRUN64TT.STSA.A/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Time', columns='Country', values='Value')
