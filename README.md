@@ -1,4 +1,4 @@
-# Datatracker on the Sustainable Development Goals
+# Data tracker on the Sustainable Development Goals
 
 Scripts and datafiles used in a data tracker on the Sustainable Development Goals in the Nordic Countries (work in progress): https://qery.no/sdgs-nordics/
 
