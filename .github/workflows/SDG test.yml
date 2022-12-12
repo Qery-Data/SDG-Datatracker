@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: Ubuntu-20.04
     steps:
       - name: Get working copy
         uses: actions/checkout@main
