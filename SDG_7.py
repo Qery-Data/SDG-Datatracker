@@ -87,6 +87,7 @@ df_new.rename(columns={1:'World',53: 'Australia and New Zealand', 62: 'Central a
 df_new.loc['CAGR 2010-2019'] = ((df_new.loc[2019]/df_new.loc[2010])**(1/9)-1)*100
 df_new.loc['CAGR 1990-2010'] = {'World': -1.2, 'Australia and New Zealand': -1.2, 'Central and Southern Asia': -1.5, 'Sub-Saharan Africa': -0.9, 'Latin America and the Caribbean': -0.5, 'Europe and Northern America': -1.8, 'Oceania*': -1, 'Northern Africa and Western Asia': -0.1, 'Eastern and South-Eastern Asia': -1.1}
 df_new = df_new.loc[['CAGR 1990-2010','CAGR 2010-2019']]
+df_new = df_new.round(decimals=2)
 df_new.to_csv('data/7_3_1_Energy_Intensity_CAGR_World_SDG_Regions.csv', index=True)
 
 #7.3.1  Energy intensity level of primary energy CAGR 2010-2019 Nordics (NGRpD)
@@ -95,6 +96,7 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.loc['CAGR 2010-2019'] = ((df_new.loc[2019]/df_new.loc[2010])**(1/9)-1)*100
 df_new = df_new.loc[['CAGR 2010-2019']]
+df_new = df_new.round(decimals=2)
 df_new.to_csv('data/7_3_1_Energy_Intensity_CAGR_Nordics.csv', index=True)
 
 #7.a.1 International financial flows World (JZs1U)
