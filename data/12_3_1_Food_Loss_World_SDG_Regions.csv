@@ -1,10 +1,10 @@
-REF_AREA,2016,2020
-World,13.0,13.3
-Australia and New Zealand,12.9,13.6
-Central and Southern Asia,13.8,13.6
-Sub-Saharan Africa,20.5,21.4
-Latin America and the Caribbean,12.2,12.3
-Europe and Northern America,9.2,9.9
-Oceania*,13.6,14.8
-Northern Africa and Western Asia,13.1,14.8
-Eastern and South-Eastern Asia,15.0,15.1
+REF_AREA,2016,2020,2021
+World,13.0,13.3,13.23
+Australia and New Zealand,12.9,13.6,13.93
+Central and Southern Asia,13.8,13.6,12.62
+Sub-Saharan Africa,20.5,21.4,19.95
+Latin America and the Caribbean,12.2,12.3,14.52
+Europe and Northern America,9.2,9.9,9.19
+Oceania*,13.6,14.8,12.43
+Northern Africa and Western Asia,13.1,14.8,14.18
+Eastern and South-Eastern Asia,15.0,15.1,14.53

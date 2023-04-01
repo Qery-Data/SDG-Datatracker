@@ -1,8 +1,10 @@
-COMPOSITE_BREAKDOWN,Denmark,Finland,Iceland,Norway,Sweden,OECD
-SKILL_ICTCMFL,68.05402,61.31199,71.2134,68.0,55.79176,74
-SKILL_ICTCPT,68.453,69.1978,82.25213,78.0,63.66826,73
-SKILL_ICTPRGM,14.29944,8.84956,12.88455,11.0,10.8561,12
-SKILL_ICTPST,48.78793,45.05263,54.05893,48.99999,43.50045,54
-SKILL_ICTSFWR,64.54957,63.10363,70.07553,80.99999,65.14964,70
-SKILL_ICTSSHT,54.47866,48.37608,71.26471,59.99999,46.14517,60
-SKILL_ICTTRFF,61.03874,63.00256,72.59707,65.0,48.89538,63
+COMPOSITE_BREAKDOWN,Denmark,Finland,Iceland,Norway,Sweden
+Sending e-mails with attached files,88.1863,,,,81.3297
+Using copy and past tools within a document,,,65.0177,61.0,57.7457
+Writing a computer program,10.9189,8.61995,9.88255,12.0,9.38808
+Changing privacy settings,48.2517,,,44.0,
+Creating presentations,57.9175,49.4113,47.8794,61.0,
+"Finding, downloading, installing and configuring software",65.019,63.991,73.6131,73.0,45.0207
+Using basic arithmetic formula in a spreadsheet,48.1893,53.0226,66.5463,54.0,41.5985
+Transferring files between a computer and other devices,64.2983,65.3146,,61.0,
+Verifying the reliability of information found online,25.1041,31.4462,38.9431,37.0,

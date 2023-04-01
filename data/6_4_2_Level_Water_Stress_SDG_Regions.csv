@@ -1,6 +1,7 @@
-TIME_PERIOD,Australia and New Zealand,Central and Southern Asia,Sub-Saharan Africa,Latin America and the Caribbean,Europe and Northern America,Northern Africa and Western Asia,Eastern and South-Eastern Asia
-2015,5.24,71.26,5.89,6.55,12.29,71.42,30.83
-2016,5.62,71.3,5.98,6.68,12.3,73.87,31.02
-2017,6.02,71.58,5.99,6.73,12.3,79.46,31.13
-2018,6.12,71.31,6.09,6.68,12.49,77.67,31.13
-2019,5.39,70.39,6.1,6.82,12.47,84.07,30.97
+TIME_PERIOD,Australia and New Zealand,Central and Southern Asia,Sub-Saharan Africa,Latin America and the Caribbean,Europe and Northern America,Oceania*,Northern Africa and Western Asia,Eastern and South-Eastern Asia
+2015,5.24,71.27,5.9,5.75,12.29,0.16,71.21,30.83
+2016,5.62,71.31,5.99,5.88,12.3,0.16,73.65,31.34
+2017,6.02,71.65,6.0,5.91,12.31,0.16,79.22,31.24
+2018,6.09,71.25,6.13,5.91,12.5,0.16,77.46,31.16
+2019,5.6,70.38,6.16,5.97,12.46,0.16,83.88,31.22
+2020,5.6,71.13,6.18,5.98,12.45,0.16,83.94,30.36

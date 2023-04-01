@@ -1,7 +1,5 @@
-COMPOSITE_BREAKDOWN,World,Australia and New Zealand,Central and Southern Asia,Sub-Saharan Africa,Latin America and the Caribbean,Europe and Northern America,Oceania*,Northern Africa and Western Asia,Eastern and South-Eastern Asia
-National target reflecting ABT2 exists and progress is on track to achieve it,50.0,1.0,3.0,15.0,6.0,9.0,3.0,6.0,7.0
-"National target reflecting ABT2 exists, but moving away from it",1.0,,,,,,1.0,,
-National target reflecting ABT2 exists and progress is on track to exceed it,2.0,,,1.0,1.0,,,,
-"National target reflecting ABT2 exists and progress is there, but at as insufficient rate",81.0,,8.0,23.0,16.0,19.0,3.0,7.0,5.0
-No national target reflecting ABT 2,55.0,1.0,3.0,8.0,9.0,14.0,7.0,9.0,4.0
-"National target reflecting ABT2 exists, but no progress",6.0,,,1.0,1.0,2.0,,2.0,
+COMPOSITE_BREAKDOWN,World,Central and Southern Asia,Latin America and the Caribbean,Europe and Northern America,Oceania*
+National target reflecting ABT2 exists and progress is on track to achieve it,52.0,,6.0,9.0,4.0
+"National target reflecting ABT2 exists and progress is there, but at as insufficient rate",84.0,8.0,17.0,19.0,4.0
+No national target reflecting ABT 2,50.0,,8.0,14.0,5.0
+"National target reflecting ABT2 exists, but no progress",,,,2.0,
