@@ -64,18 +64,17 @@ df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway
 df_new.to_csv('data/4_2_2_Participation_Rate_Learning_Children_Nordics.csv', index=True)
 
 #4.3.1 Participation rate organised learning adults Nordics (3NoiA)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SE_ADT_EDUCTRN.208+246+352+578+752._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SE_ADT_EDUCTRN.208+246+352+578+752._T.Y15T64........./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_DETAIL', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.drop([2011, 2012], axis=0,inplace=True)
 df_new.to_csv('data/4_3_1_Participation_Rate_Organised_Learning_Adults_Nordics.csv', index=True)
 
 #4.4.1 ICT Skills Nordics (393Kw)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SE_ADT_ACTS.208+246+352+578+752._T.......SKILL_ICTCPT+SKILL_ICTSSHT+SKILL_ICTPRGM+SKILL_ICTPST+SKILL_ICTSFWR+SKILL_ICTTRFF+SKILL_ICTCMFL.../ALL/?detail=full&lastNObservations=1&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SE_ADT_ACTS.208+246+352+578+752._T._T._T.....SKILL_ICTATCH+SKILL_ICTCPT+SKILL_ICTCDV+SKILL_ICTSSHT+SKILL_ICTPRGM+SKILL_ICTPST+SKILL_ICTSFWR+SKILL_ICTTRFF+SKILL_ICTCMFL+SKILL_ICTPRVCY+SKILL_ICTVRFY.../ALL/?detail=full&startPeriod=2021-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='COMPOSITE_BREAKDOWN', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-OECD = [74,73,12,54,70,60,63]
-df_new['OECD'] = OECD
+df_new.rename(index={'SKILL_ICTATCH': 'Sending e-mails with attached files', 'SKILL_ICTCPT': 'Using copy and past tools within a document', 'SKILL_ICTPRGM': 'Writing a computer program', 'SKILL_ICTPRVCY':'Changing privacy settings','SKILL_ICTPST':'Creating presentations', 'SKILL_ICTSFWR': 'Finding, downloading, installing and configuring software', 'SKILL_ICTSSHT':'Using basic arithmetic formula in a spreadsheet', 'SKILL_ICTTRFF': 'Transferring files between a computer and other devices', 'SKILL_ICTVRFY':'Verifying the reliability of information found online'},inplace=True)
 df_new.to_csv('data/4_4_1_ICT_Skills_Nordics.csv', index=True)
 
 #4.7.1 Education Sustainable Development Nordics (xxxxx)
