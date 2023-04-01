@@ -107,13 +107,13 @@ df_new.loc['Total'] = (df_new.loc['DC_ENVTECH_EXP'] + df_new.loc['DC_ENVTECH_IMP
 df_new.to_csv('data/17_7_1_Amount_Tracked_Exported_Environmentally_Sound_Technologies_World_Total.csv', index=True)
 
 #17.8.1 Share of individuals using the internet World (8DnzP)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..IT_USE_II99.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..IT_USE_II99.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/17_8_1_Share_Individuals_Using_Internet_World_Total.csv', index=True)
 
 #17.8.1 Share of individuals using the internet World SDG regions (b1YWK)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..IT_USE_II99.53+62+513+543+747+753+202+419.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..IT_USE_II99.53+62+513+543+747+753+202+419._T........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.to_csv('data/17_8_1_Share_Individuals_Using_Internet_World_SDG_Regions.csv', index=True)
