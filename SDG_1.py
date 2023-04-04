@@ -96,7 +96,7 @@ df_new.to_csv('data/1_5_3_National_Strategies_Nordics.csv', index=True)
 
 #1.5.4 Local Strategies Share Nordics (q2C40)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SG_DSR_SILS.208+246+352+578+752............/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/1_5_4_Local_Strategies_Nordics.csv', index=True)
 
