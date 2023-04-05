@@ -34,6 +34,12 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/2_1_1_Prevalence_Undernourishment_SDG_Regions.csv', index=True)
 
+#2.1.1 Prevalence of undernourishment % Nordics (xxxxx)
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SN_ITK_DEFC.208+246+352+578+752.........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/2_1_1_Prevalence_Undernourishment_Nordics_%.csv', index=True)
+
 #2.1.2 Prevalence of moderate or severe food insecurity % World (xVpsa)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..AG_PRD_FIESMS.1._T.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -72,10 +78,16 @@ df_new.drop(['Oceania*'], axis=1, inplace=True)
 df_all.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_SDG_Regions.csv', index=True)
 
 #2.1.2 Prevalence of moderate or severe food insecurity % Nordics (RGtq1)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..AG_PRD_FIESMS.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..AG_PRD_FIESMS.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_Nordics_%.csv', index=True)
+
+#2.1.2 Prevalence of severe food insecurity % Nordics (xxxxx)
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..AG_PRD_FIESS.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/2_1_2_Prevalence_Sev_Food_Ins_Nordics_%.csv', index=True)
 
 #2.2.1 Prevalence of stunting % World (JvlHe)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_STNT.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
@@ -133,19 +145,14 @@ df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway
 df_new.to_csv('data/2_2_2_Prevalence_Anaemia_Nordics.csv', index=True)
 
 #2.2.2 Obesity Rate Nordics (OECD) (kLSPC)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/BODYOBMS.TOTPOPTX.FIN/all?startTime=2000'
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/BODYOBSR.TOTPOPTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Country', columns='Year', values='Value')
-oecd_url2='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/BODYOBSR.TOTPOPTX.DNK+ISL+NOR+SWE/all?startTime=2000'
-result2 = requests.get(oecd_url2, headers={'Accept': 'text/csv'})
-df2=pd.read_csv(io.StringIO(result2.text))
-df_new2 = df2.pivot(index='Country', columns='Year', values='Value')
-df_all = pd.concat([df_new2,df_new], axis=0)
 df_all.to_csv('data/2_2_2_Prevalence_Obesity_Nordics_%.csv', index=True)
 
 #2.4.1 Nutrient balance (OECD) Nordics 38t3r
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/AEI_NUTRIENTS/DNK+FIN+ISL+NOR+SWE.BPERHA.NITROGEN/all?startTime=1990&endTime=2020'
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/AEI_NUTRIENTS/DNK+FIN+ISL+NOR+SWE.BPERHA.NITROGEN/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Country', columns='Time', values='Value')
