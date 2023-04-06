@@ -149,7 +149,7 @@ oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/BODYOBSR.TOTPOPTX.DN
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Country', columns='Year', values='Value')
-df_all.to_csv('data/2_2_2_Prevalence_Obesity_Nordics_%.csv', index=True)
+df_new.to_csv('data/2_2_2_Prevalence_Obesity_Nordics_%.csv', index=True)
 
 #2.4.1 Nutrient balance (OECD) Nordics 38t3r
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/AEI_NUTRIENTS/DNK+FIN+ISL+NOR+SWE.BPERHA.NITROGEN/all?startTime=2000'
