@@ -1,11 +1,6 @@
-REF_AREA,SH_ACS_DTP3,SH_ACS_MCV2,SH_ACS_PCV3,2021
-Denmark,97.0,94.0,96.0,
-Finland,89.0,93.0,82.0,
-Iceland,92.0,10.0,92.0,
-Norway,97.0,95.0,96.0,
-Sweden,98.0,91.0,97.0,
-208,,,,80.0
-246,,,,
-352,,,,90.0
-578,,,,93.0
-752,,,,83.0
+REF_AREA,SH_ACS_DTP3,SH_ACS_MCV2,SH_ACS_PCV3,SH_ACS_HPV
+Denmark,97,94,96,80.0
+Finland,89,93,82,
+Iceland,92,10,92,90.0
+Norway,97,95,96,93.0
+Sweden,98,91,97,83.0
