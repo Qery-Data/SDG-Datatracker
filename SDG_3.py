@@ -459,7 +459,8 @@ df3_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.1
 df3_new = df3_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
 df3_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df4_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_ACS_HPV.208+246+352+578+752._T............/ALL/?detail=full&lastNObservations=1&format=csv")
-df4_new = df4_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df4_new = df4_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
+df4_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_all = pd.concat([df_new,df2_new,df3_new,df4_new],axis=1)
 df_all.to_csv('data/3_b_1_DTP3_MCV2_PCV3_HPV_Nordics.csv', index=True)
 
