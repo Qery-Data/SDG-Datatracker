@@ -64,7 +64,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_2_1_Child_Mortality_Under5_SDG_Regions.csv', index=True)
 
 #3.2.1 Child mortality (under 5 years) Nordics (w7m0C)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DYN_MORT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DYN_MORT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_2_1_Child_Mortality_Under5_Nordics.csv', index=True)
@@ -82,7 +82,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_2_1_Infant_Mortality_SDG_Regions.csv', index=True)
 
 #3.2.1 Infant mortality rate Nordics (ExhV2)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DYN_IMRT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DYN_IMRT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_2_1_Infant_Mortality_Nordics.csv', index=True)
@@ -100,7 +100,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_2_2_Neonatal_Mortality_SDG_Regions.csv', index=True)
 
 #3.2.2 Neonatal mortality Nordics (FhHAO)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DYN_NMRT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DYN_NMRT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_2_2_Neonatal_Mortality_Nordics.csv', index=True)
@@ -118,13 +118,13 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_3_1_HIV_SDG_Regions.csv', index=True)
 
 #3.3.1 HIV Nordics (6U375)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_HIV_INCD.208+246+352+578+752._T._T........./ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_HIV_INCD.208+246+352+578+752._T._T........./ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_3_1_HIV_Nordics.csv', index=True)
 
 #3.3.1 AIDS (OECD) Nordics (aq4jB)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/COMDAIDS.NEWCASTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000&endTime=2020'
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/COMDAIDS.NEWCASTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Country', columns='Year', values='Value')
@@ -143,7 +143,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_3_2_Tuberculosis_SDG_Regions.csv', index=True)
 
 #3.3.2 Tuberculosis Nordics (ZjTWN)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_TBS_INCD.208+246+352+578+752._T._T........./ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_TBS_INCD.208+246+352+578+752._T._T........./ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_3_2_Tuberculosis_Nordics.csv', index=True)
@@ -180,7 +180,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_3_4_Hepatitis_B_SDG_Regions.csv', index=True)
 
 #3.3.4 Hepatitis B (OECD) Nordics (8ENns)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/COMDIHPB.PERCMTTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000&endTime=2020'
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/COMDIHPB.PERCMTTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Country', columns='Year', values='Value')
@@ -199,7 +199,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_3_5_Tropical_Diseases_SDG_Regions.csv', index=True)
 
 #3.3.5 Tropical diseases Nordics (KDmB7)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_TRP_INTVN.208+246+352+578+752.........../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_TRP_INTVN.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_3_5_Tropical_Diseases_Nordics.csv', index=True)
@@ -223,7 +223,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_4_1_Mortality_Rate_NCD_SDG_Regions.csv', index=True)
 
 #3.4.1 Mortality rate NCDs Nordics (dB9cQ)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DTH_NCOM.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DTH_NCOM.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_4_1_Mortality_Rate_NCD_Nordics.csv', index=True)
@@ -241,7 +241,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_4_1_Suicide_Mortality_Rate_SDG_Regions.csv', index=True)
 
 #3.4.1 Suicide mortality rate Nordics (28v58)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_SCIDE.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_SCIDE.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_4_1_Suicide_Mortality_Rate_Nordics.csv', index=True)
@@ -252,7 +252,7 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/3_5_2_Alcohol_Consumption_World_Total.csv', index=True)
 
-#3.4.1 Alcohol consumption SDG regions (hQSq1)
+#3.5.2 Alcohol consumption SDG regions (hQSq1)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_ALC_CONSPT.53+62+513+543+747+753+202+419._T............/ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
@@ -328,7 +328,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_8_1_Universal_Health_Care_Index_SDG_Regions.csv', index=True)
 
 #3.8.1 Universal Health Care Index Nordics (8JurX)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_ACS_UNHC.208+246+352+578+752............../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_ACS_UNHC.208+246+352+578+752............../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_8_1_Universal_Health_Care_Index_Nordics.csv', index=True)
@@ -346,7 +346,7 @@ df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central
 df_new.to_csv('data/3_9_1_Mortality_Household_Air_Pollution_SDG_Regions.csv', index=True)
 
 #3.9.1 Household and air pollution Nordics (TrVi1)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_ASAIRP.208+246+352+578+752............../ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_ASAIRP.208+246+352+578+752............../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_9_1_Mortality_Household_Air_Pollution_Nordics.csv', index=True)
@@ -356,6 +356,12 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_9_2_Mortality_WASH_SDG_Regions.csv', index=True)
+
+#3.9.2 WASH Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_WASHARI.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/3_9_2_Mortality_WASH_Nordics.csv', index=True)
 
 #3.9.3 Mortality unintentional posioning World (9k8OW)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_POISN.1._T........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
@@ -389,7 +395,7 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new.to_csv('data/3_a_1_Prevalence_Tobacco_SDG_Regions.csv', index=True)
 
 #3.a.1 Prevalence Tobacco Nordics (us4AE)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_PRV_SMOK.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
+df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_PRV_SMOK.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/3_a_1_Prevalence_Tobacco_Nordics.csv', index=True)
@@ -442,7 +448,7 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_b_1_HPV_SDG_Regions.csv', index=True)
 
-#3.b.1 DTP3/MCV2/PCV3 Nordics (hLWW4)
+#3.b.1 DTP3/MCV2/PCV3/HPV Nordics (hLWW4)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_ACS_DTP3.208+246+352+578+752............./ALL/?detail=full&lastNObservations=1&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
@@ -452,14 +458,10 @@ df2_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norwa
 df3_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_ACS_PCV3.208+246+352+578+752............./ALL/?detail=full&lastNObservations=1&format=csv")
 df3_new = df3_csv.pivot(index='REF_AREA', columns='SERIES', values='OBS_VALUE')
 df3_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_all = pd.concat([df_new,df2_new,df3_new],axis=1)
-df_all.to_csv('data/3_b_1_DTP3_MCV2_PCV3_Nordics.csv', index=True)
-
-#3.b.1 HPV Nordics (ePvBh)
-df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_ACS_HPV.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=1967-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
-df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
-df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.to_csv('data/3_b_1_HPV_Nordics.csv', index=True)
+df4_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_ACS_HPV.208+246+352+578+752._T............/ALL/?detail=full&lastNObservations=1&format=csv")
+df4_new = df4_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_all = pd.concat([df_new,df2_new,df3_new,df4_new],axis=1)
+df_all.to_csv('data/3_b_1_DTP3_MCV2_PCV3_HPV_Nordics.csv', index=True)
 
 #3.b.2 Net ODA Health Total (0WKD3)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..DC_TOF_HLTHNT.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
