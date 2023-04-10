@@ -43,22 +43,22 @@ df_all.to_csv('data/5_1_1_Legal_Frameworks_World_SDG_Regions.csv', index=True)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SG_LGL_GENEQLFP.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new_area_1 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new_area_1.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new_area_1.rename(index={2020: 'Area 1: Overarching legal frameworks and public life'},inplace=True)
+df_new_area_1.rename(index={2022: 'Area 1: Overarching legal frameworks and public life'},inplace=True)
 #Area 2 violence against women
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SG_LGL_GENEQVAW.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new_area_2 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new_area_2.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new_area_2.rename(index={2020: 'Area 2:  Violence against women'},inplace=True)
+df_new_area_2.rename(index={2022: 'Area 2:  Violence against women'},inplace=True)
 #Area 3 employment and economic benefits
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SG_LGL_GENEQEMP.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new_area_3 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new_area_3.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new_area_3.rename(index={2020: 'Area 3: Employment and economic benefits'},inplace=True)
+df_new_area_3.rename(index={2022: 'Area 3: Employment and economic benefits'},inplace=True)
 #Area 4 marriage and family
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SG_LGL_GENEQMAR.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new_area_4 = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new_area_4.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new_area_4.rename(index={2020: 'Area 4: Marriage and family'}, inplace=True)
+df_new_area_4.rename(index={2022: 'Area 4: Marriage and family'}, inplace=True)
 df_all = pd.concat([df_new_area_1,df_new_area_2,df_new_area_3,df_new_area_4], axis=0)
 df_all.loc['Average across all areas'] = df_all.mean(axis=0)
 df_all.to_csv('data/5_1_1_Legal_Frameworks_Nordics.csv', index=True)
@@ -189,7 +189,7 @@ oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B.
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Time', columns='Country', values='Value')
-df_new1 = df_new.loc[[2005, 2021]]
+df_new1 = df_new.loc[[2005, 2022]]
 df_new1.to_csv('data/5_b_1_Women_Internet_Use_3M_Nordics.csv', index=True)
 
 #5.b.1 Women internet use almost daily last 3m Nordics (Wml4d)
@@ -197,7 +197,7 @@ oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B1
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Time', columns='Country', values='Value')
-df_new1 = df_new.loc[[2005, 2021]]
+df_new1 = df_new.loc[[2005, 2022]]
 df_new1.to_csv('data/5_b_1_Women_Internet_Use_Daily_Nordics.csv', index=True)
 
 #5.b.1 Women vs Men internet use almost daily Nordics (RQZPd)
