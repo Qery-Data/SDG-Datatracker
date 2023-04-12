@@ -189,7 +189,7 @@ oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B.
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Time', columns='Country', values='Value')
-df_new1 = df_new.loc[[2005, 2022]]
+df_new1 = df_new.loc[[2005, 2021]]
 df_new1.to_csv('data/5_b_1_Women_Internet_Use_3M_Nordics.csv', index=True)
 
 #5.b.1 Women internet use almost daily last 3m Nordics (Wml4d)
@@ -197,7 +197,7 @@ oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B1
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Time', columns='Country', values='Value')
-df_new1 = df_new.loc[[2005, 2022]]
+df_new1 = df_new.loc[[2005, 2021]]
 df_new1.to_csv('data/5_b_1_Women_Internet_Use_Daily_Nordics.csv', index=True)
 
 #5.b.1 Women vs Men internet use almost daily Nordics (RQZPd)
