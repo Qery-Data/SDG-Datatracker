@@ -125,31 +125,31 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/2_2_2_Prevalence_Overweight_SDG_Regions_%.csv', index=True)
 
-#2.2.2 Prevalence of anaemia  % World (z6Gaf)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_ANEM.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
-df_new.rename(index={1:'World'}, inplace=True)
-df_new["2030"] = ""
-df_new.to_csv('data/2_2_2_Prevalence_Anaemia_World_Total_%.csv', index=True)
-
-#2.2.2 Prevalence of anaemia % SDG Regions (Xk0pL)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_ANEM.53+62+513+543+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
-df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
-df_new.to_csv('data/2_2_2_Prevalence_Anaemia_SDG_Regions_%.csv', index=True)
-
-#2.2.2 Prevalence of anaemia % Nordics (G9tlQ)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_ANEM.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
-df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.to_csv('data/2_2_2_Prevalence_Anaemia_Nordics.csv', index=True)
-
 #2.2.2 Obesity Rate Nordics (OECD) (kLSPC)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/BODYOBSR.TOTPOPTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.to_csv('data/2_2_2_Prevalence_Obesity_Nordics_%.csv', index=True)
+
+#2.2.3 Prevalence of anaemia  % World (z6Gaf)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_ANEM.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={1:'World'}, inplace=True)
+df_new["2030"] = ""
+df_new.to_csv('data/2_2_2_Prevalence_Anaemia_World_Total_%.csv', index=True)
+
+#2.2.3 Prevalence of anaemia % SDG Regions (Xk0pL)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_ANEM.53+62+513+543+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new.to_csv('data/2_2_2_Prevalence_Anaemia_SDG_Regions_%.csv', index=True)
+
+#2.2.3 Prevalence of anaemia % Nordics (G9tlQ)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_ANEM.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/2_2_2_Prevalence_Anaemia_Nordics.csv', index=True)
 
 #2.4.1 Nutrient balance (OECD) Nordics 38t3r
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/AEI_NUTRIENTS/DNK+FIN+ISL+NOR+SWE.BPERHA.NITROGEN/all?startTime=2000'
