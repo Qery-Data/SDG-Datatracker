@@ -67,7 +67,7 @@ df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norw
 df_new.to_csv('data/7_2_1_Renewable_Energy_Share_Nordics.csv', index=True)
 
 #7.2.1 Renewable electricity share in the total electricity generation Nordics (MG14f)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/GREEN_GROWTH/DNK+FIN+ISL+NOR+SWE.RE_NRG/all?startTime=2000&endTime=2021'
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/GREEN_GROWTH/DNK+FIN+ISL+NOR+SWE.RE_NRG/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
 df=pd.read_csv(io.StringIO(result.text))
 df_new = df.pivot(index='Year', columns='Country', values='Value')
@@ -89,6 +89,12 @@ df_new.loc['CAGR 1990-2010'] = {'World': -1.2, 'Australia and New Zealand': -1.2
 df_new = df_new.loc[['CAGR 1990-2010','CAGR 2010-2020']]
 df_new = df_new.round(decimals=2)
 df_new.to_csv('data/7_3_1_Energy_Intensity_CAGR_World_SDG_Regions.csv', index=True)
+
+#7.3.1 Energy intensity level of primary energy Nordics (45Br2)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..EG_EGY_PRIM.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/7_3_1_Energy_Intensity_Nordics.csv', index=True)
 
 #7.3.1  Energy intensity level of primary energy CAGR 2010-2019 Nordics (NGRpD)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..EG_EGY_PRIM.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
