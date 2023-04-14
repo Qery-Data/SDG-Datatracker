@@ -15,7 +15,7 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/9_2_1_Manufacturing_Share_GDP_World_Total.csv', index=True)
 
-#9.2.1 Manufacturing value added per capita (nBsUE)
+#9.2.1 Manufacturing value added per capita World (nBsUE)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..NV_IND_MANFPC.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
