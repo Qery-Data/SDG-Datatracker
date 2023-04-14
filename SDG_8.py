@@ -24,6 +24,14 @@ df_new.loc['2016-2021'] = (df_new.loc[2016]+df_new.loc[2017]+df_new.loc[2018]+df
 df_new = df_new.loc[['2010-2015','2016-2021']]
 df_new.to_csv('data/8_1_1_Annual_GDP_Growth_Per_Capita_World_SDG_Regions.csv', index=True)
 
+#8.1.1 Annual growth rate of real GDP per capita Nordics (A9nz2)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..NY_GDP_PCAP.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.loc['2007-2021'] = (df_new.loc[2007]+df_new.loc[2007]+df_new.loc[2008]+df_new.loc[2009]+df_new.loc[2010]+df_new.loc[2011]+df_new.loc[2012]+df_new.loc[2013]+df_new.loc[2014]+(df_new.loc[2015])+(df_new.loc[2016]+df_new.loc[2017]+df_new.loc[2018]+df_new.loc[2019]+df_new.loc[2020]+df_new.loc[2021]))/15
+df_new = df_new.loc[['2007-2021']]
+df_new.to_csv('data/8_1_1_Annual_GDP_Growth_Per_Capita_Nordics.csv', index=True)
+
 #8.2.1 Annual growth rate of real GDP per employed person World (gfyRk)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SL_EMP_PCAP.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -38,6 +46,16 @@ df_new.loc['2010-2015'] = (df_new.loc[2010]+df_new.loc[2011]+df_new.loc[2012]+df
 df_new.loc['2016-2021'] = (df_new.loc[2016]+df_new.loc[2017]+df_new.loc[2018]+df_new.loc[2019]+df_new.loc[2020]+df_new.loc[2021])/6
 df_new = df_new.loc[['2010-2015','2016-2021']]
 df_new.to_csv('data/8_2_1_Annual_GDP_Growth_Per_Employed_World_SDG_Regions.csv', index=True)
+
+
+#8.2.1 GDP Per Hour Worked Nordics (xxxxxx)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/PDB_GR/DNK+FIN+ISL+NOR+SWE.T_GDPHRS_V.GRW/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Time', columns='Country', values='Value')
+df_new.loc['2007-2021'] = (df_new.loc[2007]+df_new.loc[2007]+df_new.loc[2008]+df_new.loc[2009]+df_new.loc[2010]+df_new.loc[2011]+df_new.loc[2012]+df_new.loc[2013]+df_new.loc[2014]+(df_new.loc[2015])+(df_new.loc[2016]+df_new.loc[2017]+df_new.loc[2018]+df_new.loc[2019]+df_new.loc[2020]+df_new.loc[2021]))/15
+df_new = df_new.loc[['2007-2021']]
+df_new.to_csv('data/8_2_1_GDP_Hour_Worked_Nordics.csv', index=True)
 
 #8.3.1 Proportion of informal employment in total employment World and SDG regions (IRm9W)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SL_ISV_IFEM.1+9+53+62+513+747+753+202+419._T........._T./?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
@@ -81,6 +99,12 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/8_4_2_Domestic_Material_Consumption_Nordics.csv', index=True)
+
+#8.5.1 Average hourly earnings Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SL_EMP_EARN.208+246+352+578+752._T....._T...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/8_5_1_Average_Hourly_Earnings_Nordics.csv', index=True)
 
 #8.5.2 Unemployment rate World (IFpK5)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SL_TLF_UEM.1._T.Y_GE15........./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
@@ -239,3 +263,8 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new = df_new[2021].value_counts()
 df_new.rename({3.0:'Operationalised',2.0:'Developed and adopted',1.0:'In the process',0:'No developed'}, inplace=True)
 df_new.to_csv('data/8_b_1_Youth_Employment_Strategies_World_Total.csv', index=True)
+
+#8.b.1 Youth Employment Strategies Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SL_CPA_YEMP.208+246+352+578+752.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.to_csv('data/8_b_1_Youth_Employment_Strategies_Nordics.csv', index=True)
