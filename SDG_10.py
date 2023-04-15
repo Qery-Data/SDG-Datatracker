@@ -9,6 +9,13 @@ import pandas as pd
 os.makedirs('data', exist_ok=True)
 access_token = os.getenv('DW_TOKEN')
 
+#10.1.1 Pro poor income growth Nordics ()
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SI_HEI_TOTL.208+246+352+578+752...._T+B40......./ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='INCOME_WEALTH_QUANTILE', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.loc['Difference'] = (df_new.loc["B40"]-df_new.loc["_T"])
+df_new.to_csv('data/10_1_1_Pro_Poor_Income_Growth_Nordics.csv', index=True)
+
 #10.2.1 Proportion of people below 50% median income Nordics (Pfv60)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SI_POV_50MI.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
@@ -28,11 +35,28 @@ df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Souther
 df_new = df_new.reindex(columns=['Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Oceania*','Australia and New Zealand','Latin America and the Caribbean'])
 df_new.to_csv('data/10_4_1_Labour_Share_SDG_Regions.csv', index=True)
 
+#10.4.1 Labour share Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SL_EMP_GTOTL.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.to_csv('data/10_4_1_Labour_Share_Nordics.csv', index=True)
+
+#10.4.2 Redistributive impact of fiscal policy Nordics (xxxxx)
+df_csv1 = 'https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SI_DST_FISP.208+246+352+578+752........FIS_PREFIS_INC.../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv'
+df_prefis = pd.read_csv(df_csv1)
+df_prefis = df_prefis.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_csv2 = 'https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SI_DST_FISP.208+246+352+578+752........FIS_POSTFIS_DIS_INC.../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv'
+df_postfis = pd.read_csv(df_csv2)
+df_postfis = df_postfis.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
+df_diff_pct = ((df_postfis - df_prefis) / df_prefis) * 100 * -1
+df_diff_pct.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578: 'Norway', 752: 'Sweden'}, inplace=True)
+df_diff_pct.to_csv('data/10_4_2_Redistributive_Impact_Fiscal_Policy_Nordics.csv', index=True)
+
 #10.5.1 Financial soundness indicators Nordics (91XhC)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..FI_FSI_FSANL+FI_FSI_FSERA+FI_FSI_FSKA+FI_FSI_FSKNL+FI_FSI_FSKRTC+FI_FSI_FSLS+FI_FSI_FSSNO.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2020-01-01&endPeriod=2020-12-31&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
-df_new.insert(4,"OECD 2030-target", [1, 2, 12, 2,22, 130,-24], True)
+df_new.loc['OECD 2030-target'] = [1, 2, 12, 2, 22, 130, -24]
 df_new.rename(index={'FI_FSI_FSANL':'Non-performing loans to total gross loans (%)', 'FI_FSI_FSERA':'Return on assets  (%)', 'FI_FSI_FSKA': 'Regulatory capital to assets (%)', 'FI_FSI_FSKNL':'Non-performing loans net of provisions to capital (%)', 'FI_FSI_FSKRTC': 'Regulatory Tier 1 capital to risk-weighted assets (%)', 'FI_FSI_FSLS': 'Liquid assets to short term liabilities (%)', 'FI_FSI_FSSNO': 'Net open position in foreign exchange to capital (%)'}, inplace=True)
 df_new.to_csv('data/10_5_1_Financial_Soundness_Indicators_Nordics.csv', index=True)
 
