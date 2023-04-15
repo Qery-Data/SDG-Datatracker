@@ -33,6 +33,13 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America',543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'}, inplace=True)
 df_new.to_csv('data/12_3_1_Food_Loss_World_SDG_Regions.csv', index=True)
 
+#12.3.1 Food waste Nordics (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..AG_FOOD_WST_PC.208+246+352+578+752........FWS_RTL+FWS_OOHC+FWS_HHS.../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='REF_AREA', columns='COMPOSITE_BREAKDOWN', values='OBS_VALUE')
+df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
+df_new.rename(columns={'FWS_HHS': 'Households', 'FWS_OOHC': 'Out-of-home consumption', 'FWS_RTL': 'Retail'}, inplace=True)
+df_new.to_csv('data/12_3_1_Food_Waste_Nordics.csv', index=True)
+
 #12.4.1 International multilateral environmental agreements World and SDG regions (6DgqI)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SG_HAZ_CMRBASEL+SG_HAZ_CMRMNTRL+SG_HAZ_CMRROTDAM+SG_HAZ_CMRSTHOLM+SG_HAZ_CMRMNMT.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
