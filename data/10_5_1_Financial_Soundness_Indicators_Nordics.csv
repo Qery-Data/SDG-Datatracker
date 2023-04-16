@@ -1,8 +1,8 @@
-SERIES,Denmark,Finland,Iceland,Norway,OECD 2030-target,Sweden
-Non-performing loans to total gross loans (%),1.40573,1.45018,2.90217,0.736074,1,0.513361
-Return on assets  (%),0.299667,0.488344,0.942206,1.11433,2,0.712753
-Regulatory capital to assets (%),4.64547,6.14252,15.3815,,12,5.66657
-Non-performing loans net of provisions to capital (%),14.0648,9.67393,5.56401,0.298486,2,2.6261
-Regulatory Tier 1 capital to risk-weighted assets (%),20.6069,18.5584,22.4124,22.0244,22,21.136
-Liquid assets to short term liabilities (%),59.3228,21.727,23.6479,18.8738,130,23.1697
-Net open position in foreign exchange to capital (%),-2.47281,,2.25583,,-24,0.562118
+SERIES,Denmark,Finland,Iceland,Norway,Sweden,OECD 2030-target
+Non-performing loans to total gross loans (%),1.40573,1.45018,2.90217,0.736074,0.513361,1
+Return on assets  (%),0.299667,0.488344,0.942206,1.11433,0.712753,2
+Regulatory capital to assets (%),4.64547,6.14252,15.3815,,5.66657,12
+Non-performing loans net of provisions to capital (%),14.0648,9.67393,5.56401,0.298486,2.6261,2
+Regulatory Tier 1 capital to risk-weighted assets (%),20.6069,18.5584,22.4124,22.0244,21.136,22
+Liquid assets to short term liabilities (%),59.3228,21.727,23.6479,18.8738,23.1697,130
+Net open position in foreign exchange to capital (%),-2.47281,,2.25583,,0.562118,-24
