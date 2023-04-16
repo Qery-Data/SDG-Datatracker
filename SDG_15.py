@@ -110,6 +110,13 @@ df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norw
 df_new.loc['Pct_change 2010-2022'] = (df_new.loc[2022] - df_new.loc[2021])/df_new.loc[2021]*100
 df_new.to_csv('data/15_2_1_Forest_Area_Under_Independently_Verified_Forest_Management_Certification_Scheme_Nordics.csv', index=True)
 
+#15.2.1 Intensity of use of forest resources (xxxxx)
+oecd_url='https://stats.oecd.org/SDMX-JSON/data/FOREST/INT_USE.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
+result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+df=pd.read_csv(io.StringIO(result.text))
+df_new = df.pivot(index='Year', columns='Country', values='Value')
+df_new.to_csv('data/15_2_1_Intensity_Forest_Resources_Nordics.csv', index=True)
+
 #15.4.1 Share of mountain KBAs covered by protected areas World (yP08Z)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..ER_PTD_MTN.1.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -181,7 +188,7 @@ df_new.rename(index={'ABT2_ACHIEVE': 'National target reflecting ABT2 exists and
 df_new.to_csv('data/15_9_1_ABT2_Status_World_SDG_Regions.csv', index=True)
 
 #15.9.1 Integrate ecosystem and biodiversity values nationally and locally Nordics (xxxxx)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..ER_BDY_ABT2NP+ER_BDY_SEEA.208+246+352+578+752........_T.../ALL/?detail=full&lastNObservations=1&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..ER_BDY_SEEA.208+246+352+578+752........_T.../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/15_9_1_Integrate_Ecosystem_Biodiversity_Nationally_Locally_Nordics.csv', index=True)
