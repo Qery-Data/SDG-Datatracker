@@ -187,7 +187,7 @@ df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/16_a_1_Share_Countries_Compliance_Paris_Principles_World_Total.csv', index=True)
 
 #16.a.1 Compliance with the Paris Principles Nordics (xxxxx)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SG_NHR_IMPLN+SG_NHR_INTEXSTN+SG_NHR_NOAPPLN+SG_NHR_NOSTUSN.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2021-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SG_NHR_IMPLN+SG_NHR_INTEXSTN+SG_NHR_NOAPPLN+SG_NHR_NOSTUSN.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2021&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/16_a_1_Compliance_Paris_Principles_Nordics.csv', index=True)
