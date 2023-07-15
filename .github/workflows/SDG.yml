@@ -5,7 +5,7 @@ on:
     - cron: "5 4 * * *"
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: Ubuntu-20.04
     steps:
       - name: Get working copy
         uses: actions/checkout@main
@@ -22,16 +22,22 @@ jobs:
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
         run: python SDG_1.py
+      - name: Sleep for 60 seconds
+        run: sleep 60s
       - name: Update SDG 2
         if: always()
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
         run: python SDG_2.py
+      - name: Sleep for 60 seconds
+        run: sleep 60s
       - name: Update SDG 3
         if: always()
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
         run: python SDG_3.py
+      - name: Sleep for 60 seconds
+        run: sleep 60s
       - name: Update SDG 4
         if: always()
         env: 
