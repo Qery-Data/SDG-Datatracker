@@ -148,7 +148,7 @@ df_new.to_csv('data/3_3_1_HIV_Nordics.csv', index=True)
 #3.3.1 AIDS (OECD) Nordics (aq4jB)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/COMDAIDS.NEWCASTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=robust_data_download(io.StringIO(result.text))
+df=robust_data_download(oecd_url)
 df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.to_csv('data/3_3_1_AIDS_Nordics.csv', index=True)
 
@@ -173,7 +173,7 @@ df_new.to_csv('data/3_3_2_Tuberculosis_Nordics.csv', index=True)
 #3.3.2 Tuberculosis Deaths (OECD) Nordics (0yqie)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/CICDTBLS.TXCMILTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000&endTime=2020'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=robust_data_download(io.StringIO(result.text))
+df=robust_data_download(oecd_url)
 df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.to_csv('data/3_3_2_Tuberculosis_Deaths_Nordics.csv', index=True)
 
@@ -204,7 +204,7 @@ df_new.to_csv('data/3_3_4_Hepatitis_B_SDG_Regions.csv', index=True)
 #3.3.4 Hepatitis B (OECD) Nordics (8ENns)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/COMDIHPB.PERCMTTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=robust_data_download(io.StringIO(result.text))
+df=robust_data_download(oecd_url)
 df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.to_csv('data/3_3_4_Hepatitis_B_Nordics.csv', index=True)
 
@@ -283,7 +283,7 @@ df_new.to_csv('data/3_5_2_Alcohol_Consumption_SDG_Regions.csv', index=True)
 #3.5.2 Alcohol consumption (OECD) Nordics (JlAkV)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_LVNG/ACOLALCT.LIPPERNB.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=robust_data_download(io.StringIO(result.text))
+df=robust_data_download(oecd_url)
 df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.to_csv('data/3_5_2_Alcohol_Consumption_Nordics.csv', index=True)
 
@@ -302,7 +302,7 @@ df_new.to_csv('data/3_6_1_Road_traffic_deaths_SDG_Regions.csv', index=True)
 #3.6.1 Road traffic deaths Nordics OECD (bOwUi)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/IRTAD_CASUAL_BY_AGE/DNK+FIN+ISL+NOR+SWE.KIL.TOT.TOT.RATE-POP-100T.CORRECTED/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=robust_data_download(io.StringIO(result.text))
+df=robust_data_download(oecd_url)
 df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.to_csv('data/3_6_1_Road_Traffic_Deaths_Nordics.csv', index=True)
 
@@ -333,7 +333,7 @@ df_new.to_csv('data/3_7_2_Adolescent_Birth_Rate_SDG_Regions.csv', index=True)
 #3.7.2 Adolescent fertility rate OECD (jNvOV)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/FAMILY/DNK+FIN+ISL+NOR+SWE.TOTAL.FAM20/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=robust_data_download(io.StringIO(result.text))
+df=robust_data_download(oecd_url)
 df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.to_csv('data/3_7_2_Adolescent_Fertility_Rate_Nordics.csv', index=True)
 
@@ -400,7 +400,7 @@ df_new.to_csv('data/3_9_3_Mortality_Unintentional_Posioning_SDG_Regions.csv', in
 #3.9.3 Mortality Accidental poisoning Nordics OECD (Au6rM)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/HEALTH_STAT/CICDPOSN.TXCMILTX.DNK+FIN+ISL+NOR+SWE/all?startTime=2000'
 result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=robust_data_download(io.StringIO(result.text))
+df=robust_data_download(oecd_url)
 df_new = df.pivot(index='Country', columns='Year', values='Value')
 df_new.to_csv('data/3_9_3_Mortality_Accidental_Poisoning_Nordics.csv', index=True)
 
