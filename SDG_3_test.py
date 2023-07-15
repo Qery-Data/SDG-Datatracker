@@ -26,7 +26,7 @@ def robust_data_download(url, max_retries=5, delay_between_retries=5):
         break
 
     # If we got a successful response, we can convert it to a pandas DataFrame
-    df_csv = robust_data_download(io.StringIO(content.decode('utf-8')))
+    df_csv = pd.read_csv(io.StringIO(content.decode('utf-8')))
 
     return df_csv
 
