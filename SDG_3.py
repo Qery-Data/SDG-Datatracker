@@ -99,6 +99,8 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_2_2_Neonatal_Mortality_SDG_Regions.csv', index=True)
 
+time.sleep(30)
+
 #3.2.2 Neonatal mortality Nordics (FhHAO)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_DYN_NMRT.208+246+352+578+752._T........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -198,6 +200,8 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_3_5_Tropical_Diseases_SDG_Regions.csv', index=True)
 
+time.sleep(30)
+
 #3.3.5 Tropical diseases Nordics (KDmB7)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_TRP_INTVN.208+246+352+578+752.........../ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -295,6 +299,8 @@ df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_7_1_Women_Family_Planning_SDG_Regions.csv', index=True)
+
+time.sleep(30)
 
 #3.7.1 Adolescent birth rate World (SLabG)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SP_DYN_ADKL.1..Y15T19........./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
@@ -394,6 +400,8 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
 df_new.to_csv('data/3_a_1_Prevalence_Tobacco_SDG_Regions.csv', index=True)
 
+time.sleep(30)
+
 #3.a.1 Prevalence Tobacco Nordics (us4AE)
 df_csv = pd.read_csv("https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_PRV_SMOK.208+246+352+578+752._T............/ALL/?detail=full&startPeriod=2000-01-01&dimensionAtObservation=TIME_PERIOD&format=csv")
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
@@ -490,6 +498,8 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE
 df_new.rename(index={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(columns={'ISCO08_221':'Medical doctors','ISCO08_222_322':'Nursing and midwifery personnel', 'ISCO08_2261':'Dentists','ISCO08_2262':'Pharmacists'}, inplace=True)
 df_new.to_csv('data/3_c_1_Health_Worker_Density_Nursing_Midwifery_Nordics.csv', index=True)
+
+time.sleep(30)
 
 #3.c.1 Health Worker Density Dentists Nordics (ILcaX)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_MED_DEN.208+246+352+578+752......ISCO08_2261...../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
