@@ -22,22 +22,21 @@ jobs:
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
         run: python SDG_1.py
-      - name: Sleep for 60 seconds
-        run: sleep 120s
       - name: Update SDG 2
         if: always()
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
         run: python SDG_2.py
-      - name: Sleep for 60 seconds
-        run: sleep 120s
       - name: Update SDG 3
         if: always()
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
         run: python SDG_3.py
-      - name: Sleep for 60 seconds
-        run: sleep 120s
+      - name: Update SDG 3b
+        if: always()
+        env: 
+          DW_TOKEN: ${{ secrets.DW_TOKEN }}
+        run: python SDG_3b.py
       - name: Update SDG 4
         if: always()
         env: 
