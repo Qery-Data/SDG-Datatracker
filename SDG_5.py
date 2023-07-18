@@ -70,7 +70,7 @@ df_new.rename(columns={1: 'World', 150:'Europe', 15:'Northern Africa', 21:'North
 df_new.to_csv('data/5_2_1_Violence_Women_World_SDG_Regions.csv', index=True)
 
 #5.2.1 Violence women Nordics (bKbpd)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..VC_VAW_MARR.208+246+352+578+752..Y_GE15........./ALL/?detail=full&startPeriod=2018-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..VC_VAW_MARR.208+246+352+578+752..Y15T49........./ALL/?detail=full&startPeriod=2018-01-01&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/5_2_1_Violence_Women_Nordics.csv', index=True)
