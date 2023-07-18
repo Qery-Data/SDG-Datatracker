@@ -169,7 +169,7 @@ df_new = df_csv.pivot(index='TIME_PERIOD', columns='REF_AREA', values='OBS_VALUE
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.to_csv('data/5_5_2_Women_Share_Manegerial_Positions_Nordics.csv', index=True)
 
-#5.6.1 Full and equal access World and SDG Regions (3S8v0)
+#5.6.2 Full and equal access World and SDG Regions (3S8v0)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_LGR_ACSRHE+SH_LGR_ACSRHES1+SH_LGR_ACSRHES2+SH_LGR_ACSRHES3+SH_LGR_ACSRHES4.1+53+62+513+543+747+753+202+419.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
@@ -177,12 +177,26 @@ df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern
 df_new.rename(index={'SH_LGR_ACSRHE': 'Total','SH_LGR_ACSRHES1':'Maternity Care','SH_LGR_ACSRHES2':'Contraceptive Services','SH_LGR_ACSRHES3':'Sexuality Education','SH_LGR_ACSRHES4':'HIV and HPV'},inplace=True)
 df_new.to_csv('data/5_6_1_Full_Equal_Access_World_SDG_Regions.csv', index=True)
 
-#5.6.1 Full and equal access Nordics (WD61C)
+#5.6.2 Full and equal access Nordics (WD61C)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_LGR_ACSRHE+SH_LGR_ACSRHES1+SH_LGR_ACSRHES2+SH_LGR_ACSRHES3+SH_LGR_ACSRHES4.208+246+352+578+752.........../ALL/?detail=full&lastNObservations=1&format=csv')
 df_new = df_csv.pivot(index='SERIES', columns='REF_AREA', values='OBS_VALUE')
 df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norway',752:'Sweden'},inplace=True)
 df_new.rename(index={'SH_LGR_ACSRHE': 'Total','SH_LGR_ACSRHES1':'Maternity Care','SH_LGR_ACSRHES2':'Contraceptive Services','SH_LGR_ACSRHES3':'Sexuality Education','SH_LGR_ACSRHES4':'HIV and HPV'},inplace=True)
 df_new.to_csv('data/5_6_1_Full_Equal_Access_Nordics.csv', index=True)
+
+#5.b.1 Share mobile phone men and women World (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..IT_MOB_OWN.1._T+F+M........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_new = df_csv.pivot(index='SEX', columns='TIME_PERIOD', values='OBS_VALUE')
+df_new.rename(index={'_T': 'Total','M':'Men','F':'Female'},inplace=True)
+df_new.to_csv('data/5_b_1_Share_Mobile_World.csv', index=True)
+
+#5.b.1 Share mobile phone men and women SDG Regions (xxxxx)
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..IT_MOB_OWN.53+62+513+543+747+753+202+419._T+F+M........../ALL/?detail=full&lastNObservations=1&format=csv')
+df_new = df_csv.pivot(index='SEX', columns='REF_AREA', values='OBS_VALUE')
+df_new.rename(columns={1: 'World', 53: 'Australia and New Zealand', 62: 'Central and Southern Asia', 202: 'Sub-Saharan Africa', 419: 'Latin America and the Caribbean', 513: 'Europe and Northern America', 543: 'Oceania*', 747: 'Northern Africa and Western Asia', 753: 'Eastern and South-Eastern Asia'},inplace=True)
+df_new = df_new.reindex(columns=['World','Europe and Northern America','Northern Africa and Western Asia','Sub-Saharan Africa','Central and Southern Asia','Eastern and South-Eastern Asia','Australia and New Zealand','Oceania*','Latin America and the Caribbean'])
+df_new.rename(index={'_T': 'Total','M':'Men','F':'Female'},inplace=True)
+df_new.to_csv('data/5_b_1_Share_Mobile_SDG_Regions.csv', index=True)
 
 #5.b.1 Women internet use last 3m Nordics (vK8gz)
 oecd_url='https://stats.oecd.org/SDMX-JSON/data/ICT_HH2/DNK+FIN+ISL+NOR+SWE.C5B.F_Y16_74/all?startTime=2005&endTime=2021'
