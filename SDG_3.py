@@ -34,12 +34,6 @@ df_new = df_csv.pivot(index='REF_AREA', columns='TIME_DETAIL', values='OBS_VALUE
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/3_1_1_Delivery_Coverage_World_Total.csv', index=True)
 
-#3.1.1 Delivery coverage World (PURO4)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_BRTC.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='REF_AREA', columns='TIME_DETAIL', values='OBS_VALUE')
-df_new.rename(index={1:'World'}, inplace=True)
-df_new.to_csv('data/3_1_1_Delivery_Coverage_World_Total.csv', index=True)
-
 #3.1.1 Delivery coverage SDG regions (Nyj1B)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.12/..SH_STA_BRTC.53+62+513+543+747+753+202+419.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='TIME_DETAIL', columns='REF_AREA', values='OBS_VALUE')
