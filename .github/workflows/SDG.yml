@@ -2,7 +2,7 @@ name: SDG
 on: 
   workflow_dispatch:
   schedule:
-    - cron: "5 20 * * *"
+    - cron: "0 */2 * * *"
 jobs:
   build-and-deploy:
     runs-on: Ubuntu-20.04
