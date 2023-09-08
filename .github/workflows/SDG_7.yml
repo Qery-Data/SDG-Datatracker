@@ -1,8 +1,9 @@
-name: SDG 1 Update
+name: SDG 7 Update
 on:
-    workflow_dispatch:
-    schedule:
-      - cron: "0 */2 * * *"
+  workflow_run:
+    workflows: ["SDG 6 Update"]
+    types:
+      - completed
 jobs:
   build-and-deploy:
     runs-on: Ubuntu-20.04
@@ -17,10 +18,10 @@ jobs:
           python-version: '3.11'
       - name: Install Requirements
         run: pip install -r requirements.txt
-      - name: Update SDG 1
+      - name: Update SDG 7
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_1.py
+        run: python SDG_7.py
       - name: Commit and push if it changed
         run: |
           git config user.name "${GITHUB_ACTOR}"
