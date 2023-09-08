@@ -19,161 +19,20 @@ jobs:
       - name: Install Requirements
         run: pip install -r requirements.txt
 
-  SDG_1:
+  update-sdg:
     needs: setup
     runs-on: Ubuntu-20.04
+    strategy:
+      matrix:
+        sdg: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
     steps:
-      - name: Run SDG 1 Script
+      - name: Run SDG ${{ matrix.sdg }} Script
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_1.py
-
-  SDG_2:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 2 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_2.py
-
-  SDG_3:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 3 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_3.py
-
-  SDG_4:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 4 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_4.py
-
-  SDG_5:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 5 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_5.py
-
-  SDG_6:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 6 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_6.py
-
-  SDG_7:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 7 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_7.py
-
-  SDG_8:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 8 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_8.py
-
-  SDG_9:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 9 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_9.py
-
-  SDG_10:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 10 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_10.py
-
-  SDG_11:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 11 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_11.py
-
-  SDG_12:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 12 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_12.py
-
-  SDG_13:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 13 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_13.py
-
-  SDG_14:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 14 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_14.py
-
-  SDG_15:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 15 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_15.py
-
-  SDG_16:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 16 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_16.py
-
-  SDG_17:
-    needs: setup
-    runs-on: Ubuntu-20.04
-    steps:
-      - name: Run SDG 17 Script
-        env: 
-          DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_17.py
+        run: python SDG_${{ matrix.sdg }}.py
 
   commit:
-    needs: [SDG_1, SDG_2, SDG_3, SDG_4, SDG_5, SDG_6, SDG_7, SDG_8, SDG_9, SDG_10, SDG_11, SDG_12, SDG_13, SDG_14, SDG_15, SDG_16, SDG_17]
+    needs: update-sdg
     runs-on: Ubuntu-20.04
     steps:
       - name: Commit and push if it changed
