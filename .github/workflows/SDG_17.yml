@@ -1,8 +1,8 @@
-name: SDG 7 Update
+name: SDG 17 Update
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["SDG 6 Update"]
+    workflows: ["SDG 16 Update"]
     types:
       - completed
 jobs:
@@ -19,10 +19,10 @@ jobs:
           python-version: '3.11'
       - name: Install Requirements
         run: pip install -r requirements.txt
-      - name: Update SDG 7
+      - name: Update SDG 17
         env: 
           DW_TOKEN: ${{ secrets.DW_TOKEN }}
-        run: python SDG_7.py
+        run: python SDG_17.py
       - name: Commit and push if it changed
         run: |
           git config user.name "${GITHUB_ACTOR}"
