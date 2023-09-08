@@ -1,4 +1,4 @@
-name: SDG 2 Update
+name: SDG 1 Update
 on:
     workflow_dispatch:
     schedule:
