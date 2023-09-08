@@ -1,7 +1,7 @@
 name: SDG 4 Update
 on:
+  workflow_dispatch:
   workflow_run:
-    workflow_dispatch:
     workflows: ["SDG 3 Update"]
     types:
       - completed
