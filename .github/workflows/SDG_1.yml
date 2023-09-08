@@ -1,33 +1,33 @@
-name: SDG 1 Update
+name: SDG 2 Update
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 */2 * * *"
-    jobs:
-        build-and-deploy:
-          runs-on: Ubuntu-20.04
-          steps:
-            - name: Get working copy
-              uses: actions/checkout@v2
-              with:
-                fetch-depth: 1
-            - name: Set up Python 3.11
-              uses: actions/setup-python@v4
-              with:
-                python-version: '3.11'
-            - name: Install Requirements
-              run: pip install -r requirements.txt
-            - name: Update SDG 1
-              env: 
-                DW_TOKEN: ${{ secrets.DW_TOKEN }}
-              run: python SDG_1.py
-            - name: Commit and push if it changed
-              run: |
-                git config user.name "${GITHUB_ACTOR}"
-                git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-                git add -A
-                timestamp=$(date -u +%Y-%m-%d-%H-%M-%S)
-                branch_name="sdg-data-update-${timestamp}"
-                git checkout -b "${branch_name}"
-                git commit -m "Latest data: ${timestamp}" || exit 0
-                git push origin "${branch_name}"
+    workflow_dispatch:
+    schedule:
+      - cron: "0 */2 * * *"
+jobs:
+  build-and-deploy:
+    runs-on: Ubuntu-20.04
+    steps:
+      - name: Get working copy
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+      - name: Update SDG 2
+        env: 
+          DW_TOKEN: ${{ secrets.DW_TOKEN }}
+        run: python SDG_2.py
+      - name: Commit and push if it changed
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add -A
+          timestamp=$(date -u +%Y-%m-%d-%H-%M-%S)
+          branch_name="sdg-data-update-${timestamp}"
+          git checkout -b "${branch_name}"
+          git commit -m "Latest data: ${timestamp}" || exit 0
+          git push origin "${branch_name}"
