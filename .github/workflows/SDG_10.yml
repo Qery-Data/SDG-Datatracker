@@ -1,8 +1,10 @@
 name: SDG 10 Update
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "45 5 * * *"
+  workflow_run:
+    workflows: ["SDG 9 Update"]
+    types:
+      - completed
 jobs:
   build-and-deploy:
     runs-on: Ubuntu-20.04

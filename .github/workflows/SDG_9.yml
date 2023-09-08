@@ -2,7 +2,7 @@ name: SDG 9 Update
 on:
   workflow_dispatch:
   schedule:
-    - cron: "45 5 * * *"
+    - cron: "45 4 * * *"
 jobs:
   build-and-deploy:
     runs-on: Ubuntu-20.04
