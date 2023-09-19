@@ -43,7 +43,7 @@ df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_World_Total_%.csv', index=True)
 
 #2.1.2 Prevalence of moderate or severe food insecurity number World (778M0)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..AG_PRD_FIESMSN.1._T.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..AG_PRD_FIESMSN.1._T._T........./ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
 df_new = df_csv.pivot(index='REF_AREA', columns='TIME_PERIOD', values='OBS_VALUE')
 df_new.rename(index={1:'World'}, inplace=True)
 df_new.to_csv('data/2_1_2_Prevalence_Mod_Sev_Food_Ins_World_Total.csv', index=True)
