@@ -91,10 +91,10 @@ df_new.rename(index={'SG_CPA_INFORCE_BIT':'Inforce', 'SG_CPA_SIGN_BIT': 'Signed'
 df_new.to_csv('data/17_5_1_Signed_Inforce_BIT_Developing_Countries_World_Total.csv', index=True)
 
 #17.5.1 Number of countries with a signed or an in force bilateral investment treaty (BIT) with LDCs World (Nvdqz)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..SG_CPA_SIGN_BIT+SG_CPA_INFORCE_BIT.199.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
-df_new.rename(index={'SG_CPA_INFORCE_BIT':'Inforce', 'SG_CPA_SIGN_BIT': 'Signed'}, inplace=True)
-df_new.to_csv('data/17_5_1_Signed_Inforce_BIT_LDCS_World_Total.csv', index=True)
+#df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..SG_CPA_SIGN_BIT+SG_CPA_INFORCE_BIT.199.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+#df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+#df_new.rename(index={'SG_CPA_INFORCE_BIT':'Inforce', 'SG_CPA_SIGN_BIT': 'Signed'}, inplace=True)
+#df_new.to_csv('data/17_5_1_Signed_Inforce_BIT_LDCS_World_Total.csv', index=True)
 
 #17.7.1 Amount of tracked exported Environmentally Sound Technologies World (rdDbM)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..DC_ENVTECH_EXP+DC_ENVTECH_IMP.1.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
