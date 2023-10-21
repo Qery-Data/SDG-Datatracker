@@ -85,10 +85,10 @@ df_new.rename(columns={15:'Northern Africa', 53: 'Australia and New Zealand', 62
 df_new.to_csv('data/17_4_1_Debt_Service_Share_Exports_SDG_Regions.csv', index=True)
 
 #17.5.1 Number of countries with a signed or an in force bilateral investment treaty (BIT) with developing countries World (KwAs3)
-df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..SG_CPA_SIGN_BIT+SG_CPA_INFORCE_BIT.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
-df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
-df_new.rename(index={'SG_CPA_INFORCE_BIT':'Inforce', 'SG_CPA_SIGN_BIT': 'Signed'}, inplace=True)
-df_new.to_csv('data/17_5_1_Signed_Inforce_BIT_Developing_Countries_World_Total.csv', index=True)
+#df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..SG_CPA_SIGN_BIT+SG_CPA_INFORCE_BIT.515.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
+#df_new = df_csv.pivot(index='SERIES', columns='TIME_PERIOD', values='OBS_VALUE')
+#df_new.rename(index={'SG_CPA_INFORCE_BIT':'Inforce', 'SG_CPA_SIGN_BIT': 'Signed'}, inplace=True)
+#df_new.to_csv('data/17_5_1_Signed_Inforce_BIT_Developing_Countries_World_Total.csv', index=True)
 
 #17.5.1 Number of countries with a signed or an in force bilateral investment treaty (BIT) with LDCs World (Nvdqz)
 #df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..SG_CPA_SIGN_BIT+SG_CPA_INFORCE_BIT.199.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD&format=csv')
