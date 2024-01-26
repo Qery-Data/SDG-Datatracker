@@ -102,11 +102,11 @@ df_new.rename(columns={208: 'Denmark', 246: 'Finland', 352: 'Iceland', 578:'Norw
 df_new.to_csv('data/16_5_2_Bribery_Incidence_Nordics.csv', index=True)
 
 #16.6.2 Citizens confidence in the judicial system Nordics (p0Uzo)
-oecd_url='https://stats.oecd.org/SDMX-JSON/data/GOV/DNK+FIN+ISL+NOR+SWE+OAVG.CONF_JS/all?startTime=2000'
-result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
-df=pd.read_csv(io.StringIO(result.text))
-df_new = df.pivot(index='Year', columns='Country', values='Value')
-df_new.to_csv('data/16_6_2_Citizens_Confidence_Judicial_System_Nordics.csv', index=True)
+#oecd_url='https://stats.oecd.org/SDMX-JSON/data/GOV/DNK+FIN+ISL+NOR+SWE+OAVG.CONF_JS/all?startTime=2000'
+#result = requests.get(oecd_url, headers={'Accept': 'text/csv'})
+#df=pd.read_csv(io.StringIO(result.text))
+#df_new = df.pivot(index='Year', columns='Country', values='Value')
+#df_new.to_csv('data/16_6_2_Citizens_Confidence_Judicial_System_Nordics.csv', index=True)
 
 #16.7.1  Ratio for female and youth members of parliaments World and SDG regions (MXGeP)
 df_csv = pd.read_csv('https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.14/..SG_DMK_PARLMP_UC+SG_DMK_PARLMP_LC+SG_DMK_PARLYR_LC+SG_DMK_PARLYR_UC.1+53+62+513+543+747+753+202+419............/ALL/?detail=full&lastNObservations=1&format=csv')
